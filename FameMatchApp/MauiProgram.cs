@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FameMatchApp.Services;
+using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 
 namespace FameMatchApp
@@ -35,7 +36,7 @@ namespace FameMatchApp
 
         public static MauiAppBuilder RegisterDataServices(this MauiAppBuilder builder)
         {
-            
+            builder.Services.AddSingleton<FameMatchWebAPIProxy>();
             return builder;
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
