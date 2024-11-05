@@ -23,7 +23,7 @@ namespace FameMatchApp
             LoggedInUser = null;
           
             //Start with the Login View
-            MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
+            MainPage = new NavigationPage(serviceProvider.GetService<LogInView>());
         }
 
     }

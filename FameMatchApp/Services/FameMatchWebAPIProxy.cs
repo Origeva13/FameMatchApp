@@ -74,20 +74,17 @@ namespace FameMatchApp.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    if(userInfo is Casted)
+                    try
                     {
                         Casted? result = JsonSerializer.Deserialize<Casted>(resContent, options);
                         return result;
                     }
-                    else if (userInfo is Castor)
+                    catch
                     {
                         Castor? result = JsonSerializer.Deserialize<Castor>(resContent, options);
                         return result;
                     }
-                    else//לשאול את עופר
-                    {
-                        return null;
-                    }
+                    
                 }
                 else
                 {

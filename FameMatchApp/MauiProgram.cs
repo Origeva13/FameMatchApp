@@ -1,4 +1,6 @@
 ﻿using FameMatchApp.Services;
+using FameMatchApp.ViewModels;
+using FameMatchApp.Views;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 
@@ -29,8 +31,8 @@ namespace FameMatchApp
         }
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
-            
 
+            builder.Services.AddTransient<LogInView>();
             return builder;
         }
 
@@ -41,7 +43,7 @@ namespace FameMatchApp
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
-        
+            builder.Services.AddTransient<LoginVIewModel>();
             return builder;
         }
     }

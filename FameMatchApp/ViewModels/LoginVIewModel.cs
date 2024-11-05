@@ -19,7 +19,7 @@ namespace FameMatchApp.ViewModels
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
             LoginCommand = new Command(OnLogin);
-            RegisterCommand = new Command(OnRegister);
+            //RegisterCommand = new Command(OnRegister);
             email = "";
             password = "";
             InServerCall = false;
@@ -92,27 +92,38 @@ namespace FameMatchApp.ViewModels
             {
                 ErrorMsg = "Invalid email or password";
             }
+            else if(u is Casted)
+            {
+                ErrorMsg = "";
+                //Navigate to the main page
+                AppShell shell = serviceProvider.GetService<AppShell>();
+                //TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
+                //tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+                ((App)Application.Current).MainPage = shell;
+                Shell.Current.FlyoutIsPresented = false; //close the flyout
+                Shell.Current.GoToAsync("CastedHomePage"); //Navigate to the Tasks tab page
+            }
             else
             {
                 ErrorMsg = "";
                 //Navigate to the main page
                 AppShell shell = serviceProvider.GetService<AppShell>();
-                TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
-                tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+                //TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
+                //tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
                 ((App)Application.Current).MainPage = shell;
                 Shell.Current.FlyoutIsPresented = false; //close the flyout
-                Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
+                Shell.Current.GoToAsync("CastorHomePage"); //Navigate to the Tasks tab page
             }
         }
 
-        private void OnRegister()
-        {
-            ErrorMsg = "";
-            Email = "";
-            Password = "";
-            // Navigate to the Register View page
-            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
-        }
+        //private void OnRegister()
+        //{
+        //    ErrorMsg = "";
+        //    Email = "";
+        //    Password = "";
+        //    // Navigate to the Register View page
+        //    ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
+        //}
 
     }
 }
