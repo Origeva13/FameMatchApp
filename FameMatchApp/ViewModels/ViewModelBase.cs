@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TasksManagementApp.ViewModels
+namespace FameMatchApp.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
