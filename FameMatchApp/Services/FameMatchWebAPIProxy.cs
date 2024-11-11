@@ -27,11 +27,11 @@ namespace FameMatchApp.Services
 
         #region with tunnel
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        private static string serverIP = "3hjb5tbs-5144.euw.devtunnels.ms";
+        private static string serverIP = "dm6s68f2-5144.euw.devtunnels.ms";
         private HttpClient client;
         private string baseUrl;
-        public static string BaseAddress = "https://3hjb5tbs-5144.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://3hjb5tbs-5144.euw.devtunnels.ms/";
+        public static string BaseAddress = "https://dm6s68f2-5144.euw.devtunnels.ms/api/";
+        private static string ImageBaseAddress = "https://dm6s68f2-5144.euw.devtunnels.ms/";
         #endregion
 
         public FameMatchWebAPIProxy()
@@ -74,17 +74,14 @@ namespace FameMatchApp.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    try
+                    Casted? resultCasted = JsonSerializer.Deserialize<Casted>(resContent, options);
+                    if (resultCasted == null || resultCasted.UserHair == null)
                     {
-                        Casted? result = JsonSerializer.Deserialize<Casted>(resContent, options);
-                        return result;
+                        Castor? resultCastor = JsonSerializer.Deserialize<Castor>(resContent, options);
+                        return resultCastor;
                     }
-                    catch
-                    {
-                        Castor? result = JsonSerializer.Deserialize<Castor>(resContent, options);
-                        return result;
-                    }
-                    
+                    else
+                        return null;
                 }
                 else
                 {

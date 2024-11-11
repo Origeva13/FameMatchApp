@@ -31,7 +31,7 @@ namespace FameMatchApp
         }
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
-
+            builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<LogInView>();
             return builder;
         }
