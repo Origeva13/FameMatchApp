@@ -33,6 +33,7 @@ namespace FameMatchApp
         {
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<LogInView>();
+            builder.Services.AddTransient<RegisterView>();
             return builder;
         }
 
@@ -44,6 +45,7 @@ namespace FameMatchApp
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<LoginVIewModel>();
+            builder.Services.AddTransient<RegisterViewModel>();
             return builder;
         }
     }

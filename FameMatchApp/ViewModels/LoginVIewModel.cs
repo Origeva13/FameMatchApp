@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FameMatchApp.ViewModels;
+using FameMatchApp.Views;
 namespace FameMatchApp.ViewModels
 {
     public class LoginVIewModel:ViewModelBase
@@ -116,14 +117,14 @@ namespace FameMatchApp.ViewModels
             }
         }
 
-        //private void OnRegister()
-        //{
-        //    ErrorMsg = "";
-        //    Email = "";
-        //    Password = "";
-        //    // Navigate to the Register View page
-        //    ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
-        //}
+        private void OnRegister()
+        {
+            ErrorMsg = "";
+            Email = "";
+            Password = "";
+            // Navigate to the Register View page
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
+        }
 
     }
 }
