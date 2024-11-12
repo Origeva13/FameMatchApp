@@ -93,5 +93,71 @@ namespace FameMatchApp.Services
                 return null;
             }
         }
+        public async Task<Casted?> CastedRegister(Casted user)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}CastedRegister";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(user);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    Casted? result = JsonSerializer.Deserialize<Casted>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<Castor?> CastorRegister(Castor user)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}CastorRegister";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(user);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    Castor? result = JsonSerializer.Deserialize<Castor>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
