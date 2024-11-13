@@ -26,9 +26,11 @@ namespace FameMatchApp.ViewModels
             LastNameError = "Last name is required";
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
-            userGenderError = "Please choose Gender";
+            UserGenderError = "Please choose Gender";
             CompanyNameError = "Company Name is required";
-            
+            NumOfLicenseError = "Number of license is required";
+            AgeError = "The Age Filed should be renter due to several reasons";
+            LocationError = "Location is requierd";
         }
 
         //Defiine properties for each field in the registration form including error messages and validation logic
@@ -75,8 +77,6 @@ namespace FameMatchApp.ViewModels
             this.ShowFirstNameError = string.IsNullOrEmpty(FirstName);
         }
         #endregion
-
-
         #region UserGender
        
         private bool showUserGenderError;
@@ -120,9 +120,6 @@ namespace FameMatchApp.ViewModels
             this.ShowUserGenderError = string.IsNullOrEmpty(UserGender);
         }
         #endregion
-
-
-
         #region CompanyName
         private bool showcompanyNameError;
 
@@ -166,8 +163,53 @@ namespace FameMatchApp.ViewModels
             this.ShowCompanyNameError = string.IsNullOrEmpty(Companyname);
         }
         #endregion
+        #region NumOfLicense
+        private bool shownumoflicenseError;
 
+        public bool ShowNumofLicenseError
+        {
+            get => ShowNumofLicenseError;
+            set
+            {
+                ShowNumofLicenseError = value;
+                OnPropertyChanged("NumOfLicenseError");
+            }
+        }
 
+        private int numOfLicense;
+
+        public int NumOfLicense
+        {
+            get => NumOfLicense;
+            set
+            {
+                NumOfLicense = value;
+                ValidateNumOfLicense();
+                OnPropertyChanged("NumOfLicense");
+            }
+        }
+
+        private string numOfLicenseError;
+
+        public string NumOfLicenseError
+        {
+            get => NumOfLicenseError;
+            set
+            {
+                NumOfLicenseError = value;
+                OnPropertyChanged("NumOfLicenseError");
+            }
+        }
+
+        private void ValidateNumOfLicense()
+        {
+                // Perform validation checks
+                if (NumOfLicense <= 0)
+                {
+                this.ShowNumofLicenseError = true;           
+                }
+        }
+        #endregion
         #region LastName
         private bool showLastNameError;
 
@@ -209,6 +251,96 @@ namespace FameMatchApp.ViewModels
         private void ValidateLastName()
         {
             this.ShowLastNameError = string.IsNullOrEmpty(LastName);
+        }
+        #endregion
+        #region Age
+        private bool showAgeError;
+
+        public bool ShowAgeError
+        {
+            get => ShowAgeError;
+            set
+            {
+                ShowAgeError = value;
+                OnPropertyChanged("AgeError");
+            }
+        }
+
+        private int age;
+
+        public int Age
+        {
+            get => Age;
+            set
+            {
+                Age = value;
+                ValidateAge();
+                OnPropertyChanged("Age");
+            }
+        }
+
+        private string ageError;
+
+        public string AgeError
+        {
+            get =>AgeError;
+            set
+            {
+                AgeError = value;
+                OnPropertyChanged("AgeError");
+            }
+        }
+
+        private void ValidateAge()
+        {
+            // Perform validation checks
+            if (Age <= 10||Age==null)
+            {
+                this.ShowNumofLicenseError = true;
+            }
+        }
+        #endregion
+        #region Location
+        private bool showLocationError;
+
+        public bool ShowLocationError
+        {
+            get => showLocationError;
+            set
+            {
+                showLocationError = value;
+                OnPropertyChanged("ShowLocationError");
+            }
+        }
+
+        private string location;
+
+        public string Location
+        {
+            get => Location;
+            set
+            {
+                Location = value;
+                ValidateLocation();
+                OnPropertyChanged("Location");
+            }
+        }
+
+        private string locationError;
+
+        public string LocationError
+        {
+            get => LocationError;
+            set
+            {
+                LocationError = value;
+                OnPropertyChanged("LocationError");
+            }
+        }
+
+        private void ValidateLocation()
+        {
+            this.ShowLocationError = string.IsNullOrEmpty(Location);
         }
         #endregion
         #region Email
@@ -344,8 +476,6 @@ namespace FameMatchApp.ViewModels
             IsPassword = !IsPassword;
         }
         #endregion
-
-
         #region Photo
 
         private string photoURL;
@@ -416,17 +546,25 @@ namespace FameMatchApp.ViewModels
             ValidateLastName();
             ValidateEmail();
             ValidatePassword();
+            ValidateAge();
+            ValidateUserGender();
+            ValidateCompanyName();
+            ValidateNumOfLicense();
+            ValidateLocation();
 
-            if (!ShowFirstNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError)
+            if (!ShowFirstNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowUserGenderError && !ShowAgeError && !ShowLocationError)//Its a casted
             {
                 //Create a new AppUser object with the data from the registration form
-                var newUser = new AppUser
+                var newCasted = new Casted 
                 {
                     UserName = FirstName,
                     UserLastName = LastName,
                     UserEmail = Email,
                     UserPassword = Password,
-                    IsManager = false
+                    IsManager = false,
+                    UserGender= UserGender,
+                    UserAge=Age,
+                    UserLocation= Location
                 };
 
                 //Call the Register method on the proxy to register the new user
