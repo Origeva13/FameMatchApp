@@ -569,17 +569,64 @@ namespace FameMatchApp.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                newUser = await proxy.Register(newUser);
+                newCasted = await proxy.CastedRegister(newCasted);
                 InServerCall = false;
 
                 //If the registration was successful, navigate to the login page
-                if (newUser != null)
+                if (newCasted != null)
                 {
                     //UPload profile imae if needed
                     if (!string.IsNullOrEmpty(LocalPhotoPath))
                     {
-                        await proxy.LoginAsync(new LoginInfo { Email = newUser.UserEmail, Password = newUser.UserPassword });
-                        AppUser? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                        await proxy.LoginAsync(new Loginfo { UserEmail = newCasted.UserEmail, UserPassword = newCasted.UserPassword });
+                        Casted? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                        if (updatedUser == null)
+                        {
+                            InServerCall = false;
+                            await Application.Current.MainPage.DisplayAlert("Registration", "User Data Was Saved BUT Profile image upload failed", "ok");
+                        }
+                    }
+                    InServerCall = false;
+
+                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+
+                    //If the registration failed, display an error message
+                    string errorMsg = "Registration failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                }
+            }
+            else if (!ShowFirstNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowCompanyNameError && !ShowNumofLicenseError)//its a castor
+            {
+                //Create a new AppUser object with the data from the registration form
+                var newCastor = new Castor
+                {
+                    UserName = FirstName,
+                    UserLastName = LastName,
+                    UserEmail = Email,
+                    UserPassword = Password,
+                    IsManager = false,
+                    UserGender = UserGender,
+                    NumOfLisence=numOfLicense,
+                    CompanyName = CompanyName
+                  
+                };
+
+                //Call the Register method on the proxy to register the new user
+                InServerCall = true;
+                newCastor = await proxy.CastorRegister(newCastor);
+                InServerCall = false;
+
+                //If the registration was successful, navigate to the login page
+                if (newCastor != null)
+                {
+                    //UPload profile imae if needed
+                    if (!string.IsNullOrEmpty(LocalPhotoPath))
+                    {
+                        await proxy.LoginAsync(new Loginfo { UserEmail = newCastor.UserEmail, UserPassword = newCastor.UserPassword });
+                        Castor? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
                         if (updatedUser == null)
                         {
                             InServerCall = false;
