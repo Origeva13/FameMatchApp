@@ -579,7 +579,7 @@ namespace FameMatchApp.ViewModels
                     if (!string.IsNullOrEmpty(LocalPhotoPath))
                     {
                         await proxy.LoginAsync(new Loginfo { UserEmail = newCasted.UserEmail, UserPassword = newCasted.UserPassword });
-                        Casted? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                        User? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
                         if (updatedUser == null)
                         {
                             InServerCall = false;
@@ -626,7 +626,7 @@ namespace FameMatchApp.ViewModels
                     if (!string.IsNullOrEmpty(LocalPhotoPath))
                     {
                         await proxy.LoginAsync(new Loginfo { UserEmail = newCastor.UserEmail, UserPassword = newCastor.UserPassword });
-                        Castor? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                        User? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
                         if (updatedUser == null)
                         {
                             InServerCall = false;

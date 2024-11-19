@@ -1,9 +1,12 @@
-namespace FameMatchApp.Views;
+using FameMatchApp.ViewModels;
+namespace FameMatchApp.View;
 
 public partial class RegisterView : ContentPage
 {
-	public RegisterView()
-	{
-		InitializeComponent();
-	}
+    public RegisterView(RegisterViewModel vm)
+    {
+        BindingContext = vm;
+        InitializeComponent();
+    }
+
 }

@@ -1,12 +1,288 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FameMatchApp.Views.RegisterView"
-             Title="RegisterView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="FameMatchApp.View.RegisterView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Sign-Up"
+    FlowDirection="RightToLeft">
+
+    <ScrollView Margin="20">
+        <Grid>
+
+            <!--  Main Content  -->
+            <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
+                <!--  Photo  -->
+                <Frame
+                    Margin="10"
+                    Padding="5"
+                    BorderColor="Black">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            x:Name="theImageBug"
+                            HeightRequest="150"
+                            Source="{Binding PhotoURL}" />
+                        <Label
+                            Grid.Row="1"
+                            HorizontalOptions="Center"
+                            Text="Press here to upload a picture"
+                            TextColor="Black"
+                            VerticalOptions="End">
+
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+
+                    </Grid>
+                </Frame>
+                <!--  FirstName  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="First Name" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowFirstNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding FirstNameError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Please enter your first name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding FirstName}" />
+                <!--  LastName  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Last Name" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowLastNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding LastNameError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Please enter your last name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding LastName}" />
+                <!--  Email  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Email" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowEmailError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding EmailError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Please enter your Email"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Email}" />
+
+
+                <!--  Password  -->
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Password" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowPasswordError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding PasswordError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Please enter your password"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Password}" />
+
+                <!--  Gender  -->
+                <StackLayout
+                    Margin="10"
+                    RadioButtonGroup.GroupName="gender"
+                    RadioButtonGroup.SelectedValue="{Binding UserGender}">
+                    <Label Text="Gender" />
+                    <RadioButton Content="Female" Value="Female" />
+                    <RadioButton Content="Male" Value="Male" />
+                    <RadioButton
+                        Content="Other"
+                        IsChecked="True"
+                        Value="Other" />
+                </StackLayout>
+
+                <!--  CompanyName  -->
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Company Name" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowCompanyNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding CompanyNameError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Please enter your full company name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding CompanyName}" />
+
+
+                <!--  NumOfLisence  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Number Of Lisence" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowNumOfLicenseError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding NumOfLicenseError}" />
+                </Grid>
+                <Entry
+                    Keyboard="Numeric"
+                    Placeholder="Please enter your number of license"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding NumOfLicense}" />
+
+                <!--  Location  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Location" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowLocationError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding LocationError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Please enter your Adress"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Location}" />
+                <!--  Age  -->
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Age" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowAgeError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding AgeError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Please enter your age"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Age}" />
+
+
+
+                <StackLayout IsVisible="{Binding ShowCastedFields}" />
+                <!--  Location  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Location" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowLocationError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding LocationError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Please enter your Adress"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Location}" />
+                <!--  Age  -->
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Age" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowAgeError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding AgeError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Please enter your age"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Age}" />
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Would you like to be famous or to make somone else famous?" />
+                    <Switch Grid.Column="1" IsToggled="{Binding IsBeekeeper}" />
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding CancelCommand}"
+                        IsEnabled="{Binding NotInServerCall}"
+                        Text="ביטול" />
+
+                    <Button
+                        Grid.Column="0"
+                        Command="{Binding RegisterCommand}"
+                        IsEnabled="{Binding NotInServerCall}"
+                        Text="הרשמה" />
+                </Grid>
+
+            </VerticalStackLayout>
+
+
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="{Binding InServerCall}"
+                VerticalOptions="Center"
+                Color="Red" />
+
+        </Grid>
+    </ScrollView>
 </ContentPage>

@@ -165,9 +165,10 @@ namespace FameMatchApp.Services
             string url = $"{this.baseUrl}uploadprofileimage";
             try
             {
+                
                 //Create the form data
                 MultipartFormDataContent form = new MultipartFormDataContent();
-                var fileContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
+                var fileContent = new ByteArrayContent(System.IO.File.ReadAllBytes(imagePath));
                 form.Add(fileContent, "file", imagePath);
                 //Call the server API
                 HttpResponseMessage response = await client.PostAsync(url, form);
