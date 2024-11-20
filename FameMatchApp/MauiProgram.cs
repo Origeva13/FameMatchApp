@@ -1,4 +1,5 @@
 ﻿using FameMatchApp.Services;
+using FameMatchApp.View;
 using FameMatchApp.ViewModels;
 using FameMatchApp.Views;
 using Microsoft.Extensions.Logging;

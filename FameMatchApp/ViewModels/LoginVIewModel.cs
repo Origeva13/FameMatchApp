@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using FameMatchApp.ViewModels;
 using FameMatchApp.Views;
+using FameMatchApp.View;
 namespace FameMatchApp.ViewModels
 {
     public class LoginVIewModel:ViewModelBase

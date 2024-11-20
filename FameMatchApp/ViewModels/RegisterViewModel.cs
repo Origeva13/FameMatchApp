@@ -8,7 +8,7 @@ using FameMatchApp.Models;
 
 namespace FameMatchApp.ViewModels
 {
-    internal class RegisterViewModel:ViewModelBase
+    public class RegisterViewModel:ViewModelBase
     {
             
         private FameMatchWebAPIProxy proxy;

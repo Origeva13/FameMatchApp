@@ -265,13 +265,13 @@
                         Grid.Column="1"
                         Command="{Binding CancelCommand}"
                         IsEnabled="{Binding NotInServerCall}"
-                        Text="ביטול" />
+                        Text="Cencel" />
 
                     <Button
                         Grid.Column="0"
                         Command="{Binding RegisterCommand}"
                         IsEnabled="{Binding NotInServerCall}"
-                        Text="הרשמה" />
+                        Text="Register" />
                 </Grid>
 
             </VerticalStackLayout>
