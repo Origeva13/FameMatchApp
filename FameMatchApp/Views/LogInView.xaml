@@ -28,15 +28,22 @@
             HorizontalOptions="Center"
             Text="{Binding ErrorMsg}"
             TextColor="Red" />
-        <Label
-            HorizontalOptions="Center"
-            IsEnabled="{Binding NotInServerCall}"
-            Text="Don't have an account? Register"
-            TextColor="Blue"
-            VerticalOptions="End">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-            </Label.GestureRecognizers>
+        <Label IsEnabled="{Binding NotInServerCall}">
+            <Label.FormattedText>
+                <FormattedString>
+
+                    <Span Text="Dont have an account? Register"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                            <!--CommandParameter="https://learn.microsoft.com/dotnet/maui/"-->
+                        </Span.GestureRecognizers>
+                    </Span>
+
+                </FormattedString>
+            </Label.FormattedText>
+
         </Label>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
     </VerticalStackLayout>
