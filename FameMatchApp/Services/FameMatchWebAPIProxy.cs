@@ -81,7 +81,7 @@ namespace FameMatchApp.Services
                         return resultCastor;
                     }
                     else
-                        return null;
+                        return resultCasted;
                 }
                 else
                 {

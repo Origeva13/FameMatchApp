@@ -94,10 +94,10 @@ namespace FameMatchApp.ViewModels
         private string userGender;
         public string UserGender
         {
-            get => UserGender;
+            get => userGender;
             set
             {
-                UserGender = value;
+                userGender = value;
                 ValidateName();
                 OnPropertyChanged("UserGender");
             }
@@ -110,7 +110,7 @@ namespace FameMatchApp.ViewModels
             get => UserGenderError;
             set
             {
-                UserGenderError = value;
+                userGenderError = value;
                 OnPropertyChanged("UserGenderError");
             }
         }
@@ -196,7 +196,7 @@ namespace FameMatchApp.ViewModels
             get => NumOfLicenseError;
             set
             {
-                NumOfLicenseError = value;
+                numOfLicenseError = value;
                 OnPropertyChanged("NumOfLicenseError");
             }
         }
@@ -286,7 +286,7 @@ namespace FameMatchApp.ViewModels
             get =>AgeError;
             set
             {
-                AgeError = value;
+                ageError = value;
                 OnPropertyChanged("AgeError");
             }
         }
@@ -333,7 +333,7 @@ namespace FameMatchApp.ViewModels
             get => LocationError;
             set
             {
-                LocationError = value;
+                locationError = value;
                 OnPropertyChanged("LocationError");
             }
         }
