@@ -47,27 +47,27 @@ namespace FameMatchApp.ViewModels
             }
         }
 
-        private string Firstname;
+        private string firstname;
 
         public string FirstName
         {
-            get => Firstname;
+            get => firstname;
             set
             {
-                Firstname = value;
+                firstname = value;
                 ValidateName();
                 OnPropertyChanged("FirstName");
             }
         }
 
-        private string FirstnameError;
+        private string firstnameError;
 
         public string FirstNameError
         {
-            get => FirstnameError;
+            get => firstnameError;
             set
             {
-                FirstnameError = value;
+                firstnameError = value;
                 OnPropertyChanged("FirstNameError");
             }
         }
@@ -107,7 +107,7 @@ namespace FameMatchApp.ViewModels
 
         public string UserGenderError
         {
-            get => UserGenderError;
+            get => userGenderError;
             set
             {
                 userGenderError = value;
@@ -121,46 +121,46 @@ namespace FameMatchApp.ViewModels
         }
         #endregion
         #region CompanyName
-        private bool showcompanyNameError;
+        private bool showCompanyNameError;
 
         public bool ShowCompanyNameError
         {
-            get => ShowCompanyNameError;
+            get => showCompanyNameError;
             set
             {
-                ShowCompanyNameError = value;
-                OnPropertyChanged("CompanyNameError");
+                showCompanyNameError = value;
+                OnPropertyChanged("ShowCompanyNameError");
             }
         }
 
-        private string Companyname;
+        private string companyname;
 
         public string CompanyName
         {
-            get => Companyname;
+            get => companyname;
             set
             {
-                Companyname = value;
+                companyname = value;
                 ValidateCompanyName();
                 OnPropertyChanged("CompanyName");
             }
         }
 
-        private string CompanynameError;
+        private string companyNameError;
 
         public string CompanyNameError
         {
-            get => CompanynameError;
+            get => companyNameError;
             set
             {
-               CompanynameError = value;
+               companyNameError = value;
                 OnPropertyChanged("CompanyNameError");
             }
         }
 
         private void ValidateCompanyName()
         {
-            this.ShowCompanyNameError = string.IsNullOrEmpty(Companyname);
+            this.ShowCompanyNameError = string.IsNullOrEmpty(CompanyName);
         }
         #endregion
         #region NumOfLicense
@@ -168,11 +168,11 @@ namespace FameMatchApp.ViewModels
 
         public bool ShowNumofLicenseError
         {
-            get => ShowNumofLicenseError;
+            get => shownumoflicenseError;
             set
             {
-                ShowNumofLicenseError = value;
-                OnPropertyChanged("NumOfLicenseError");
+                shownumoflicenseError = value;
+                OnPropertyChanged("ShowNumofLicenseError");
             }
         }
 
@@ -180,10 +180,10 @@ namespace FameMatchApp.ViewModels
 
         public int NumOfLicense
         {
-            get => NumOfLicense;
+            get => numOfLicense;
             set
             {
-                NumOfLicense = value;
+                numOfLicense = value;
                 ValidateNumOfLicense();
                 OnPropertyChanged("NumOfLicense");
             }
@@ -193,7 +193,7 @@ namespace FameMatchApp.ViewModels
 
         public string NumOfLicenseError
         {
-            get => NumOfLicenseError;
+            get => numOfLicenseError;
             set
             {
                 numOfLicenseError = value;
@@ -258,10 +258,10 @@ namespace FameMatchApp.ViewModels
 
         public bool ShowAgeError
         {
-            get => ShowAgeError;
+            get => showAgeError;
             set
             {
-                ShowAgeError = value;
+                showAgeError = value;
                 OnPropertyChanged("AgeError");
             }
         }
@@ -270,10 +270,10 @@ namespace FameMatchApp.ViewModels
 
         public int Age
         {
-            get => Age;
+            get => age;
             set
             {
-                Age = value;
+                age = value;
                 ValidateAge();
                 OnPropertyChanged("Age");
             }
@@ -283,7 +283,7 @@ namespace FameMatchApp.ViewModels
 
         public string AgeError
         {
-            get =>AgeError;
+            get =>ageError;
             set
             {
                 ageError = value;
@@ -317,10 +317,10 @@ namespace FameMatchApp.ViewModels
 
         public string Location
         {
-            get => Location;
+            get => location;
             set
             {
-                Location = value;
+                location = value;
                 ValidateLocation();
                 OnPropertyChanged("Location");
             }
@@ -330,7 +330,7 @@ namespace FameMatchApp.ViewModels
 
         public string LocationError
         {
-            get => LocationError;
+            get => locationError;
             set
             {
                 locationError = value;
