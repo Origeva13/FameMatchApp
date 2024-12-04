@@ -35,6 +35,13 @@ namespace FameMatchApp
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<LogInView>();
             builder.Services.AddTransient<RegisterView>();
+            builder.Services.AddTransient<CastedHomeView>();
+            builder.Services.AddTransient<CastedHomeView>();
+            builder.Services.AddTransient<CastedProfileView>();
+            builder.Services.AddTransient<CastorProfileView>();
+            builder.Services.AddTransient<ConfirmPageView>();
+            builder.Services.AddTransient<MatchView>();
+            builder.Services.AddTransient<UsersListView>();
             return builder;
         }
 
@@ -47,6 +54,14 @@ namespace FameMatchApp
         {
             builder.Services.AddTransient<LoginVIewModel>();
             builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<AppShellViewModel>();
+            builder.Services.AddTransient<CastedHomeViewModel>();
+            builder.Services.AddTransient<CastedProfileViewModel>();
+            builder.Services.AddTransient<CastorHomeViewModel>();
+            builder.Services.AddTransient<CastorProfileViewModel>();
+            builder.Services.AddTransient<ConfirmPageViewModel>();
+            builder.Services.AddTransient<MatchViewModel>();
+            builder.Services.AddTransient<UsersListViewModel>();
             return builder;
         }
     }

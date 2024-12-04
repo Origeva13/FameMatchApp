@@ -3,13 +3,65 @@
     x:Class="FameMatchApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:FameMatchApp"
-    Shell.FlyoutBehavior="Disabled"
-    Title="FameMatchApp">
+    xmlns:local="clr-namespace:FameMatchApp.View"
+    Title="FameMatchApp"
+    Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
+
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate local:CastedProfileView}"
+            Icon="profileicon.png"
+            IsVisible="{Binding IsCasted}"
+            Route="CastedProfile" />
+
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate local:CastorProfileView}"
+            Icon="profileicon.png"
+            IsVisible="{Binding IsCastor}"
+            Route="CastorProfile" />
+
+        <ShellContent
+            Title="Home Page"
+            ContentTemplate="{DataTemplate local:CastedHomeView}"
+            Icon="homepageicon.png"
+            IsVisible="{Binding IsCasted}"
+            Route="CastedHomePage" />
+
+        <ShellContent
+            Title="Home Page"
+            ContentTemplate="{DataTemplate local:CastorHomeView}"
+            Icon="homepageicon.png"
+            IsVisible="{Binding IsCastor}"
+            Route="CastorHomePage" />
+
+        <ShellContent
+            Title="Users List"
+            ContentTemplate="{DataTemplate local:UsersListView}"
+            Icon="userslisticon.png"
+            IsVisible="{Binding IsManager}"
+            Route="UsersList" />
+
+        <ShellContent
+            Title="Confirm Page"
+            ContentTemplate="{DataTemplate local:ConfirmPageView}"
+            Icon="confirmicon.png"
+            IsVisible="{Binding IsManager}"
+            Route="ConfirmPage" />
+
+        <ShellContent
+            Title="Match Page"
+            ContentTemplate="{DataTemplate local:MatchView}"
+            Icon="matchicon.png"
+            IsVisible="{Binding IsCastor}"
+            Route="Match" />
+
+    </FlyoutItem>
+    <MenuItem
+        Command="{Binding LogoutCommand}"
+        IconImageSource="logouticon.png"
+        Text="Logout" />
 
 </Shell>
