@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FameMatchApp.ViewModels
 {
-    internal class UsersListViewModel : ViewModelBase
+    public class UsersListViewModel : ViewModelBase
     {
     }
 }

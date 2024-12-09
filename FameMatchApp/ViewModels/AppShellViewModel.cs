@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FameMatchApp.ViewModels
 {
-    internal class AppShellViewModel:ViewModelBase
+    public class AppShellViewModel:ViewModelBase
     {
         private User? currentUser;
         private IServiceProvider serviceProvider;
@@ -18,44 +19,13 @@ namespace FameMatchApp.ViewModels
             this.serviceProvider = serviceProvider;
             this.currentUser = ((App)Application.Current).LoggedInUser;
         }
+        public bool IsManager => currentUser?.IsManager ?? false;
 
-        public bool IsManger
-        {
-            get
-            {
-                return this.currentUser.IsManager;
-            }
-        }
-        public bool IsCasted
-        {
-            get
-            {
-                if (this.currentUser is Casted)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        public bool IsCastor
-        {
-            get
-            {
-                if (this.currentUser is Castor)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
+        public bool IsCasted => currentUser is Casted;
+
+        public bool IsCastor => currentUser is Castor;
         //this command will be used for logout menu item
-        public Command LogoutCommand
+        public ICommand LogoutCommand
         {
             get
             {

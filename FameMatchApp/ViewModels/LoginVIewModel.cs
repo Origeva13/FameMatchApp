@@ -126,6 +126,15 @@ namespace FameMatchApp.ViewModels
             // Navigate to the Register View page
             ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
         }
+        public ICommand ForgotPassCommand { get; }
 
+        private void OnForgotPass()
+        {
+            ErrorMsg = "";
+            Email = "";
+            Password = "";
+            // Navigate to the Register View page
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<ForgotPasswordView>());
+        }
     }
 }

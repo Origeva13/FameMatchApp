@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace FameMatchApp.ViewModels
 {
-    public class CastorProfileViewModel : ViewModelBase
+    public class ForgotPassword:ViewModelBase
     {
+
     }
 }

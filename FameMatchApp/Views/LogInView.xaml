@@ -45,6 +45,23 @@
             </Label.FormattedText>
 
         </Label>
+        <Label IsEnabled="{Binding NotInServerCall}">
+            <Label.FormattedText>
+                <FormattedString>
+
+                    <Span Text="Forgot Password?"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ForgotPassCommand}"/>
+
+                        </Span.GestureRecognizers>
+                    </Span>
+
+                </FormattedString>
+            </Label.FormattedText>
+
+        </Label>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
     </VerticalStackLayout>
 </ContentPage>
