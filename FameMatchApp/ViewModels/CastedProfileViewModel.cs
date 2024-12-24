@@ -14,13 +14,20 @@ namespace FameMatchApp.ViewModels
         public CastedProfileViewModel(FameMatchWebAPIProxy proxy)
         {
             User theUser = ((App)App.Current).LoggedInUser;
+            Casted casted = (Casted)theUser;
             this.proxy = proxy;
-            Name = theUser.UserName;
-            LastName = theUser.UserLastName;
-            Email = theUser.UserEmail;
-            Password = theUser.UserPassword;
-            //UpdatePhotoURL(theUser.ProfileImagePath);
-            //LocalPhotoPath = "";
+            Name = casted.UserName;
+            LastName = casted.UserLastName;
+            Email = casted.UserEmail;
+            Password = casted.UserPassword;
+            HairColor = casted.UserHair;
+            Hight=casted.UserHigth;
+            AboutMe = casted.AboutMe;
+            Eyes = casted.UserEyes;
+            BodyStructure = casted.UserBody;
+            Skincolor = casted.UserSkin;
+            //////UpdatePhotoURL(casted.ProfileImagePath);
+            //////LocalPhotoPath = "";
             IsPassword = true;
             SaveCommand = new Command(OnSave);
             ShowPasswordCommand = new Command(OnShowPassword);
@@ -29,6 +36,8 @@ namespace FameMatchApp.ViewModels
             LastNameError = "Last name is required";
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
+            HairColorError = "Hair color filed must be fild ";
+            AboutMeError = "About me filed must be at list 20 charctares long ";
         }
 
         //Defiine properties for each field in the registration form including error messages and validation logic
@@ -75,7 +84,6 @@ namespace FameMatchApp.ViewModels
             this.ShowNameError = string.IsNullOrEmpty(Name);
         }
         #endregion
-
         #region LastName
         private bool showLastNameError;
 
@@ -252,7 +260,190 @@ namespace FameMatchApp.ViewModels
             IsPassword = !IsPassword;
         }
         #endregion
+        #region UserGender
+        //private bool showUserGenderError;
 
+        //public bool ShowUserGenderError
+        //{
+        //    get => showUserGenderError;
+        //    set
+        //    {
+        //        showUserGenderError = value;
+        //        OnPropertyChanged("ShowUserGenderError");
+        //    }
+        //}
+
+        private string userGender;
+
+        public string UserGender
+        {
+            get => userGender;
+            set
+            {
+                userGender = value;
+                //ValidateUserGender();
+                OnPropertyChanged("UserGender");
+            }
+        }
+
+        //private string userGenderError;
+
+        //public string UserGenderError
+        //{
+        //    get => userGenderError;
+        //    set
+        //    {
+        //        userGenderError = value;
+        //        OnPropertyChanged("UserGenderError");
+        //    }
+        //}
+
+        //private void ValidateUserGender()
+        //{
+        //    this.ShowUserGenderError = string.IsNullOrEmpty(UserGender);
+        //}
+        #endregion
+        #region HairColor
+        private bool showHairColorError;
+
+        public bool ShowHairColorError
+        {
+            get => showHairColorError;
+            set
+            {
+                showHairColorError = value;
+                OnPropertyChanged("ShowHairColorError");
+            }
+        }
+
+        private string hairColor;
+
+        public string HairColor
+        {
+            get => hairColor;
+            set
+            {
+                hairColor = value;
+                ValidateHairColor();
+                OnPropertyChanged("HairColor");
+            }
+        }
+
+        private string hairColorError;
+
+        public string HairColorError
+        {
+            get => hairColorError;
+            set
+            {
+                hairColorError = value;
+                OnPropertyChanged("HairColorError");
+            }
+        }
+
+        private void ValidateHairColor()
+        {
+            this.ShowHairColorError = string.IsNullOrEmpty(HairColor);
+        }
+        #endregion
+        #region hight
+        private int hight;
+
+        public int Hight
+        {
+            get => hight;
+            set
+            {
+                hight = value;
+                OnPropertyChanged("Hight");
+            }
+        }
+        #endregion
+        #region eyes
+        private string eyes;
+
+        public string Eyes
+        {
+            get => eyes;
+            set
+            {
+                eyes = value;
+                OnPropertyChanged("Eyes");
+            }
+        }
+        #endregion
+        #region bodyStructure
+        private string bodyStructure;
+
+        public string BodyStructure
+        {
+            get => bodyStructure;
+            set
+            {
+                bodyStructure = value;
+                OnPropertyChanged("BodyStructure");
+            }
+        }
+        #endregion
+        #region SkinColor
+        private string skincolor;
+
+        public string Skincolor
+        {
+            get => skincolor;
+            set
+            {
+                skincolor = value;
+                OnPropertyChanged("Skincolor");
+            }
+        }
+        #endregion
+        #region AboutMe
+        private bool showAboutMeError;
+
+        public bool ShowAboutMeError
+        {
+            get => showAboutMeError;
+            set
+            {
+                showAboutMeError = value;
+                OnPropertyChanged("ShowAboutMeError");
+            }
+        }
+
+        private string aboutMe;
+
+        public string AboutMe
+        {
+            get => aboutMe;
+            set
+            {
+                aboutMe = value;
+                ValidateAboutMe();
+                OnPropertyChanged("AboutMe");
+            }
+        }
+
+        private string aboutMeError;
+
+        public string AboutMeError
+        {
+            get => aboutMeError;
+            set
+            {
+                aboutMeError = value;
+                OnPropertyChanged("AboutMeError");
+            }
+        }
+
+        private void ValidateAboutMe()
+        {
+            if (this.AboutMe.Length < 20)
+            {
+                this.ShowAboutMeError = string.IsNullOrEmpty(AboutMe);
+            }
+        }
+        #endregion
         #region Photo
 
         private string photoURL;
@@ -322,40 +513,49 @@ namespace FameMatchApp.ViewModels
             ValidateLastName();
             ValidateEmail();
             ValidatePassword();
+            ValidateAboutMe();
+            ValidateHairColor();
 
-            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError)
+            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowAboutMeError && !ShowHairColorError)
             {
                 //Update AppUser object with the data from the Edit form
                 User theUser = ((App)App.Current).LoggedInUser;
-                theUser.UserName = Name;
-                theUser.UserLastName = LastName;
-                theUser.UserEmail = Email;
-                theUser.UserPassword = Password;
+                Casted casted = (Casted)theUser;
+                casted.UserName = Name;
+                casted.UserLastName = LastName;
+                casted.UserEmail = Email;
+                casted.UserPassword = Password;
+                casted.UserGender = UserGender;
+                casted.UserHigth = Hight;
+                casted.UserHair = HairColor;
+                casted.UserEyes= Eyes;
+                casted.UserBody=BodyStructure;
+                casted.UserSkin = Skincolor;
 
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                bool success = await proxy.UpdateCasted(theUser);
+                bool success = await proxy.UpdateCasted(casted);
 
 
                 //If the save was successful, navigate to the login page
                 if (success)
                 {
-                    //UPload profile imae if needed
-                    if (!string.IsNullOrEmpty(LocalPhotoPath))
-                    {
-                        User? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
-                        if (updatedUser == null)
-                        {
-                            await Shell.Current.DisplayAlert("Save Profile", "User Data Was Saved BUT Profile image upload failed", "ok");
-                        }
-                        else
-                        {
-                            theUser.ProfileImagePath = updatedUser.ProfileImagePath;
-                            UpdatePhotoURL(theUser.ProfileImagePath);
-                        }
+                    //UPload profile image if needed
+                    //if (!string.IsNullOrEmpty(LocalPhotoPath))
+                    //{
+                    //    User? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                    //    if (updatedUser == null)
+                    //    {
+                    //        await Shell.Current.DisplayAlert("Save Profile", "User Data Was Saved BUT Profile image upload failed", "ok");
+                    //    }
+                    //    else
+                    //    {
+                    //        theUser.ProfileImagePath = updatedUser.ProfileImagePath;
+                    //        UpdatePhotoURL(theUser.ProfileImagePath);
+                    //    }
 
-                    }
+                    //}
                     InServerCall = false;
                     await Shell.Current.DisplayAlert("Save Profile", "Profile saved successfully", "ok");
                 }
