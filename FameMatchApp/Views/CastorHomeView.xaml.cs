@@ -4,8 +4,9 @@ namespace FameMatchApp.Views;
 
 public partial class CastorHomeView : ContentPage
 {
-	public CastorHomeView()
+	public CastorHomeView(CastedHomeViewModel vm)
 	{
-		InitializeComponent();
+        BindingContext = vm;
+        InitializeComponent();
 	}
 }

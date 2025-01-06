@@ -4,8 +4,9 @@ namespace FameMatchApp.Views;
 
 public partial class UsersListView : ContentPage
 {
-	public UsersListView()
+	public UsersListView(UsersListViewModel vm)
 	{
-		InitializeComponent();
+        BindingContext = vm;
+        InitializeComponent();
 	}
 }

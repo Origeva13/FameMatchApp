@@ -3,8 +3,9 @@ namespace FameMatchApp.Views;
 
 public partial class CastedProfileView : ContentPage
 {
-	public CastedProfileView()
+	public CastedProfileView(CastedProfileViewModel vm)
 	{
-		InitializeComponent();
+        BindingContext = vm;
+        InitializeComponent();
 	}
 }

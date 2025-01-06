@@ -24,7 +24,10 @@ namespace FameMatchApp.ViewModels
             Hight=casted.UserHigth;
             AboutMe = casted.AboutMe;
             Eyes = casted.UserEyes;
-            BodyStructure = casted.UserBody;
+            //BodyStructure = casted.UserBody;
+            Kinds = (new BodyStructure()).Kinds;
+
+            BodyStructure = Kinds[0];
             Skincolor = casted.UserSkin;
             //////UpdatePhotoURL(casted.ProfileImagePath);
             //////LocalPhotoPath = "";
@@ -374,7 +377,6 @@ namespace FameMatchApp.ViewModels
         #endregion
         #region bodyStructure
         private string bodyStructure;
-
         public string BodyStructure
         {
             get => bodyStructure;
@@ -382,6 +384,17 @@ namespace FameMatchApp.ViewModels
             {
                 bodyStructure = value;
                 OnPropertyChanged("BodyStructure");
+            }
+        }
+
+        private List<string> kinds;
+        public List<string> Kinds
+        {
+            get => kinds;
+            set
+            {
+                kinds = value;
+                OnPropertyChanged();
             }
         }
         #endregion
@@ -502,6 +515,10 @@ namespace FameMatchApp.ViewModels
         }
 
         #endregion
+
+        
+
+
 
         //Define a command for the Save button
         public Command SaveCommand { get; }

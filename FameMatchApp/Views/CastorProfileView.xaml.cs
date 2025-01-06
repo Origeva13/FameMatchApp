@@ -3,8 +3,9 @@ namespace FameMatchApp.Views;
 
 public partial class CastorProfileView : ContentPage
 {
-	public CastorProfileView()
+	public CastorProfileView(CastorProfileViewModel vm)
 	{
-		InitializeComponent();
+        BindingContext = vm;
+        InitializeComponent();
 	}
 }

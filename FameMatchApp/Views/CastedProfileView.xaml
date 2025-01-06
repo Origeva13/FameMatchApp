@@ -6,8 +6,8 @@
     Title="PROFILE PAGE">
     <Grid>
 
-
-        <!--  Main Content  -->
+        <ScrollView>
+            <!--  Main Content  -->
         <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
             <!--  Photo  -->
             <Frame
@@ -155,6 +155,51 @@
                 Style="{StaticResource entryStyle}"
                 Text="{Binding HairColor}" />
 
+            <!--  hight  -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+        Grid.Column="0"
+        Style="{StaticResource labelNameStyle}"
+        Text="Hight" />
+            </Grid>
+            <Entry
+    Placeholder="Type your Hight in cm"
+    Style="{StaticResource entryStyle}"
+    Text="{Binding Hight}" />
+
+            <!--  Eyes Color  -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+    Grid.Column="0"
+    Style="{StaticResource labelNameStyle}"
+    Text="Eyes color" />
+            </Grid>
+            <Entry
+Placeholder="Only brown,green and blue are valid"
+Style="{StaticResource entryStyle}"
+Text="{Binding Eyes}" />
+            
+            <!--Body Structure-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Your body structure type" Grid.Column="0"/>
+            </Grid>
+                <Picker  ItemsSource="{Binding Kinds}"
+                    SelectedItem="{Binding BodyStructure, Mode=TwoWay}"
+                    >
+            </Picker>
+            
             <!--  Save and Cancel Buttons  -->
             <Button
                 Command="{Binding SaveCommand}"
@@ -163,11 +208,13 @@
                 Text="Save" />
 
         </VerticalStackLayout>
+        </ScrollView>
         <!--  Centered ActivityIndicator  -->
         <ActivityIndicator
             HorizontalOptions="Center"
             IsRunning="{Binding InServerCall}"
             VerticalOptions="Center"
             Color="Red" />
+      
     </Grid>
 </ContentPage>
