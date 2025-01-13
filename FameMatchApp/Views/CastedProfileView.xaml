@@ -199,8 +199,52 @@ Text="{Binding Eyes}" />
                     SelectedItem="{Binding BodyStructure, Mode=TwoWay}"
                     >
             </Picker>
-            
-            <!--  Save and Cancel Buttons  -->
+                <!--Skin Color-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+    Grid.Column="0"
+    Style="{StaticResource labelNameStyle}"
+    Text="Skin color" />
+                </Grid>
+                <Entry
+Placeholder="Please enter your skin color"
+Style="{StaticResource entryStyle}"
+Text="{Binding Skincolor}" />
+                <!--About me-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+         Grid.Column="0"
+         Style="{StaticResource labelNameStyle}"
+         Text="About me" />
+                    <Label
+         Grid.Column="1"
+         IsVisible="{Binding ShowAboutMeError}"
+         Style="{StaticResource labelErrorStyle}"
+         Text="{Binding AboutMeError}" />
+                </Grid>
+                <Entry
+     Placeholder="Please enter details about you, that showing you off"
+     Style="{StaticResource entryStyle}"
+     Text="{Binding AboutMe}" />
+
+                <!--Gender -->
+                <Label Text="Gender" />
+                <StackLayout RadioButtonGroup.GroupName="gender" RadioButtonGroup.SelectedValue="{Binding UserGender}" Margin="10" IsEnabled="{Binding Change}">
+
+                    <RadioButton Content="Female" Value='Female' />
+                    <RadioButton Content="Male" Value='Male'/>
+                    <RadioButton Content="Other" Value='Other' IsChecked="True" />
+                </StackLayout>
+
+                <!--  Save and Cancel Buttons  -->
             <Button
                 Command="{Binding SaveCommand}"
                 IsEnabled="{Binding NotInServerCall}"

@@ -20,6 +20,7 @@ namespace FameMatchApp.ViewModels
             LastName = casted.UserLastName;
             Email = casted.UserEmail;
             Password = casted.UserPassword;
+            UserGender = casted.UserGender;
             HairColor = casted.UserHair;
             Hight=casted.UserHigth;
             AboutMe = casted.AboutMe;
