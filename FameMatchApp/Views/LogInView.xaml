@@ -9,6 +9,8 @@
     <VerticalStackLayout Padding="20" Spacing="15">
         
         <Label FontFamily="Broadway3D" FontSize="80" Text="FAMEMATCH" HorizontalOptions="Center" />
+        <Image Source="loginpicture.png" HorizontalOptions="Center" VerticalOptions="Center" />
+
         <Entry
             IsEnabled="{Binding NotInServerCall}"
             Keyboard="Email"
@@ -60,8 +62,6 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-
-        
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
     </VerticalStackLayout>
 </ContentPage>
