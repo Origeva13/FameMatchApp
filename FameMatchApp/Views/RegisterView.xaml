@@ -3,7 +3,7 @@
     x:Class="FameMatchApp.View.RegisterView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Sign-Up"
+    Title=""
     FlowDirection="RightToLeft">
 
     <ScrollView Margin="20">
@@ -12,6 +12,7 @@
             <!--  Main Content  -->
             <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
                 <!--  Photo  -->
+                <Label Text="SIGN-UP" FontSize="40" FontFamily="Broadway3D" HorizontalOptions="Center"></Label>
                 <Frame
                     Margin="10"
                     Padding="5"

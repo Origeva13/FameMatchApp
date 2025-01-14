@@ -4,20 +4,21 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:FameMatchApp.ViewModels"
-    Title="                         Hi there ,please LogIn             "
+    Title="" 
     x:DataType="viewmodels:LoginVIewModel">
     <VerticalStackLayout Padding="20" Spacing="15">
-
+        
+        <Label FontFamily="Broadway3D" FontSize="80" Text="FAMEMATCH" HorizontalOptions="Center" />
         <Entry
             IsEnabled="{Binding NotInServerCall}"
             Keyboard="Email"
-            Placeholder="Email"
+            Placeholder=" Please enter your Email"
             Text="{Binding Email}" />
 
         <Entry
             IsEnabled="{Binding NotInServerCall}"
             IsPassword="True"
-            Placeholder="Password"
+            Placeholder=" Please enter your Password"
             Text="{Binding Password}" />
 
         <Button
@@ -28,13 +29,14 @@
             HorizontalOptions="Center"
             Text="{Binding ErrorMsg}"
             TextColor="Red" />
-        <Label IsEnabled="{Binding NotInServerCall}">
+        <Label IsEnabled="{Binding NotInServerCall}" HorizontalOptions="Center">
             <Label.FormattedText>
                 <FormattedString>
 
                     <Span Text="Dont have an account? Register"
-                  TextColor="Blue"
-                  TextDecorations="Underline">
+                          TextColor="Blue"
+                          TextDecorations="Underline"
+                          >
                         <Span.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                             <!--CommandParameter="https://learn.microsoft.com/dotnet/maui/"-->
@@ -45,23 +47,21 @@
             </Label.FormattedText>
 
         </Label>
-        <Label IsEnabled="{Binding NotInServerCall}">
+        <Label IsEnabled="{Binding NotInServerCall}" HorizontalOptions="Center">
             <Label.FormattedText>
                 <FormattedString>
-
                     <Span Text="Forgot Password?"
-                  TextColor="Blue"
-                  TextDecorations="Underline">
+                          TextColor="Blue"
+                          TextDecorations="Underline">
                         <Span.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ForgotPassCommand}"/>
-
                         </Span.GestureRecognizers>
                     </Span>
-
                 </FormattedString>
             </Label.FormattedText>
-
         </Label>
+
+        
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
     </VerticalStackLayout>
 </ContentPage>

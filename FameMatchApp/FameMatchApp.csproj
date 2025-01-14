@@ -57,8 +57,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Broadway3D.ttf" />
 	  <None Remove="Resources\Images\confirmicon.png" />
 	  <None Remove="Resources\Images\homepageicon.png" />
+	  <None Remove="Resources\Images\LoginPicture.png" />
 	  <None Remove="Resources\Images\LogOutIcon.png" />
 	  <None Remove="Resources\Images\matchicon.jpg" />
 	  <None Remove="Resources\Images\profileicon.jpg" />

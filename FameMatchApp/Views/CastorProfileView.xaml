@@ -3,13 +3,14 @@
     x:Class="FameMatchApp.Views.CastorProfileView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="PROFILE PAGE">
+    Title="">
     <Grid>
 
         <ScrollView>
             <!--  Main Content  -->
             <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
                 <!--  Photo  -->
+                <Label Text="PROFILE PAGE" FontSize="40" FontFamily="Broadway3D" HorizontalOptions="Center"></Label>
                 <Frame
                 Margin="10"
                 Padding="5"
