@@ -56,7 +56,7 @@
             Title="Match Page"
             ContentTemplate="{DataTemplate views:MatchView}"
             Icon="matchicon.png"
-            IsVisible="{Binding IsCasted}"
+            IsVisible="{Binding IsCastor}"
             Route="Match" />
 
     </FlyoutItem>
