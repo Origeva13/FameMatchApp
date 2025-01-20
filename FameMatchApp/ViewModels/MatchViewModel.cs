@@ -1,12 +1,287 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Linq;
+using FameMatchApp.Models;
+using FameMatchApp.Services;
 namespace FameMatchApp.ViewModels
 {
+
     public class MatchViewModel : ViewModelBase
     {
+        private FameMatchWebAPIProxy proxy;
+        public MatchViewModel(FameMatchWebAPIProxy proxy)
+        {
+            User theUser = ((App)App.Current).LoggedInUser;
+            Casted casted = (Casted)theUser;
+            this.proxy = proxy;           
+            //BodyStructure = casted.UserBody;
+            Kinds = (new BodyStructure()).Kinds;
+            BodyStructure = Kinds[0];
+            Kinds1 = (new Age()).Kinds1;
+            Age = Kinds1[0];
+            Kinds2 = (new Eyes()).Kinds2;
+            Eyes = Kinds2[0];
+            Kinds3 = (new Hair()).Kinds3;
+            Hair = Kinds3[0];
+            Kinds4 = (new Skin()).Kinds4;
+            Skin = Kinds4[0];
+            Kinds5 = (new Gender()).Kinds5;
+            Gender = Kinds5[0];
+            SaveCommand = new Command(OnMatch);
+        }
+        #region bodyStructure
+        private string bodyStructure;
+        public string BodyStructure
+        {
+            get => bodyStructure;
+            set
+            {
+                bodyStructure = value;
+                OnPropertyChanged("BodyStructure");
+            }
+        }
+
+        private List<string> kinds;
+        public List<string> Kinds
+        {
+            get => kinds;
+            set
+            {
+                kinds = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+        #region age
+        private int age;
+        public int Age
+        {
+            get => age;
+            set
+            {
+                age = value;
+                OnPropertyChanged("Age");
+            }
+        }
+        private List<int> kinds1;
+        public List<int> Kinds1
+        {
+            get => kinds1;
+            set
+            {
+                kinds1 = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+        #region eyes
+        private string eyes;
+        public string Eyes
+        {
+            get => eyes;
+            set
+            {
+                eyes = value;
+                OnPropertyChanged("Eyes");
+            }
+        }
+        private List<string> kinds2;
+        public List<string> Kinds2
+        {
+            get => kinds2;
+            set
+            {
+                kinds2 = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+        #region hair
+        private string hair;
+        public string Hair
+        {
+            get => hair;
+            set
+            {
+                hair = value;
+                OnPropertyChanged("Hair");
+            }
+        } 
+
+        private List<string> kinds3;
+        public List<string> Kinds3
+        {
+            get => kinds3;
+            set
+            {
+                kinds3 = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+        #region skin
+        private string skin;
+        public string Skin
+        {
+            get => skin;
+            set
+            {
+                skin = value;
+                OnPropertyChanged("Skin");
+            }
+        }    
+        private List<string> kinds4;
+        public List<string> Kinds4
+        {
+            get => kinds4;
+            set
+            {
+                kinds4 = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+        #region gender
+        private string gender;
+        public string Gender
+        {
+            get => gender;
+            set
+            {
+                gender = value;
+                OnPropertyChanged("Gender");
+            }
+        }
+
+        private List<string> kinds5;
+        public List<string> Kinds5
+        {
+            get => kinds5;
+            set
+            {
+                kinds5 = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+        private ObservableCollection<Casted> filltered;
+        public ObservableCollection<Casted> Filltered
+        {
+            get
+            {
+                return this.filltered;
+            }
+            set
+            {
+                this.filltered = value;
+                OnPropertyChanged(nameof(Filltered));
+            }
+        }
+
+
+        private async void ReadManicurists()
+        {
+            List<User> list = await proxy.GetManicurists();
+            //foreach (User u in list)
+            //{
+            //    if (u.ProfilePic == null)
+            //    {
+            //        u.ProfileImagePath = proxy.GetDefaultProfilePhotoUrl();
+            //    }
+            //    else
+            //    {
+            //        u.ProfileImagePath = proxy.GetImagesBaseAddress() + u.ProfileImagePath;
+
+            //    }
+            //}
+            this.Manicurists = new ObservableCollection<User>(list);
+        }
+
+
+        #region Single Selection
+
+
+        private User selectedUser;
+        public User SelectedUser
+        {
+            get
+            {
+                return this.selectedUser;
+            }
+            set
+            {
+                this.selectedUser = value;
+                OnSingleSelectManicurist(selectedUser);
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        private async void OnSingleSelectManicurist(User p)
+        {
+            if (p != null)
+            {
+                var navParam = new Dictionary<string, object>
+                {
+                    {"selectedUser",p }
+                };
+                await Shell.Current.GoToAsync("ProfileView", navParam);
+
+                SelectedUser = null;
+
+            }
+        }
+        #endregion
+#endregion
+
+        //Define a command for the Save button
+        public Command SaveCommand { get; }
+
+        //Define a method that will be called when the register button is clicked
+        public async void OnMatch()
+        {
+            InServerCall = true;
+            List<Casted?> AllCsteds = await proxy.GetAllCasteds();
+
+            if (AllCsteds != null)
+            {
+                // Example filters (you can replace these with real filter conditions)
+                List<Casted> filteredCasteds = AllCsteds.Where(
+                    casted =>
+                    casted != null &&
+                    casted.UserAge == Age &&    
+                    casted.UserGender == Gender &&
+                    casted.UserBody == BodyStructure &&
+                    casted.UserEyes == Eyes &&
+                    casted.UserHair == Hair &&
+                    casted.UserSkin == Skin
+                    // Example filter: Gender must be Female
+                ).ToList();
+
+                if (filteredCasteds.Any()) // Check if there are any casteds after filtering
+                {
+                    InServerCall = false;
+                    await Shell.Current.DisplayAlert("Match", $"{filteredCasteds.Count} matches found!", "ok");
+                }
+                else
+                {
+                    InServerCall = false;
+                    await Shell.Current.DisplayAlert("Match", "No matching casteds found.", "ok");
+                }
+            }
+            else
+            {
+                InServerCall = false;
+                // If the registration failed, display an error message
+                string errorMsg = "Match failed. Please try again.";
+                await Shell.Current.DisplayAlert("Save Profile", errorMsg, "ok");
+            }
+        }
+
     }
 }

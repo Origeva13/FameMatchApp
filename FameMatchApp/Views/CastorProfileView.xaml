@@ -156,7 +156,7 @@
          Style="{StaticResource entryStyle}"
          Text="{Binding NumOfLisence}" />
 
-                <!--  Compay name  -->
+                  <!--Compay name-->  
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

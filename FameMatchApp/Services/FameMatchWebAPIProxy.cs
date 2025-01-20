@@ -245,5 +245,37 @@ namespace FameMatchApp.Services
                 return false;
             }
         }
+        //This method call the GetAllCasteds web API and return a list of Casteds or null if it fails.
+        public async Task<List<Casted>?> GetAllCasteds()
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}GetAllCasteds";
+            try
+            {
+                //Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Extract the content as string
+                string resContent = await response.Content.ReadAsStringAsync();
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<Casted>? result = JsonSerializer.Deserialize<List<Casted>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
