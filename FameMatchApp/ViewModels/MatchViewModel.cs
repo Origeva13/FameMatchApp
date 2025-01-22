@@ -16,7 +16,7 @@ namespace FameMatchApp.ViewModels
         public MatchViewModel(FameMatchWebAPIProxy proxy)
         {
             User theUser = ((App)App.Current).LoggedInUser;
-            Casted casted = (Casted)theUser;
+            Castor castor = (Castor)theUser;
             this.proxy = proxy;           
             //BodyStructure = casted.UserBody;
             Kinds = (new BodyStructure()).Kinds;
@@ -31,10 +31,36 @@ namespace FameMatchApp.ViewModels
             Skin = Kinds4[0];
             Kinds5 = (new Gender()).Kinds5;
             Gender = Kinds5[0];
+            kinds6=(new Hight()).Kinds6;
+            Hight = Kinds6[0];
             SaveCommand = new Command(OnMatch);
+            Filltered = new ObservableCollection<Casted>();
+            ReadCasteds();
         }
-        #region bodyStructure
-        private string bodyStructure;
+        #region Hight
+        private int hight;
+        public int Hight
+        {
+            get => hight;
+            set
+            {
+                hight = value;
+                OnPropertyChanged("Hight");
+            }
+        }
+        private List<int> kinds6;
+        public List<int> Kinds6
+        {
+            get => kinds6;
+            set
+            {
+                kinds6 = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+    #region bodyStructure
+    private string bodyStructure;
         public string BodyStructure
         {
             get => bodyStructure;
@@ -168,6 +194,8 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
+
+        #region
         private ObservableCollection<Casted> filltered;
         public ObservableCollection<Casted> Filltered
         {
@@ -183,61 +211,50 @@ namespace FameMatchApp.ViewModels
         }
 
 
-        private async void ReadManicurists()
+        private async void ReadCasteds()
         {
-            List<User> list = await proxy.GetManicurists();
-            //foreach (User u in list)
-            //{
-            //    if (u.ProfilePic == null)
-            //    {
-            //        u.ProfileImagePath = proxy.GetDefaultProfilePhotoUrl();
-            //    }
-            //    else
-            //    {
-            //        u.ProfileImagePath = proxy.GetImagesBaseAddress() + u.ProfileImagePath;
-
-            //    }
-            //}
-            this.Manicurists = new ObservableCollection<User>(list);
+            List<Casted> list = await proxy.GetAllCasteds();
+            this.Filltered = new ObservableCollection<Casted>(list);
         }
 
 
         #region Single Selection
 
 
-        private User selectedUser;
-        public User SelectedUser
+        private Casted selectedCasted;
+        public Casted SelectedCasted
         {
             get
             {
-                return this.selectedUser;
+                return this.selectedCasted;
             }
             set
             {
-                this.selectedUser = value;
-                OnSingleSelectManicurist(selectedUser);
+                this.selectedCasted = value;
+                OnSingleSelecCasted(selectedCasted);
                 OnPropertyChanged();
             }
         }
 
 
 
-        private async void OnSingleSelectManicurist(User p)
+        private async void OnSingleSelecCasted(Casted p)
         {
             if (p != null)
             {
                 var navParam = new Dictionary<string, object>
                 {
-                    {"selectedUser",p }
+                    {"selectedCasted",p }
                 };
                 await Shell.Current.GoToAsync("ProfileView", navParam);
 
-                SelectedUser = null;
+                SelectedCasted = null;
 
             }
         }
         #endregion
 #endregion
+
 
         //Define a command for the Save button
         public Command SaveCommand { get; }
@@ -246,22 +263,25 @@ namespace FameMatchApp.ViewModels
         public async void OnMatch()
         {
             InServerCall = true;
-            List<Casted?> AllCsteds = await proxy.GetAllCasteds();
+            List<Casted>? AllCasteds = await proxy.GetAllCasteds();
 
-            if (AllCsteds != null)
+            if (AllCasteds != null)
             {
-                // Example filters (you can replace these with real filter conditions)
-                List<Casted> filteredCasteds = AllCsteds.Where(
+                List<Casted> filteredCasteds = AllCasteds.Where(
                     casted =>
                     casted != null &&
-                    casted.UserAge == Age &&    
-                    casted.UserGender == Gender &&
-                    casted.UserBody == BodyStructure &&
-                    casted.UserEyes == Eyes &&
-                    casted.UserHair == Hair &&
-                    casted.UserSkin == Skin
-                    // Example filter: Gender must be Female
+                    casted.UserAge == Age &&
+                    casted.UserGender == Gender ||
+                    casted.UserBody == BodyStructure||
+                    casted.UserEyes == Eyes||
+                    casted.UserHair == Hair||
+                    casted.UserSkin == Skin||
+                    casted.UserHigth == Hight
                 ).ToList();
+                foreach (Casted casted in filteredCasteds)
+                {
+                    Filltered.Add(casted);
+                }
 
                 if (filteredCasteds.Any()) // Check if there are any casteds after filtering
                 {

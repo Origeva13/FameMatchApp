@@ -1,12 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:FameMatchApp.ViewModels"
              x:Class="FameMatchApp.Views.MatchView"
-             Title="MatchView">
+             xmlns:Models="clr-namespace:FameMatchApp.Models"
+             x:DataType="viewModel:MatchViewModel"
+             Title="">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label Text="MATCH PAGE" FontSize="40" FontFamily="Broadway3D" HorizontalOptions="Center"></Label>
+        <!--<Entry Placeholder="search" Text="{Binding UserName}"/>-->
+        <!--Body Structure-->
+        <Label Text="Body structure"></Label>
+        <Picker  ItemsSource="{Binding Kinds}"
+        SelectedItem="{Binding BodyStructure, Mode=TwoWay}"
+        >
+        </Picker>
+        <!--Age-->
+        <Label Text="Age"></Label>
+        <Picker  ItemsSource="{Binding Kinds1}"
+        SelectedItem="{Binding Age, Mode=TwoWay}"
+        >
+        </Picker>
+        <!--Eyes-->
+        <Label Text="Eyes"></Label>
+        <Picker  ItemsSource="{Binding Kinds2}"
+        SelectedItem="{Binding Eyes, Mode=TwoWay}"
+        >
+        </Picker>
+        <!--Hair-->
+        <Label Text="Hair"></Label>
+        <Picker  ItemsSource="{Binding Kinds3}"
+        SelectedItem="{Binding Hair, Mode=TwoWay}"
+        >
+        </Picker>
+        <!--Skin-->
+        <Label Text="Skin"></Label>
+        <Picker  ItemsSource="{Binding Kinds4}"
+        SelectedItem="{Binding Skin, Mode=TwoWay}"
+        >
+        </Picker>
+        <!--Gender-->
+        <Label Text="Gender"></Label>
+        <Picker  ItemsSource="{Binding Kinds5}"
+        SelectedItem="{Binding Gender, Mode=TwoWay}"
+        >
+        </Picker>
+        <CollectionView ItemsSource="{Binding Filltered}"  ItemsLayout="VerticalGrid, 1"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedCasted}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Models:Casted">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
+                            <Image Source="{Binding FullProfileImagePath}" Grid.Column="0" HeightRequest="40" WidthRequest="40"/>
+                        </Frame>-->
+                        <Label Text="{Binding UserName} " Grid.Column="1"/>
+                        <Label Text="{Binding UserLastName}" Grid.Column="2"/>
+                        <Label Text="{Binding UserEmail}" Grid.Column="3"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!--  Save and Cancel Buttons  -->
+        <Button
+  Command="{Binding SaveCommand}"
+  IsEnabled="{Binding NotInServerCall}"
+  Text="FIND ME MATCH" />
     </VerticalStackLayout>
 </ContentPage>
