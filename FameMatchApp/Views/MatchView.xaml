@@ -1,60 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModel="clr-namespace:FameMatchApp.ViewModels"
-             x:Class="FameMatchApp.Views.MatchView"
-             xmlns:Models="clr-namespace:FameMatchApp.Models"
-             x:DataType="viewModel:MatchViewModel"
-             Title="">
+<ContentPage
+    x:Class="FameMatchApp.Views.MatchView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:FameMatchApp.Models"
+    xmlns:viewModel="clr-namespace:FameMatchApp.ViewModels"
+    Title=""
+    x:DataType="viewModel:MatchViewModel">
     <ScrollView>
         <VerticalStackLayout>
-        <Label Text="MATCH PAGE" FontSize="40" FontFamily="Broadway3D" HorizontalOptions="Center"></Label>
-        <!--<Entry Placeholder="search" Text="{Binding UserName}"/>-->
-        <!--Body Structure-->
-        <Label Text="Body structure"></Label>
-        <Picker  ItemsSource="{Binding Kinds}"
-        SelectedItem="{Binding BodyStructure, Mode=TwoWay}"
-        >
-        </Picker>
-        <!--Age-->
-        <Label Text="Age"></Label>
-        <Picker  ItemsSource="{Binding Kinds1}"
-        SelectedItem="{Binding Age, Mode=TwoWay}"
-        >
-        </Picker>
-        <!--Eyes-->
-        <Label Text="Eyes"></Label>
-        <Picker  ItemsSource="{Binding Kinds2}"
-        SelectedItem="{Binding Eyes, Mode=TwoWay}"
-        >
-        </Picker>
-        <!--Hair-->
-        <Label Text="Hair"></Label>
-        <Picker  ItemsSource="{Binding Kinds3}"
-        SelectedItem="{Binding Hair, Mode=TwoWay}"
-        >
-        </Picker>
-        <!--Skin-->
-        <Label Text="Skin"></Label>
-        <Picker  ItemsSource="{Binding Kinds4}"
-        SelectedItem="{Binding Skin, Mode=TwoWay}"
-        >
-        </Picker>
-        <!--Gender-->
-        <Label Text="Gender"></Label>
-            <Picker  ItemsSource="{Binding Kinds5}"
-        SelectedItem="{Binding Gender, Mode=TwoWay}"
-        >
-            </Picker>
-            
+            <Label
+                FontFamily="Broadway3D"
+                FontSize="40"
+                HorizontalOptions="Center"
+                Text="MATCH PAGE" />
+            <!--<Entry Placeholder="search" Text="{Binding UserName}"/>-->
+            <!--  Body Structure  -->
+            <Label FontAttributes="Bold" Text="Body structure" />
+            <Picker ItemsSource="{Binding Kinds}" SelectedItem="{Binding BodyStructure, Mode=TwoWay}" />
+            <!--  Age  -->
+            <Label FontAttributes="Bold" Text="Age" />
+            <Picker ItemsSource="{Binding Kinds1}" SelectedItem="{Binding Age, Mode=TwoWay}" />
+            <!--  Eyes  -->
+            <Label FontAttributes="Bold" Text="Eyes" />
+            <Picker ItemsSource="{Binding Kinds2}" SelectedItem="{Binding Eyes, Mode=TwoWay}" />
+            <!--  Hair  -->
+            <Label FontAttributes="Bold" Text="Hair" />
+            <Picker ItemsSource="{Binding Kinds3}" SelectedItem="{Binding Hair, Mode=TwoWay}" />
+            <!--  Skin  -->
+            <Label FontAttributes="Bold" Text="Skin" />
+            <Picker ItemsSource="{Binding Kinds4}" SelectedItem="{Binding Skin, Mode=TwoWay}" />
+            <!--  Gender  -->
+            <Label FontAttributes="Bold" Text="Gender" />
+            <Picker ItemsSource="{Binding Kinds5}" SelectedItem="{Binding Gender, Mode=TwoWay}" />
+
+            <!--  Hight  -->
+            <Label FontAttributes="Bold" Text="Hight (cm)" />
+            <Picker ItemsSource="{Binding Kinds6}" SelectedItem="{Binding Hight, Mode=TwoWay}" />
             <!--  Save and Cancel Buttons  -->
             <Button
-            Command="{Binding SaveCommand}"
-            IsEnabled="{Binding NotInServerCall}"
-            Text="FIND ME MATCH" Margin="20" />
-            <CollectionView ItemsSource="{Binding Filltered}"  ItemsLayout="VerticalGrid, 1"
-                    SelectionMode="Single"
-                    SelectedItem="{Binding SelectedCasted}">
+                Margin="20"
+                Command="{Binding SaveCommand}"
+                IsEnabled="{Binding NotInServerCall}"
+                Text="FIND ME MATCH" />
+            <CollectionView
+                ItemsLayout="VerticalGrid, 1"
+                ItemsSource="{Binding Filltered}"
+                SelectedItem="{Binding SelectedCasted}"
+                SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Models:Casted">
                         <Grid>
@@ -67,9 +60,25 @@
                             <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
                             <Image Source="{Binding FullProfileImagePath}" Grid.Column="0" HeightRequest="40" WidthRequest="40"/>
                         </Frame>-->
-                            <Label Text="{Binding UserName} " Grid.Column="0" TextColor="Green" FontSize="17"/>
-                            <Label Text="{Binding UserLastName}" Grid.Column="1" TextColor="Green" FontSize="17"/>
-                            <Label Text="{Binding UserEmail}" Grid.Column="2" Grid.ColumnSpan="2" TextColor="Green" FontSize="17"/>
+                            <Label
+                                Grid.Column="0"
+                                Margin="20"
+                                FontSize="17"
+                                Text="{Binding UserName}"
+                                TextColor="Green" />
+                            <Label
+                                Grid.Column="1"
+                                Margin="20"
+                                FontSize="17"
+                                Text="{Binding UserLastName}"
+                                TextColor="Green" />
+                            <Label
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                Margin="20"
+                                FontSize="17"
+                                Text="{Binding UserEmail}"
+                                TextColor="Green" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
