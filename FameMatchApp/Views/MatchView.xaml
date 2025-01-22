@@ -6,7 +6,8 @@
              xmlns:Models="clr-namespace:FameMatchApp.Models"
              x:DataType="viewModel:MatchViewModel"
              Title="">
-    <VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
         <Label Text="MATCH PAGE" FontSize="40" FontFamily="Broadway3D" HorizontalOptions="Center"></Label>
         <!--<Entry Placeholder="search" Text="{Binding UserName}"/>-->
         <!--Body Structure-->
@@ -41,36 +42,38 @@
         </Picker>
         <!--Gender-->
         <Label Text="Gender"></Label>
-        <Picker  ItemsSource="{Binding Kinds5}"
+            <Picker  ItemsSource="{Binding Kinds5}"
         SelectedItem="{Binding Gender, Mode=TwoWay}"
         >
-        </Picker>
-        <CollectionView ItemsSource="{Binding Filltered}"  ItemsLayout="VerticalGrid, 1"
+            </Picker>
+            
+            <!--  Save and Cancel Buttons  -->
+            <Button
+            Command="{Binding SaveCommand}"
+            IsEnabled="{Binding NotInServerCall}"
+            Text="FIND ME MATCH" Margin="20" />
+            <CollectionView ItemsSource="{Binding Filltered}"  ItemsLayout="VerticalGrid, 1"
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedCasted}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Models:Casted">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Casted">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
                             <Image Source="{Binding FullProfileImagePath}" Grid.Column="0" HeightRequest="40" WidthRequest="40"/>
                         </Frame>-->
-                        <Label Text="{Binding UserName} " Grid.Column="1"/>
-                        <Label Text="{Binding UserLastName}" Grid.Column="2"/>
-                        <Label Text="{Binding UserEmail}" Grid.Column="3"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <!--  Save and Cancel Buttons  -->
-        <Button
-  Command="{Binding SaveCommand}"
-  IsEnabled="{Binding NotInServerCall}"
-  Text="FIND ME MATCH" />
-    </VerticalStackLayout>
+                            <Label Text="{Binding UserName} " Grid.Column="0" TextColor="Green" FontSize="17"/>
+                            <Label Text="{Binding UserLastName}" Grid.Column="1" TextColor="Green" FontSize="17"/>
+                            <Label Text="{Binding UserEmail}" Grid.Column="2" Grid.ColumnSpan="2" TextColor="Green" FontSize="17"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

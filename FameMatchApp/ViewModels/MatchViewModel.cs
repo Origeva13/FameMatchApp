@@ -35,7 +35,7 @@ namespace FameMatchApp.ViewModels
             Hight = Kinds6[0];
             SaveCommand = new Command(OnMatch);
             Filltered = new ObservableCollection<Casted>();
-            ReadCasteds();
+            
         }
         #region Hight
         private int hight;
@@ -282,7 +282,7 @@ namespace FameMatchApp.ViewModels
                 {
                     Filltered.Add(casted);
                 }
-
+                ReadCasteds();
                 if (filteredCasteds.Any()) // Check if there are any casteds after filtering
                 {
                     InServerCall = false;
