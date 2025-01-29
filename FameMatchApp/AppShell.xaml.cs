@@ -9,5 +9,9 @@ namespace FameMatchApp
             this.BindingContext = vm;
             InitializeComponent();
         }
+     
+       
+
+
     }
 }

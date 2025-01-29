@@ -42,7 +42,7 @@
                 Margin="20"
                 Command="{Binding SaveCommand}"
                 IsEnabled="{Binding NotInServerCall}"
-                Text="FIND ME MATCH" />
+                Text="FIND ME A MATCH" />
             <CollectionView
                 ItemsLayout="VerticalGrid, 1"
                 ItemsSource="{Binding Filltered}"

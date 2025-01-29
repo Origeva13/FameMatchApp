@@ -83,7 +83,7 @@ namespace FameMatchApp.ViewModels
                 {
                     {"selectedUser",p }
                 };
-                await Shell.Current.GoToAsync("ProfileView", navParam);
+                await Shell.Current.GoToAsync("MatchDetails", navParam);
 
                 SelectedUser = null;
 

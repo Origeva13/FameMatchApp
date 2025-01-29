@@ -4,12 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using FameMatchApp.Models;
 using FameMatchApp.Services;
+
 namespace FameMatchApp.ViewModels
 {
-
     public class MatchViewModel : ViewModelBase
     {
         private FameMatchWebAPIProxy proxy;
@@ -17,8 +16,9 @@ namespace FameMatchApp.ViewModels
         {
             User theUser = ((App)App.Current).LoggedInUser;
             Castor castor = (Castor)theUser;
-            this.proxy = proxy;           
-            //BodyStructure = casted.UserBody;
+            this.proxy = proxy;
+
+            // Initialize various properties based on available data
             Kinds = (new BodyStructure()).Kinds;
             BodyStructure = Kinds[0];
             Kinds1 = (new Age()).Kinds1;
@@ -31,12 +31,12 @@ namespace FameMatchApp.ViewModels
             Skin = Kinds4[0];
             Kinds5 = (new Gender()).Kinds5;
             Gender = Kinds5[0];
-            kinds6=(new Hight()).Kinds6;
+            kinds6 = (new Hight()).Kinds6;
             Hight = Kinds6[0];
             SaveCommand = new Command(OnMatch);
             Filltered = new ObservableCollection<Casted>();
-            
         }
+
         #region Hight
         private int hight;
         public int Hight
@@ -48,6 +48,7 @@ namespace FameMatchApp.ViewModels
                 OnPropertyChanged("Hight");
             }
         }
+
         private List<int> kinds6;
         public List<int> Kinds6
         {
@@ -59,8 +60,9 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
-    #region bodyStructure
-    private string bodyStructure;
+
+        #region bodyStructure
+        private string bodyStructure;
         public string BodyStructure
         {
             get => bodyStructure;
@@ -82,6 +84,7 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
+
         #region age
         private int age;
         public int Age
@@ -93,6 +96,7 @@ namespace FameMatchApp.ViewModels
                 OnPropertyChanged("Age");
             }
         }
+
         private List<int> kinds1;
         public List<int> Kinds1
         {
@@ -104,6 +108,7 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
+
         #region eyes
         private string eyes;
         public string Eyes
@@ -115,6 +120,7 @@ namespace FameMatchApp.ViewModels
                 OnPropertyChanged("Eyes");
             }
         }
+
         private List<string> kinds2;
         public List<string> Kinds2
         {
@@ -126,6 +132,7 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
+
         #region hair
         private string hair;
         public string Hair
@@ -136,7 +143,7 @@ namespace FameMatchApp.ViewModels
                 hair = value;
                 OnPropertyChanged("Hair");
             }
-        } 
+        }
 
         private List<string> kinds3;
         public List<string> Kinds3
@@ -149,6 +156,7 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
+
         #region skin
         private string skin;
         public string Skin
@@ -159,7 +167,8 @@ namespace FameMatchApp.ViewModels
                 skin = value;
                 OnPropertyChanged("Skin");
             }
-        }    
+        }
+
         private List<string> kinds4;
         public List<string> Kinds4
         {
@@ -171,6 +180,7 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
+
         #region gender
         private string gender;
         public string Gender
@@ -195,21 +205,18 @@ namespace FameMatchApp.ViewModels
         }
         #endregion
 
-        #region
+        #region Filltered
         private ObservableCollection<Casted> filltered;
         public ObservableCollection<Casted> Filltered
         {
-            get
-            {
-                return this.filltered;
-            }
+            get => this.filltered;
             set
             {
                 this.filltered = value;
                 OnPropertyChanged(nameof(Filltered));
             }
         }
-
+        #endregion
 
         private async void ReadCasteds()
         {
@@ -217,10 +224,7 @@ namespace FameMatchApp.ViewModels
             this.Filltered = new ObservableCollection<Casted>(list);
         }
 
-
         #region Single Selection
-
-
         private Casted selectedCasted;
         public Casted SelectedCasted
         {
@@ -236,30 +240,29 @@ namespace FameMatchApp.ViewModels
             }
         }
 
-
-
         private async void OnSingleSelecCasted(Casted p)
         {
             if (p != null)
             {
+                // Pass the selectedCasted object as a navigation parameter
                 var navParam = new Dictionary<string, object>
-                {
-                    {"selectedCasted",p }
-                };
-                await Shell.Current.GoToAsync("ProfileView", navParam);
+        {
+            { "selectedCasted", p }  // Key: "selectedCasted", Value: the Casted object
+        };
 
+                // Navigate to MatchDetails page with the selectedCasted object
+                await Shell.Current.GoToAsync(nameof(MatchDetailsViewModel), navParam);
+
+                // Optionally, reset the selectedCasted to null after navigating
                 SelectedCasted = null;
-
             }
         }
         #endregion
-#endregion
 
-
-        //Define a command for the Save button
+        // Command for the Save button
         public Command SaveCommand { get; }
 
-        //Define a method that will be called when the register button is clicked
+        // Method called when the register button is clicked
         public async void OnMatch()
         {
             InServerCall = true;
@@ -272,21 +275,24 @@ namespace FameMatchApp.ViewModels
                     casted != null &&
                     casted.UserAge == Age &&
                     casted.UserGender == Gender ||
-                    casted.UserBody == BodyStructure||
-                    casted.UserEyes == Eyes||
-                    casted.UserHair == Hair||
-                    casted.UserSkin == Skin||
+                    casted.UserBody == BodyStructure ||
+                    casted.UserEyes == Eyes ||
+                    casted.UserHair == Hair ||
+                    casted.UserSkin == Skin ||
                     casted.UserHigth == Hight
                 ).ToList();
+
                 foreach (Casted casted in filteredCasteds)
                 {
                     Filltered.Add(casted);
                 }
-                ReadCasteds();
+
+
                 if (filteredCasteds.Any()) // Check if there are any casteds after filtering
                 {
                     InServerCall = false;
                     await Shell.Current.DisplayAlert("Match", $"{filteredCasteds.Count} matches found!", "ok");
+                    ReadCasteds();
                 }
                 else
                 {
@@ -302,6 +308,6 @@ namespace FameMatchApp.ViewModels
                 await Shell.Current.DisplayAlert("Save Profile", errorMsg, "ok");
             }
         }
-
     }
 }
+
