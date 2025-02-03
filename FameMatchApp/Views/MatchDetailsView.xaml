@@ -1,12 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FameMatchApp.Views.MatchDetailsView"
-             Title="MatchDetailsView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+<ContentPage
+    x:Class="FameMatchApp.Views.MatchDetailsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Candidate Details"
+    BackgroundColor="#F2F2F2">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <!--  Title of the page  -->
+        <Label
+            FontAttributes="Bold"
+            FontFamily="Broadway3D"
+            FontSize="36"
+            HorizontalOptions="Center"
+            Text="CANDIDATE DETAILS" />
+
+        <!--  Candidate information stack  -->
+        <StackLayout
+            Padding="10"
+            BackgroundColor="White"
+            Spacing="15">
+            <Label
+                FontAttributes="Bold"
+                FontSize="36"
+                HorizontalOptions="Center"
+                Text="FIRST NAME:" />
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalOptions="Center"
+                Text="{Binding Name}"
+                TextColor="#333333" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="36"
+                HorizontalOptions="Center"
+                Text="LAST NAME:" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="{Binding LastName}"
+                TextColor="#333333" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="36"
+                HorizontalOptions="Center"
+                Text="EMAIL:" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalOptions="Center"
+                Text="{Binding Email}"
+                TextColor="#333333" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="36"
+                HorizontalOptions="Center"
+                Text="THE CANDIDATE WOULD LIKE YOU TO KNOW:" />
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalOptions="Center"
+                LineBreakMode="WordWrap"
+                Text="{Binding AboutMe}"
+                TextColor="#333333" />
+        </StackLayout>
+
+        <!--  Add a button or action if needed  -->
+        <!-- <Button Text="Connect" /> -->
     </VerticalStackLayout>
+
 </ContentPage>

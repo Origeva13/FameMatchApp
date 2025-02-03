@@ -1,4 +1,5 @@
 ﻿using FameMatchApp.ViewModels;
+using FameMatchApp.Views;
 
 namespace FameMatchApp
 {
@@ -8,6 +9,7 @@ namespace FameMatchApp
         {
             this.BindingContext = vm;
             InitializeComponent();
+            Routing.RegisterRoute("matchdetailsview", typeof(MatchDetailsView));
         }
      
        

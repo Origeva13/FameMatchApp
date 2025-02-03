@@ -251,7 +251,7 @@ namespace FameMatchApp.ViewModels
         };
 
                 // Navigate to MatchDetails page with the selectedCasted object
-                await Shell.Current.GoToAsync(nameof(MatchDetailsViewModel), navParam);
+                await Shell.Current.GoToAsync("matchdetailsview", navParam);
 
                 // Optionally, reset the selectedCasted to null after navigating
                 SelectedCasted = null;
@@ -292,7 +292,7 @@ namespace FameMatchApp.ViewModels
                 {
                     InServerCall = false;
                     await Shell.Current.DisplayAlert("Match", $"{filteredCasteds.Count} matches found!", "ok");
-                    ReadCasteds();
+                    //ReadCasteds();
                 }
                 else
                 {
