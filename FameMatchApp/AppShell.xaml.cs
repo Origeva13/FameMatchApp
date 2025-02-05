@@ -10,9 +10,11 @@ namespace FameMatchApp
             this.BindingContext = vm;
             InitializeComponent();
             Routing.RegisterRoute("matchdetailsview", typeof(MatchDetailsView));
+            Routing.RegisterRoute("UserInfo", typeof(UserInfoView));
+
         }
-     
-       
+
+
 
 
     }

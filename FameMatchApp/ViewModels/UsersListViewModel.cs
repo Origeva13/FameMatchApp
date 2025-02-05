@@ -58,17 +58,17 @@ namespace FameMatchApp.ViewModels
         #region Single Selection
 
 
-        private User selectedUser;
-        public User SelectedUser
+        private User selectedUser1;
+        public User SelectedUser1
         {
             get
             {
-                return this.selectedUser;
+                return this.selectedUser1;
             }
             set
             {
-                this.selectedUser = value;
-                OnSingleSelectUser(selectedUser);
+                this.selectedUser1 = value;
+                OnSingleSelectUser(selectedUser1);
                 OnPropertyChanged();
             }
         }
@@ -81,11 +81,11 @@ namespace FameMatchApp.ViewModels
             {
                 var navParam = new Dictionary<string, object>
                 {
-                    {"selectedUser",p }
+                    {"selectedUser1",p }
                 };
-                await Shell.Current.GoToAsync("MatchDetails", navParam);
+                await Shell.Current.GoToAsync("UserInfo", navParam);
 
-                SelectedUser = null;
+                SelectedUser1 = null;
 
             }
         }

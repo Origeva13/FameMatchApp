@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="FameMatchApp.Views.MatchDetailsView"
+    x:Class="FameMatchApp.Views.UserInfoView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Candidate Details"
+    Title="User Details"
     BackgroundColor="#F2F2F2">
 
     <VerticalStackLayout Padding="20" Spacing="20">
@@ -13,7 +13,7 @@
             FontFamily="Broadway3D"
             FontSize="36"
             HorizontalOptions="Center"
-            Text="CANDIDATE DETAILS" />
+            Text="USER DETAILS" />
 
         <!--  Candidate information stack  -->
         <StackLayout
@@ -65,24 +65,6 @@
                     TextColor="#333333"
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
-
-            <!--  About Me Section  -->
-            <HorizontalStackLayout>
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="16"
-                    Text="ABOUT THE CANDIDATE:"
-                    VerticalOptions="Center" />
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="16"
-                    Text="{Binding AboutMe}"
-                    TextColor="#333333"
-                    VerticalOptions="Start" />
-            </HorizontalStackLayout>
-
         </StackLayout>
 
         <!--  Add a button or action if needed  -->
