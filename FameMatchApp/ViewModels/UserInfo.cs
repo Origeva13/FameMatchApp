@@ -71,14 +71,21 @@ namespace FameMatchApp.ViewModels
             {
 
             }
+        //לשאול את עופר
+        //public bool IsManager => SelectedUser1?.IsManager ?? false;
 
-            private void LoadCastedDetails()
+        //public bool IsCasted => SelectedUser1 is Casted;
+
+        //public bool IsCastor => SelectedUser1 is Castor;
+
+        private void LoadCastedDetails()
             {
                 if (SelectedUser1 != null)
                 {
                     Name = SelectedUser1.UserName;  // Assume the Casted class has a Name property
                     LastName = SelectedUser1.UserLastName;        // Assume Casted has a Bio property
                     Email = SelectedUser1.UserEmail;
+                   
                     
                 }
             }

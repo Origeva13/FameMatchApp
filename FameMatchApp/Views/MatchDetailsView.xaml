@@ -56,7 +56,7 @@
                 <Label
                     FontAttributes="Bold"
                     FontSize="16"
-                    Text="EMAIL:"
+                    Text="EMAIL: "
                     VerticalOptions="Center" />
                 <Label
                     FontAttributes="Bold"
