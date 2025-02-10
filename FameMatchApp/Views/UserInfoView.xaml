@@ -65,6 +65,20 @@
                     TextColor="#333333"
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
+            <!--  IsBlocked  -->
+            <HorizontalStackLayout>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="Blocked:"
+                    VerticalOptions="Center" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="{Binding IsBlocked}"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
         </StackLayout>
 
         <!--  Add a button or action if needed  -->

@@ -66,8 +66,18 @@ namespace FameMatchApp.ViewModels
                     OnPropertyChanged();
                 }
             }
-            // Constructor 
-            public UserInfo()
+        private bool isBlocked;
+        public bool IsBlocked
+        {
+            get => isBlocked;
+            set
+            {
+                isBlocked = value;
+                OnPropertyChanged();
+            }
+        }
+        // Constructor 
+        public UserInfo()
             {
 
             }
@@ -85,10 +95,12 @@ namespace FameMatchApp.ViewModels
                     Name = SelectedUser1.UserName;  // Assume the Casted class has a Name property
                     LastName = SelectedUser1.UserLastName;        // Assume Casted has a Bio property
                     Email = SelectedUser1.UserEmail;
-                   
-                    
-                }
+                   IsBlocked = SelectedUser1.IsBlocked;
+
+                // Optionally, load any additional details or process the data
+
             }
+        }
         }
     }
 

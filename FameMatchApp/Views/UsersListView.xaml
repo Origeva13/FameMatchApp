@@ -17,8 +17,7 @@
                         <SwipeView.LeftItems>
                             <SwipeItems>
                                 <SwipeItem 
-                                  IconImageSource="blockpic.png"
-                                   
+                                  IconImageSource="blockpic.jpg"
                                   CommandParameter="{Binding .}"
                                   Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.BlockCommand}"
                       />
