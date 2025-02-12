@@ -1,12 +1,72 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FameMatchApp.Views.AddAuditionView"
-             Title="AddAuditionView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="FameMatchApp.Views.AddAuditionView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Add Audition">
+
+    <!--  Set the BindingContext for the ViewModel  -->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <!--  Audition Name  -->
+            <Label FontSize="Medium" Text="Audition Name" />
+            <Entry Placeholder="Enter audition name" Text="{Binding AuditionName}" />
+
+            <!--  Show error for Audition Name  -->
+            <Label
+                FontSize="Small"
+                IsVisible="{Binding ShowAuditionNameError}"
+                Text="{Binding AuditionNameError}"
+                TextColor="Red" />
+
+            <!--  Description  -->
+            <Label FontSize="Medium" Text="Description" />
+            <Editor
+                HeightRequest="150"
+                Placeholder="Enter audition description"
+                Text="{Binding Description}" />
+
+            <!--  Body Structure Picker  -->
+            <Label FontSize="Medium" Text="Body Structure" />
+            <Picker ItemsSource="{Binding Kinds}" SelectedItem="{Binding BodyStructure}" />
+
+            <!--  Age Picker  -->
+            <Label FontSize="Medium" Text="Age" />
+            <Picker ItemsSource="{Binding Kinds1}" SelectedItem="{Binding Age}" />
+
+            <!--  Eyes Picker  -->
+            <Label FontSize="Medium" Text="Eyes" />
+            <Picker ItemsSource="{Binding Kinds2}" SelectedItem="{Binding Eyes}" />
+
+            <!--  Hair Picker  -->
+            <Label FontSize="Medium" Text="Hair" />
+            <Picker ItemsSource="{Binding Kinds3}" SelectedItem="{Binding Hair}" />
+
+            <!--  Skin Picker  -->
+            <Label FontSize="Medium" Text="Skin" />
+            <Picker ItemsSource="{Binding Kinds4}" SelectedItem="{Binding Skin}" />
+
+            <!--  Gender Picker  -->
+            <Label FontSize="Medium" Text="Gender" />
+            <Picker ItemsSource="{Binding Kinds5}" SelectedItem="{Binding Gender}" />
+
+            <!--  Height Picker  -->
+            <Label FontSize="Medium" Text="Height" />
+            <Picker ItemsSource="{Binding Kinds6}" SelectedItem="{Binding Hight}" />
+
+            <!--  Public Audition Toggle  -->
+            <Label FontSize="Medium" Text="Is Public" />
+            <Switch IsToggled="{Binding IsPublic}" />
+
+            <!--  Save Button  -->
+            <Button
+                BackgroundColor="DodgerBlue"
+                Command="{Binding SaveCommand}"
+                Text="ADD AUDITION"
+                TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

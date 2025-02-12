@@ -18,7 +18,7 @@ namespace FameMatchApp.Models
 
         public int AudAge { get; set; }
 
-
+        public string? AudName { get; set; }
         public string? AudLocation { get; set; }
 
         public int? AudHigth { get; set; }
@@ -34,6 +34,8 @@ namespace FameMatchApp.Models
 
 
         public string? AudSkin { get; set; }
+
+        public string? AudGender { get; set; }
 
         public bool IsPublic { get; set; }
         public Audition() { }
