@@ -366,5 +366,36 @@ namespace FameMatchApp.Services
                 return null;
             }
         }
+        public async Task<List<Audition>?> GetAllAuditions()
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}GetAllAuditions";
+            try
+            {
+                //Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Extract the content as string
+                string resContent = await response.Content.ReadAsStringAsync();
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<Audition>? result = JsonSerializer.Deserialize<List<Audition>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

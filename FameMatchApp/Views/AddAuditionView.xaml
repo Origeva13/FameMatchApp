@@ -3,13 +3,13 @@
     x:Class="FameMatchApp.Views.AddAuditionView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Add Audition">
+    Title="">
 
     <!--  Set the BindingContext for the ViewModel  -->
 
     <ScrollView>
         <VerticalStackLayout Padding="20">
-
+            <Label Text="Add Audition" FontFamily="Broadway3D" FontSize="60" HorizontalOptions="Center"></Label>
             <!--  Audition Name  -->
             <Label FontSize="Medium" Text="Audition Name" />
             <Entry Placeholder="Enter audition name" Text="{Binding AuditionName}" />

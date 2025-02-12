@@ -59,6 +59,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Broadway3D.ttf" />
 	  <None Remove="Resources\Images\addaudition.png" />
+	  <None Remove="Resources\Images\auditionslist.png" />
 	  <None Remove="Resources\Images\blockpic.jpg" />
 	  <None Remove="Resources\Images\confirmicon.png" />
 	  <None Remove="Resources\Images\homepageicon.png" />
@@ -77,6 +78,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\AddAuditionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AuditionLIstView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CastedHomeView.xaml">

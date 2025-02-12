@@ -47,6 +47,7 @@ namespace FameMatchApp
             builder.Services.AddTransient<MatchDetailsView>();
             builder.Services.AddTransient<AddAuditionView>();
             builder.Services.AddTransient<UserInfoView>();
+            builder.Services.AddTransient<AuditionLIstView>();
             return builder;
         }
 
@@ -71,6 +72,7 @@ namespace FameMatchApp
             builder.Services.AddTransient<MatchDetailsViewModel>();
             builder.Services.AddTransient<AddAuditionViewModel>();
             builder.Services.AddTransient<UserInfo>();
+            builder.Services.AddTransient<AuditionListViewModel>();
             return builder;
         }
     }

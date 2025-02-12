@@ -58,12 +58,20 @@
             Icon="matchicon.png"
             IsVisible="{Binding IsCastor}"
             Route="Match" />
+
         <ShellContent
             Title="Add Audition"
             ContentTemplate="{DataTemplate views:AddAuditionView}"
             Icon="addaudition.png"
             IsVisible="{Binding IsCastor}"
             Route="AddAudition" />
+
+        <ShellContent
+            Title="Auditions List"
+            ContentTemplate="{DataTemplate views:AuditionLIstView}"
+            Icon="auditionslist.png"
+            IsVisible="{Binding IsCasted}"
+            Route="AuditionsList" />
 
     </FlyoutItem>
     <MenuItem
