@@ -80,6 +80,9 @@
 	  <MauiXaml Update="Views\AddAuditionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AuditionInfoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AuditionLIstView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

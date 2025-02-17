@@ -1,12 +1,80 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FameMatchApp.Views.AuditionLIstView"
-             Title="AuditionLIstView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="FameMatchApp.Views.AuditionLIstView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:FameMatchApp.Models"
+    xmlns:viewModel="clr-namespace:FameMatchApp.ViewModels"
+    Title=""
+    x:DataType="viewModel:AuditionListViewModel"
+    BackgroundColor="#F2F2F2">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="30">
+
+            <!--  Title of the page  -->
+            <Label
+                FontFamily="Broadway3D"
+                FontSize="36"
+                HorizontalOptions="Center"
+                Text="AUDITIONS LIST"
+                TextColor="#4CAF50" />
+
+            <!--  Find Audition Button  -->
+            <Button
+                Margin="10"
+                BackgroundColor="#4CAF50"
+                Command="{Binding SaveCommand}"
+                CornerRadius="10"
+                FontSize="18"
+                HeightRequest="50"
+                IsEnabled="{Binding NotInServerCall}"
+                Text="FIND ME AN AUDITION"
+                TextColor="White" />
+
+            <!--  Audition List Collection View  -->
+            <CollectionView
+                ItemsLayout="VerticalGrid, 1"
+                ItemsSource="{Binding Filltered}"
+                SelectedItem="{Binding SelectedAudition}"
+                SelectionMode="Single">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Audition">
+                        <Frame
+                            Margin="10"
+                            Padding="15"
+                            BorderColor="#4CAF50"
+                            CornerRadius="15"
+                            HasShadow="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--  Audition Name  -->
+                                <Label
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="{Binding AudName}"
+                                    TextColor="#333333"
+                                    VerticalOptions="Center" />
+
+                                <!--  Audition Description  -->
+                                <Label
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding Description}"
+                                    TextColor="#666666"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

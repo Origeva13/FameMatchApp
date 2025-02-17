@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FameMatchApp.Views.AuditionInfoView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title=""
+    BackgroundColor="#F2F2F2">
+
+    <VerticalStackLayout Padding="20" Spacing="30">
+        <!--  Title of the page  -->
+        <Label
+            FontFamily="Broadway3D"
+            FontSize="36"
+            HorizontalOptions="Center"
+            Text="AUDITION DETAILS"
+            TextColor="#4CAF50" />
+
+        <!--  Candidate information stack  -->
+        <StackLayout
+            Padding="20"
+            BackgroundColor="White"
+            Spacing="20">
+
+            <!--  Audition Name  -->
+            <HorizontalStackLayout Spacing="15">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="Audition Name:"
+                    TextColor="#7F8C8D"
+                    VerticalOptions="Center" />
+                <Label
+                    FontSize="18"
+                    Text="{Binding AudName1}"
+                    TextColor="#34495E"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!--  Description  -->
+            <HorizontalStackLayout Spacing="15">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="About the audition:"
+                    TextColor="#7F8C8D"
+                    VerticalOptions="Center" />
+                <Label
+                    FontSize="18"
+                    Text="{Binding Description1}"
+                    TextColor="#34495E"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+        </StackLayout>
+
+        <!--  Optional Button or action  -->
+        <!-- <Button Text="Connect" /> -->
+
+    </VerticalStackLayout>
+
+</ContentPage>
+
