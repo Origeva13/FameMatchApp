@@ -49,12 +49,14 @@ namespace FameMatchApp
             builder.Services.AddTransient<UserInfoView>();
             builder.Services.AddTransient<AuditionLIstView>();
             builder.Services.AddTransient<AuditionInfoView>();
+            builder.Services.AddTransient<ResetPasswordView>();
             return builder;
         }
 
         public static MauiAppBuilder RegisterDataServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<FameMatchWebAPIProxy>();
+            builder.Services.AddSingleton<SendEmailService>();
             return builder;
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
@@ -75,6 +77,7 @@ namespace FameMatchApp
             builder.Services.AddTransient<UserInfo>();
             builder.Services.AddTransient<AuditionListViewModel>();
             builder.Services.AddTransient<AuditionInfoViewModel>();
+            builder.Services.AddTransient<ResetPasswordViewModel>();
             return builder;
         }
     }

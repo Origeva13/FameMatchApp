@@ -22,6 +22,7 @@ namespace FameMatchApp.ViewModels
             this.proxy = proxy;
             LoginCommand = new Command(OnLogin);
             RegisterCommand = new Command(OnRegister);
+            ForgotPassCommand = new Command(OnForgotPass);
             email = "";
             password = "";
             InServerCall = false;

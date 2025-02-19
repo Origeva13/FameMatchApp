@@ -12,6 +12,7 @@ namespace FameMatchApp.Models
 
         public int NumOfLisence { get; set; }
 
+        public bool IsApproved { get; set; }
         public Castor() { }
        
         //public virtual ICollection<Audition> Auditions { get; set; } = new List<Audition>();
