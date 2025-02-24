@@ -95,6 +95,11 @@ namespace FameMatchApp.ViewModels
             {
                 ErrorMsg = "Invalid email or password";
             }
+            else if (u.IsBlocked==true)
+            {
+                ErrorMsg = "Unfortunately your'e blocked from the app\n              Try to contact our team at\n               FameMatch@gmail.com";
+
+            }
             else if(u is Casted)
             {
                 ErrorMsg = "";

@@ -485,6 +485,62 @@ namespace FameMatchApp.Services
                 return false;
             }
         }
+        public async Task<bool> Accept(Castor castor)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}Accept";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(castor);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public async Task<List<Castor>?> GetAllCastors()
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}GetAllCastors";
+            try
+            {
+                //Call the server API
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Extract the content as string
+                string resContent = await response.Content.ReadAsStringAsync();
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<Castor>? result = JsonSerializer.Deserialize<List<Castor>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
     }
 }

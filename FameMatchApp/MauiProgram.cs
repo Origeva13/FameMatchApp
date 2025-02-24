@@ -50,6 +50,7 @@ namespace FameMatchApp
             builder.Services.AddTransient<AuditionLIstView>();
             builder.Services.AddTransient<AuditionInfoView>();
             builder.Services.AddTransient<ResetPasswordView>();
+            builder.Services.AddTransient<CastorInfoView>();
             return builder;
         }
 
@@ -78,6 +79,7 @@ namespace FameMatchApp
             builder.Services.AddTransient<AuditionListViewModel>();
             builder.Services.AddTransient<AuditionInfoViewModel>();
             builder.Services.AddTransient<ResetPasswordViewModel>();
+            builder.Services.AddTransient<CastorInfoViewModel>();
             return builder;
         }
     }

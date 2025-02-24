@@ -35,7 +35,7 @@ namespace FameMatchApp.ViewModels
             Gender = Kinds5[0];
             kinds6 = (new Hight()).Kinds6;
             Hight = Kinds6[0];
-            IsPublic = audition.IsPublic;
+            IsPublic = false;
             UserId=castor.UserId;
             AuditionNameError= "Audition name filed can't be empty";
             SaveCommand = new Command(OnPost);
@@ -301,7 +301,7 @@ namespace FameMatchApp.ViewModels
                 
                 if (theUser.IsBlocked == true)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Add Post", "Uploading post failed since user is blocked", "ok");
+                    await Application.Current.MainPage.DisplayAlert("Add Audition", "Uploading Audition failed since user is blocked", "ok");
                 }
                 User u = ((App)Application.Current).LoggedInUser;
                 //string extention = PhotoURL.Substring(PhotoURL.LastIndexOf(".")).ToLower();
@@ -317,7 +317,9 @@ namespace FameMatchApp.ViewModels
                     AudEyes = Eyes,
                     UserBody = BodyStructure,
                     AudSkin = Skin,
-                    AudGender=Gender
+                    AudGender=Gender,
+                    IsPublic = IsPublic
+
                 }
                 ;
                 //Call the Register method on the proxy to register the new user

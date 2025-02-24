@@ -100,7 +100,6 @@ namespace FameMatchApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         #region Filltered
         private ObservableCollection<Audition> filltered;
         public ObservableCollection<Audition> Filltered

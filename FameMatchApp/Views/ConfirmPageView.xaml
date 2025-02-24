@@ -1,12 +1,68 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FameMatchApp.Views.ConfirmPageView"
-             Title="ConfirmPageView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="FameMatchApp.Views.ConfirmPageView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:FameMatchApp.Models"
+    xmlns:viewModel="clr-namespace:FameMatchApp.ViewModels"
+    Title=""
+    x:DataType="viewModel:ConfirmPageViewModel"
+    BackgroundColor="#F2F2F2">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="30">
+
+            <!--  Title of the page  -->
+            <Label
+                FontFamily="Broadway3D"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="Users Waiting For Approval"
+                TextColor="#4CAF50" />
+
+            <!--  Castor List Collection View  -->
+            <CollectionView
+                ItemsLayout="VerticalGrid, 1"
+                ItemsSource="{Binding Filltered}"
+                SelectedItem="{Binding SelectedCastor}"
+                SelectionMode="Single">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Castor">
+                        <Frame
+                            Margin="10"
+                            Padding="15"
+                            BorderColor="#4CAF50"
+                            CornerRadius="15"
+                            HasShadow="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--  Castor Name  -->
+                                <Label
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="{Binding UserName}"
+                                    TextColor="#333333"
+                                    VerticalOptions="Center" />
+
+                                <!--  Castor Last Name  -->
+                                <Label
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding UserLastName}"
+                                    TextColor="#666666"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
