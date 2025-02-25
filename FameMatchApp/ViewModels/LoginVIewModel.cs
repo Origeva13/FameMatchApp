@@ -111,8 +111,13 @@ namespace FameMatchApp.ViewModels
                 Shell.Current.FlyoutIsPresented = false; //close the flyout
                 Shell.Current.GoToAsync("CastedHomePage"); //Navigate to the Tasks tab page
             }
+            //else if (u is Castor&& u.)
+            //{
+            //    ErrorMsg = "You haven't been aprooved by our team yet";
+            //}
             else
             {
+
                 ErrorMsg = "";
                 //Navigate to the main page
                 AppShell shell = serviceProvider.GetService<AppShell>();

@@ -3,7 +3,7 @@
     x:Class="FameMatchApp.Views.UserInfoView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="User Details"
+    Title=""
     BackgroundColor="#F2F2F2">
 
     <VerticalStackLayout Padding="20" Spacing="20">
