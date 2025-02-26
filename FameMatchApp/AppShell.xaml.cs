@@ -14,6 +14,7 @@ namespace FameMatchApp
             Routing.RegisterRoute("auditioninfoview", typeof(AuditionInfoView));
             Routing.RegisterRoute("ResetPasswordView", typeof(ResetPasswordView));
             Routing.RegisterRoute("CastorInfo", typeof(CastorInfoView));
+            
 
         }
 

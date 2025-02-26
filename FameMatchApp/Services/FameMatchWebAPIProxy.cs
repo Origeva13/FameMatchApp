@@ -93,47 +93,16 @@ namespace FameMatchApp.Services
                 return null;
             }
         }
-        public async Task<Casted?> CastedRegister(Casted user)
+        //This methos call the Register web API on the server and return the AppUser object with the given ID
+        //or null if the call fails
+        public async Task<Castor?> RegisterCastor(Castor c)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}CastedRegister";
+            string url = $"{this.baseUrl}registerCastor";
             try
             {
                 //Call the server API
-                string json = JsonSerializer.Serialize(user);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(url, content);
-                //Check status
-                if (response.IsSuccessStatusCode)
-                {
-                    //Extract the content as string
-                    string resContent = await response.Content.ReadAsStringAsync();
-                    //Desrialize result
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    Casted? result = JsonSerializer.Deserialize<Casted>(resContent, options);
-                    return result;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-        public async Task<Castor?> CastorRegister(Castor user)
-        {
-            //Set URI to the specific function API
-            string url = $"{this.baseUrl}CastorRegister";
-            try
-            {
-                //Call the server API
-                string json = JsonSerializer.Serialize(user);
+                string json = JsonSerializer.Serialize(c);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(url, content);
                 //Check status
@@ -147,6 +116,39 @@ namespace FameMatchApp.Services
                         PropertyNameCaseInsensitive = true
                     };
                     Castor? result = JsonSerializer.Deserialize<Castor>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<Casted?> RegisterCasted(Casted c)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}registerCasted";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(c);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    Casted? result = JsonSerializer.Deserialize<Casted>(resContent, options);
                     return result;
                 }
                 else
@@ -489,6 +491,31 @@ namespace FameMatchApp.Services
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}Accept";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(castor);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> Declaine(Castor castor)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}Declaine";
             try
             {
                 //Call the server API

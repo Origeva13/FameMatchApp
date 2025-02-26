@@ -93,12 +93,18 @@
         TextColor="#333333"
         VerticalOptions="Center" />
             </HorizontalStackLayout>
-            <!--  Save Button  -->
+            <!--  Approve Button  -->
             <Button
     BackgroundColor="DodgerBlue"
     Command="{Binding AcceptCommand}"
     Text="Accept"
     TextColor="White" />
+            <!--  Declaine Button  -->
+            <Button
+BackgroundColor="DodgerBlue"
+Command="{Binding DeclaineCommand}"
+Text="Declaine"
+TextColor="White" />
         </StackLayout>
         
         

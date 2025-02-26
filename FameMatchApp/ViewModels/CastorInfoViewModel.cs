@@ -81,6 +81,7 @@ namespace FameMatchApp.ViewModels
         {
             this.proxy=proxy;
             AcceptCommand = new Command(OnAccept);
+            DeclaineCommand = new Command(OnDeclaine);
         }
         public Command AcceptCommand { get; }
 
@@ -96,6 +97,24 @@ namespace FameMatchApp.ViewModels
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"Castor hasn't been approved", "Ok");
+
+            }
+        }
+        public Command DeclaineCommand { get; }
+
+        public async void OnDeclaine()
+        {
+            selectedCastor.IsAprooved = false;  
+            selectedCastor.IsBlocked = true;
+            bool isWorking = await proxy.Declaine(selectedCastor);
+            if (isWorking == true)
+            {
+                await Application.Current.MainPage.DisplayAlert("success", $"Castor has been declained", "Ok");
+
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"Castor hasn't been declained", "Ok");
 
             }
         }
