@@ -82,6 +82,19 @@
                     TextColor="#333333"
                     VerticalOptions="Start" />
             </HorizontalStackLayout>
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="To send an email to the candidate, click the button below"
+                TextColor="#333333"
+                VerticalOptions="Start" />
+            <Button
+                              
+                                Command="{Binding Source={x:Reference cv}, Path=BindingContext.SendEmailCommand}"
+                                CommandParameter="{Binding}"
+                                Text="Send" />
+            
+
 
         </StackLayout>
 

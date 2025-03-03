@@ -26,8 +26,9 @@ public class RegisterViewModel : ViewModelBase
         FirstNameError = "First name should contain only letters";
         LastNameError = "Last name should contain only letters";
         AgeError = "Age should be a positive number";
-        Gender = "other";
         UserType = "1";
+        AboutMe= "Not filled yet";
+        Location = "Not filled yet";
     }
 
 
@@ -315,11 +316,14 @@ public class RegisterViewModel : ViewModelBase
     private string gender;
     public string Gender
     {
-        get => gender;
+        get
+        {
+            return gender;
+        }
         set
         {
             gender = value;
-            OnPropertyChanged();
+            OnPropertyChanged("UserGender");
         }
     }
     #endregion
@@ -462,6 +466,30 @@ public class RegisterViewModel : ViewModelBase
         }
     }
     #endregion
+    #region Aboutme
+    private string aboutMe;
+    public string AboutMe
+    {
+        get => aboutMe;
+        set
+        {
+            aboutMe = value;
+            OnPropertyChanged("AboutMe");
+        }
+    }
+    #endregion
+    #region Location
+    private string location;
+    public string Location
+    {
+        get => location;
+        set
+        {
+            location = value;
+            OnPropertyChanged("Location");
+        }
+    }
+    #endregion
     #region Photo
 
     private string photoURL;
@@ -529,13 +557,8 @@ public class RegisterViewModel : ViewModelBase
         ValidateLastName();
         ValidateAge();
 
-        if (!ShowEmailError && !ShowPasswordError &&
-            (isCastorChecked) &&
-            !ShowFirstNameError && !ShowLastNameError &&
-            (isCastedChecked) &&
-            (!ShowAgeError || isCastedChecked)
-            )
-        {
+        
+        
 
             if (isCastedChecked)
             {
@@ -551,7 +574,10 @@ public class RegisterViewModel : ViewModelBase
                     UserSkin = Color,
                     UserEyes = Eyes,
                     UserHair = Hair,
-                    UserHigth = Hight
+                    UserHigth = Hight,
+                    UserLocation = Location,
+                    AboutMe = AboutMe
+
                 };
                 InServerCall = true;
                c = await proxy.RegisterCasted(c);
@@ -571,7 +597,9 @@ public class RegisterViewModel : ViewModelBase
                     //        p.ProfileImagePath = updatedUser.ProfileImagePath;
                     //}
                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
-                }
+                string errorMsg = "Registration Was Succesfull";
+                await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+            }
                 else
                 {
 
@@ -579,7 +607,8 @@ public class RegisterViewModel : ViewModelBase
                     string errorMsg = "Registration failed. Please try again.";
                     await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
                 }
-            }
+          
+        }
             else
             {
                 Castor? c = new Castor()
@@ -610,8 +639,9 @@ public class RegisterViewModel : ViewModelBase
                     //        b.ProfileImagePath = updatedUser.ProfileImagePath;
                     //}
                     ((App)(Application.Current)).MainPage.Navigation.PopAsync();
-
-                }
+                string errorMsg = "Registration Was Succesfull";
+                await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+            }
                 else
                 {
 
@@ -621,7 +651,7 @@ public class RegisterViewModel : ViewModelBase
                 }
             }
 
-        }
+        
 
     }
 }

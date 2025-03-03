@@ -4,15 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:FameMatchApp.ViewModels"
-    Title="" 
+    Title=""
     x:DataType="viewmodels:RegisterViewModel">
     <StackLayout VerticalOptions="FillAndExpand">
 
         <Label
-            FontSize="50"
+            FontFamily="Broadway3D"
+            FontSize="60"
             HorizontalOptions="Center"
-            Text="Register page"
-            TextColor="Purple" />
+            Text="Register" />
+
 
         <ScrollView
             HorizontalScrollBarVisibility="Always"
@@ -131,8 +132,11 @@
                     <RadioButton Content="Male" Value="Male" />
                     <RadioButton
                         Content="Female"
-                        IsChecked="True"
                         Value="Female" />
+                    <RadioButton
+                        Content="Other"
+                        IsChecked="True"
+                        Value="Other" />
                 </StackLayout>
 
                 <!--  Photo  -->
@@ -157,7 +161,7 @@
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
                             Text="Click Here To Upload Photo!"
-                            TextColor="Purple"
+                            TextColor="Black"
                             VerticalOptions="End">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
