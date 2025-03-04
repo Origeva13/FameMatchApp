@@ -597,7 +597,7 @@ public class RegisterViewModel : ViewModelBase
                     //        p.ProfileImagePath = updatedUser.ProfileImagePath;
                     //}
                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
-                string errorMsg = "Registration Was Succesfull";
+                string errorMsg = "Registration Was Succesfull, \n you can now login";
                 await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
             }
                 else
@@ -639,7 +639,7 @@ public class RegisterViewModel : ViewModelBase
                     //        b.ProfileImagePath = updatedUser.ProfileImagePath;
                     //}
                     ((App)(Application.Current)).MainPage.Navigation.PopAsync();
-                string errorMsg = "Registration Was Succesfull";
+                string errorMsg = "Registration Was Succesfull, \n you can now login";
                 await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
             }
                 else

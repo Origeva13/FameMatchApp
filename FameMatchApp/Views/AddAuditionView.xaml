@@ -9,7 +9,11 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20">
-            <Label Text="Add Audition" FontFamily="Broadway3D" FontSize="60" HorizontalOptions="Center"></Label>
+            <Label
+                FontFamily="Broadway3D"
+                FontSize="60"
+                HorizontalOptions="Center"
+                Text="Add Audition" />
             <!--  Audition Name  -->
             <Label FontSize="Medium" Text="Audition Name" />
             <Entry Placeholder="Enter audition name" Text="{Binding AuditionName}" />

@@ -28,8 +28,8 @@ namespace FameMatchApp.ViewModels
             Gender = casted.UserGender;
             Filltered = new ObservableCollection<Audition>();
             SaveCommand=new Command(OnMatch);
-            
-        } 
+
+        }
         private string eyes;
         public string Eyes
         {
@@ -112,7 +112,18 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
-
+        #region MsgTxt
+        private string msgTxt;
+        public string MsgTxt
+        {
+            get => msgTxt;
+            set
+            {
+                msgTxt = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
         private async void ReadAuditions()
         {
             List<Audition> list = await proxy.GetAllAuditions();

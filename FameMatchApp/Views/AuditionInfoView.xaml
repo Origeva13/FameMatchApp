@@ -50,7 +50,18 @@
                     TextColor="#34495E"
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
-
+            <Entry
+                Placeholder="You can write here a request for the castor"
+                Text="{Binding MsgTxt}"/>
+            
+            <Button
+    BackgroundColor="#1ABC9C"
+    Command="{Binding SendEmailCommand}"
+    CornerRadius="8"
+    HeightRequest="45"
+    Text="Send Email"
+    TextColor="White"
+    VerticalOptions="Center" />
         </StackLayout>
 
         <!--  Optional Button or action  -->
