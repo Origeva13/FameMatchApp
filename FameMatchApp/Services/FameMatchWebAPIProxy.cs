@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using FameMatchApp.Models;
+using Microsoft.Maui.ApplicationModel.Communication;
 
 namespace FameMatchApp.Services
 {
@@ -571,7 +572,7 @@ namespace FameMatchApp.Services
         public async Task<Castor> GetUserByAudition(int AudId)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}GetUserByAudition={AudId}";
+            string url = $"{this.baseUrl}GetUserByAudition?id={AudId}";
             try
             {
                 HttpResponseMessage response = await client.GetAsync(url);

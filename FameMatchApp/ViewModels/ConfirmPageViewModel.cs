@@ -80,7 +80,7 @@ namespace FameMatchApp.ViewModels
                 Filltered.Clear();
 
                 // Apply the filter to only include unapproved (IsApproved == false or null) castors
-                List<Castor> filteredCastors = AllCastors.Where(castor => castor.IsAprooved == false && castor.IsBlocked==false).ToList();
+                List<Castor> filteredCastors = AllCastors.Where(castor => castor.IsAprooved == false || castor.IsBlocked==false).ToList();
 
                 // Add the filtered castors to the observable collection
                 foreach (Castor castor in filteredCastors)

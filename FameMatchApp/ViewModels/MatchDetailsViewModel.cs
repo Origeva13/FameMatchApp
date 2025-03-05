@@ -97,12 +97,11 @@ namespace FameMatchApp.ViewModels
                     To = SelectedCasted.UserEmail,
                     Subject = $"A matching audition found for you",
                     Body = $@"Hi {SelectedCasted.UserName}, {current.UserName} {current.UserLastName} is a Castor in our system that is interested to invite you
-to an audition, you can contact {himHer} at this Email: {current.UserEmail}
-
-
-Best Regards, The FameMatch Team and {current.UserName}"
-
+                      to an audition, you can contact {himHer} at this Email: {current.UserEmail}
+                      Best Regards, The FameMatch Team and {current.UserName}",
+                    //HtmlBody =
                 };
+               
 
                 SendEmailService emailService = new SendEmailService();
                 bool success = await emailService.Send(emailData);

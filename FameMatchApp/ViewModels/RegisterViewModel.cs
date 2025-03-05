@@ -619,7 +619,10 @@ public class RegisterViewModel : ViewModelBase
                     UserPassword = Password,
                     NumOfLisence = NumOfLicense,
                     UserGender = Gender,
-                    CompanyName= CompanyName
+                    CompanyName= CompanyName,
+                    IsBlocked=true,
+                    IsAprooved = false
+
                 };
                 InServerCall = true;
                 c = await proxy.RegisterCastor(c);
@@ -639,7 +642,7 @@ public class RegisterViewModel : ViewModelBase
                     //        b.ProfileImagePath = updatedUser.ProfileImagePath;
                     //}
                     ((App)(Application.Current)).MainPage.Navigation.PopAsync();
-                string errorMsg = "Registration Was Succesfull, \n you can now login";
+                string errorMsg = "Registration Was Succesfull, \n you need to wait until you \n will be approved to login";
                 await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
             }
                 else

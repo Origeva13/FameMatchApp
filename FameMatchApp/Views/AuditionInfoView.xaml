@@ -6,7 +6,7 @@
     Title=""
     BackgroundColor="#F2F2F2">
 
-    <VerticalStackLayout Padding="20" Spacing="30">
+    <VerticalStackLayout Padding="20" Spacing="25">
         <!--  Title of the page  -->
         <Label
             FontFamily="Broadway3D"
@@ -22,52 +22,72 @@
             Spacing="20">
 
             <!--  Audition Name  -->
-            <HorizontalStackLayout Spacing="15">
+            <VerticalStackLayout Spacing="10">
                 <Label
                     FontAttributes="Bold"
                     FontSize="18"
-                    Text="Audition Name:"
-                    TextColor="#7F8C8D"
-                    VerticalOptions="Center" />
-                <Label
-                    FontSize="18"
+                    HorizontalOptions="Center"
                     Text="{Binding AudName1}"
                     TextColor="#34495E"
                     VerticalOptions="Center" />
-            </HorizontalStackLayout>
+            </VerticalStackLayout>
 
-            <!--  Description  -->
-            <HorizontalStackLayout Spacing="15">
+            <!--  Description (with Binding below the label)  -->
+            <VerticalStackLayout Spacing="10">
                 <Label
                     FontAttributes="Bold"
                     FontSize="18"
+                    HorizontalOptions="Center"
                     Text="About the audition:"
                     TextColor="#7F8C8D"
                     VerticalOptions="Center" />
                 <Label
                     FontSize="18"
+                    HorizontalOptions="Center"
                     Text="{Binding Description1}"
                     TextColor="#34495E"
                     VerticalOptions="Center" />
-            </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <!--  Instructional text with improved design  -->
+            <VerticalStackLayout Spacing="5">
+                <Label
+                    Padding="0,10"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    LineBreakMode="WordWrap"
+                    Text="You can send a request here:"
+                    TextColor="#34495E"
+                    VerticalOptions="Center" />
+                <Label
+                    Padding="0,10"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    LineBreakMode="WordWrap"
+                    Text="Make sure your message is clear and concise so the castor can review your request quickly."
+                    TextColor="#34495E"
+                    VerticalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!--  Message Entry  -->
             <Entry
-                Placeholder="You can write here a request for the castor"
-                Text="{Binding MsgTxt}"/>
-            
+                BackgroundColor="#f8f8f8"
+                HeightRequest="50"
+                Placeholder="Write a request message for the castor"
+                Text="{Binding MsgTxt}" />
+
+            <!--  Send Email Button  -->
             <Button
-    BackgroundColor="#1ABC9C"
-    Command="{Binding SendEmailCommand}"
-    CornerRadius="8"
-    HeightRequest="45"
-    Text="Send Email"
-    TextColor="White"
-    VerticalOptions="Center" />
+                Padding="10"
+                BackgroundColor="#1ABC9C"
+                Command="{Binding SendEmailCommand}"
+                CornerRadius="8"
+                FontSize="16"
+                HeightRequest="45"
+                Text="Send Email"
+                TextColor="White"
+                VerticalOptions="Center" />
         </StackLayout>
-
-        <!--  Optional Button or action  -->
-        <!-- <Button Text="Connect" /> -->
-
     </VerticalStackLayout>
 
 </ContentPage>
-

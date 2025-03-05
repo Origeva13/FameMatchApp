@@ -40,6 +40,7 @@ namespace FameMatchApp
             builder.Services.AddTransient<CastedHomeView>();
             builder.Services.AddTransient<CastedProfileView>();
             builder.Services.AddTransient<CastorProfileView>();
+            builder.Services.AddTransient<CastorHomeView>();
             builder.Services.AddTransient<ConfirmPageView>();
             builder.Services.AddTransient<MatchView>();
             builder.Services.AddTransient<UsersListView>();

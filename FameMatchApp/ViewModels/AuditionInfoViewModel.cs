@@ -48,16 +48,12 @@ namespace FameMatchApp.ViewModels
             }
         }
         // Constructor 
-        public AuditionInfoViewModel()
+        public AuditionInfoViewModel(FameMatchWebAPIProxy proxy)
         {
+            this.proxy = proxy;
             SendEmailCommand = new Command(OnSendEmail);
         }
-        //לשאול את עופר
-        //public bool IsManager => SelectedUser1?.IsManager ?? false;
 
-        //public bool IsCasted => SelectedUser1 is Casted;
-
-        //public bool IsCastor => SelectedUser1 is Castor;
         #region MsgTxt
         private string msgTxt;
         public string MsgTxt
@@ -79,7 +75,7 @@ namespace FameMatchApp.ViewModels
             User theUser = ((App)App.Current).LoggedInUser;
             Casted current = (Casted)theUser;
 
-            Castor castor=await proxy.GetUserByAudition(SelectedAudition.AudId);//!!!לתקן
+            Castor castor=await proxy.GetUserByAudition(SelectedAudition.AudId);
             string hisHer = "his", sheHe = "he", hasLicense = "has", himHer = "him";
             if (current.UserGender == "Female")
             {
@@ -87,6 +83,12 @@ namespace FameMatchApp.ViewModels
                 sheHe = "she";
                 himHer = "her";
 
+            }
+            if (current.UserGender == "Other")
+            {
+                hisHer = "their";
+                sheHe = "they";
+                himHer = "them";
             }
             if (current != null && SelectedAudition != null)
             {
@@ -97,10 +99,11 @@ namespace FameMatchApp.ViewModels
                     Subject = $"Request for '{SelectedAudition.AudName}' audition found for you",
                     Body = $@"Hi {castor.UserName}, {current.UserName} {current.UserLastName} is a Casted in our system that is interested in the {SelectedAudition.AudName}
 audition, you can contact {himHer} at this Email: {current.UserEmail}
-additionaly he added a massage for you: {MsgTxt}
+additionaly {sheHe} added a massage for you: {MsgTxt}
 
 
-Best Regards, The FameMatch Team and {current.UserName}"
+Best Regards, The FameMatch Team and {current.UserName} {current.UserLastName}"
+
 
                 };
 
@@ -120,11 +123,10 @@ Best Regards, The FameMatch Team and {current.UserName}"
         {
             if (SelectedAudition != null)
             {
-                AudName1 = SelectedAudition.AudName;  // Assume the Casted class has a Name property
+                AudName1 = SelectedAudition.AudName; 
                 Description1 = SelectedAudition.Description;
 
 
-                // Optionally, load any additional details or process the data
 
             }
         }

@@ -88,16 +88,49 @@ namespace FameMatchApp.ViewModels
         public async void OnAccept()
         {
             selectedCastor.IsAprooved = true;
+            selectedCastor.IsBlocked = false;
             bool isWorking = await proxy.Accept(selectedCastor);
             if (isWorking == true)
             {
-                await Application.Current.MainPage.DisplayAlert("success", $"Castor has been approved", "Ok");
-                
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", $"Castor hasn't been approved", "Ok");
 
+                string hisHer = "his", sheHe = "he", hasLicense = "has", himHer = "him";
+                if (SelectedCastor.UserGender == "Female")
+                {
+                    hisHer = "her";
+                    sheHe = "she";
+                    himHer = "her";
+
+                }
+                if (SelectedCastor.UserGender == "Other")
+                {
+                    hisHer = "their";
+                    sheHe = "they";
+                    himHer = "them";
+                }
+                if (SelectedCastor != null)
+                {
+                    EmailData emailData = new EmailData()
+                    {
+                        From = $"Fame Match App",
+                        To = SelectedCastor.UserEmail,
+                        Subject = $"Congratulations! Youv'e been approoved",
+                        Body = $@"Hi {SelectedCastor.UserName}, 
+                        our team has reviewed your application and we are happy to inform you that you have been approved to join our platform.
+                        Best Regards, The FameMatch Team"
+
+
+                    };
+
+                    SendEmailService emailService = new SendEmailService();
+                    bool success = await emailService.Send(emailData);
+                    await Application.Current.MainPage.DisplayAlert("success", $"Castor has been approved", "Ok");
+
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", $"Castor hasn't been approved", "Ok");
+
+                }
             }
         }
         public Command DeclaineCommand { get; }
@@ -109,7 +142,42 @@ namespace FameMatchApp.ViewModels
             bool isWorking = await proxy.Declaine(selectedCastor);
             if (isWorking == true)
             {
-                await Application.Current.MainPage.DisplayAlert("success", $"Castor has been declained", "Ok");
+
+                string hisHer = "his", sheHe = "he", hasLicense = "has", himHer = "him";
+                if (SelectedCastor.UserGender == "Female")
+                {
+                    hisHer = "her";
+                    sheHe = "she";
+                    himHer = "her";
+
+                }
+                if (SelectedCastor.UserGender == "Other")
+                {
+                    hisHer = "their";
+                    sheHe = "they";
+                    himHer = "them";
+                }
+                if (SelectedCastor != null)
+                {
+                    EmailData emailData = new EmailData()
+                    {
+                        From = $"Fame Match App",
+                        To = SelectedCastor.UserEmail,
+                        Subject = $"Unfortunatelly! You haven't been approoved",
+                        Body = $@"Hi {SelectedCastor.UserName}, 
+                        our team has reviewed your application and we are sorry to inform you that you have not been approved to join our platform.
+                        Best Regards, The FameMatch Team
+p.s if you think that a mistake have been made please contact us at : FameMatch@gmail.com"
+
+
+                    };
+
+                    SendEmailService emailService = new SendEmailService();
+                    bool success = await emailService.Send(emailData);
+                    await Application.Current.MainPage.DisplayAlert("success", $"Castor has been declained", "Ok");
+
+                }
+
 
             }
             else
