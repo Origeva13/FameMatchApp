@@ -66,7 +66,9 @@
 	  <None Remove="Resources\Images\LoginPicture.png" />
 	  <None Remove="Resources\Images\LogOutIcon.png" />
 	  <None Remove="Resources\Images\matchicon.jpg" />
+	  <None Remove="Resources\Images\notpublic1.png" />
 	  <None Remove="Resources\Images\profileicon.jpg" />
+	  <None Remove="Resources\Images\public1.png" />
 	  <None Remove="Resources\Images\userslisticon.jpg" />
 	</ItemGroup>
 

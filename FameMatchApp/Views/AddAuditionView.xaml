@@ -61,7 +61,7 @@
             <Picker ItemsSource="{Binding Kinds6}" SelectedItem="{Binding Hight}" />
 
             <!--  Public Audition Toggle  -->
-            <Label FontSize="Medium" Text="Is Public" />
+            <Label FontSize="Medium" Text="Do you want the audition to be public?" />
             <Switch IsToggled="{Binding IsPublic}" />
 
             <!--  Save Button  -->

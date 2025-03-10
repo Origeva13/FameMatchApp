@@ -631,6 +631,31 @@ namespace FameMatchApp.Services
                 return null;
             }
         }
+        public async Task<bool> UpdateAudition(Audition Aud)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}UpdateAudition{Aud.AudId}";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(Aud);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
 
