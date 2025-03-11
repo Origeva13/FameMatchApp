@@ -23,7 +23,7 @@ namespace FameMatchApp.Services
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
         private HttpClient client;
         private string baseUrl;
-        public static string BaseAddress = "https://script.google.com/macros/s/AKfycbzz3jcda5lMlZ_Bs_vfa8fzbKUkqSCFU7nPBLpp9PIEeYZD1uQF00gl4FU7rX-ZSE_d/exec";
+        public static string BaseAddress = "https://script.google.com/macros/s/AKfycbzT1ocwB_E8fZ9Die2SlZY-sOgxX3CaHxlp5eCZ5jhZm92sNfdHCQp_ldX0cb5PCMWS/exec";
         #endregion
 
         public SendEmailService()

@@ -7,93 +7,149 @@
     xmlns:viewModel="clr-namespace:FameMatchApp.ViewModels"
     Title=""
     x:DataType="viewModel:CastorHomeViewModel">
-    <VerticalStackLayout>
-        <Label
-            FontFamily="Broadway3D"
-            FontSize="60"
-            HorizontalOptions="Center"
-            Text="Home Page" />
-        <Label
-            FontAttributes="Bold"
-            FontSize="Medium"
-            HorizontalOptions="Center"
-            Text=" My Auditions" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+    <ScrollView>
+        <VerticalStackLayout>
             <Label
-                Grid.Column="0"
-                Margin="20"
-                Text="Name"
-                FontAttributes="Italic"
-                TextColor="Blue"/>
+                FontFamily="Broadway3D"
+                FontSize="60"
+                HorizontalOptions="Center"
+                Text="Home Page" />
+            <Line
+                Stroke="Black"
+                StrokeThickness="2"
+                X1="0"
+                X2="2550"
+                Y1="20"
+                Y2="20" />
             <Label
-                Grid.Column="1"
                 Margin="20"
-                Text="Is Public"
-                FontAttributes="Italic"
-                TextColor="Blue"/>
+                FontAttributes="Bold"
+                FontSize="Medium"
+                HorizontalOptions="Center"
+                Text=" Your Auditions" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    Margin="20"
+                    FontAttributes="Italic"
+                    Text="Name"
+                    TextColor="Blue" />
+                <Label
+                    Grid.Column="1"
+                    Margin="20"
+                    FontAttributes="Italic"
+                    Text="Is Public"
+                    TextColor="Blue" />
 
-        </Grid>
+            </Grid>
 
-        <CollectionView
-            x:Name="theCollectionView"
-            ItemsLayout="VerticalGrid, 1"
-            ItemsSource="{Binding UsersAud}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Models:Audition">
-                    <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                    Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsntPublicCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IconImageSource="notpublic1.jpg" />
-
-
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
+            <CollectionView
+                x:Name="theCollectionView"
+                ItemsLayout="VerticalGrid, 1"
+                ItemsSource="{Binding UsersAud}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Audition">
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        BackgroundColor="Red"
+                                        Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsntPublicCommand}"
+                                        CommandParameter="{Binding .}"
+                                        IconImageSource="notpublic1.jpg"
+                                        Text=" Not public" />
 
 
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
 
 
 
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                    Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsPublicCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IconImageSource="public1.png" />
 
 
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <!--  Content  -->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        BackgroundColor="Green"
+                                        Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsPublicCommand}"
+                                        CommandParameter="{Binding .}"
+                                        IconImageSource="public1.png"
+                                        Text="Public" />
 
-                            <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
+
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <!--  Content  -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
                                 <Image Source="{Binding FullProfileImagePath}" Grid.Column="0" HeightRequest="40" WidthRequest="40"/>
                             </Frame>-->
-                            <Label
-                                Grid.Column="0"
-                                Margin="20"
-                                Text="{Binding AudName}" />
-                            <Label
-                                Grid.Column="1"
-                                Margin="20"
-                                Text="{Binding IsPublic}" />
+                                <Label
+                                    Grid.Column="0"
+                                    Margin="20"
+                                    Text="{Binding AudName}" />
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="20"
+                                    Text="{Binding IsPublic}" />
 
-                        </Grid>
-                    </SwipeView>
+                            </Grid>
+                        </SwipeView>
 
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Line
+                Stroke="Black"
+                StrokeThickness="2"
+                X1="0"
+                X2="2550"
+                Y1="20"
+                Y2="20" />
+            <Label
+                Margin="20"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                HorizontalOptions="Center"
+                Text=" Your Details" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--  Label placed behind the GIF  -->
+                <Label
+                    Grid.Column="0"
+                    Background="Transparent"
+                    FontSize="15"
+                    HorizontalOptions="Center"
+                    Text="{Binding UserName}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    Background="Transparent"
+                    FontSize="15"
+                    HorizontalOptions="Center"
+                    Text="{Binding UserLastName}"
+                    VerticalOptions="Center" />
+
+                <!--  GIF placed above the label  -->
+                <Image
+                    Width="5000"
+                    Height="500"
+                    Margin="20"
+                    IsAnimationPlaying="True"
+                    Source="screen.gif" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

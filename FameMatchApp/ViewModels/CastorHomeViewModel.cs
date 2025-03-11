@@ -21,6 +21,9 @@ namespace FameMatchApp.ViewModels
             IsPublicCommand= new Command<Audition>(OnPublic);
             IsntPublicCommand = new Command<Audition>(OnNotPublic);
             UsersAud = new ObservableCollection<Audition>();
+            UserName = theUser.UserName;
+            UserLastName = theUser.UserLastName;
+
             ReadAuditions();
         }
         #region IsPublic
@@ -52,7 +55,33 @@ namespace FameMatchApp.ViewModels
             List<Audition> list = await proxy.GetUserAudition(castor.UserId);
             this.UsersAud = new ObservableCollection<Audition>(list);
         }
-#endregion
+        #endregion
+        #region UserName
+        private string userName;
+        public string UserName
+        {
+            get => userName;
+            set
+            {
+                userName = value;
+                OnPropertyChanged("UserName");
+            }
+        }
+
+        #endregion
+        #region UserLastName
+        private string userLastName;
+        public string UserLastName
+        {
+            get => userLastName;
+            set
+            {
+                userLastName = value;
+                OnPropertyChanged("UserLastName");
+            }
+        }
+
+        #endregion
         public Command IsPublicCommand { get; }
         public Command IsntPublicCommand { get; }
         public async void OnPublic(Audition aud)//להוסיף

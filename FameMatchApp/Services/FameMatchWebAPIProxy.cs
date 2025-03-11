@@ -634,7 +634,7 @@ namespace FameMatchApp.Services
         public async Task<bool> UpdateAudition(Audition Aud)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}UpdateAudition{Aud.AudId}";
+            string url = $"{this.baseUrl}UpdateAudition?audDto={Aud.AudId}";
             try
             {
                 //Call the server API
