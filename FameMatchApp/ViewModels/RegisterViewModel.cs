@@ -557,49 +557,136 @@ public class RegisterViewModel : ViewModelBase
         ValidateLastName();
         ValidateAge();
 
-        
-        
 
-            if (isCastedChecked)
+
+
+        if (isCastedChecked)
+        {
+            Casted? c = new Casted()
             {
-                Casted? c = new Casted()
-                {
-                    UserName = FirstName,
-                    UserLastName = LastName,
-                    UserEmail = Email,
-                    UserPassword = Password,
-                    UserGender = Gender,
-                    UserAge = Age,
-                    UserBody = Body,
-                    UserSkin = Color,
-                    UserEyes = Eyes,
-                    UserHair = Hair,
-                    UserHigth = Hight,
-                    UserLocation = Location,
-                    AboutMe = AboutMe
+                UserName = FirstName,
+                UserLastName = LastName,
+                UserEmail = Email,
+                UserPassword = Password,
+                UserGender = Gender,
+                UserAge = Age,
+                UserBody = Body,
+                UserSkin = Color,
+                UserEyes = Eyes,
+                UserHair = Hair,
+                UserHigth = Hight,
+                UserLocation = Location,
+                AboutMe = AboutMe
 
-                };
-                InServerCall = true;
-               c = await proxy.RegisterCasted(c);
-                InServerCall = false;
+            };
+            InServerCall = true;
+            c = await proxy.RegisterCasted(c);
+            InServerCall = false;
+            if (c != null)
+            {
+                //if (!string.IsNullOrEmpty(LocalPhotoPath))
+                //{
+                //    await proxy.LoginAsync(new Loginfo { UserEmail = c.UserEmail, UserPassword = c.UserPassword });
+                //    Users? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                //    if (updatedUser == null)
+                //    {
+                //        InServerCall = false;
+                //        await Application.Current.MainPage.DisplayAlert("Registration", "User Data Was Saved BUT Profile image upload failed", "ok");
+                //    }
+                //    else
+                //        p.ProfileImagePath = updatedUser.ProfileImagePath;
+                //}
+                string hisHer = "his", sheHe = "he", hasLicense = "has", himHer = "him";
+                if (c.UserGender == "Female")
+                {
+                    hisHer = "her";
+                    sheHe = "she";
+                    himHer = "her";
+
+                }
+                if (c.UserGender == "Other")
+                {
+                    hisHer = "their";
+                    sheHe = "they";
+                    himHer = "them";
+                }
                 if (c != null)
                 {
-                    //if (!string.IsNullOrEmpty(LocalPhotoPath))
-                    //{
-                    //    await proxy.LoginAsync(new Loginfo { UserEmail = c.UserEmail, UserPassword = c.UserPassword });
-                    //    Users? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
-                    //    if (updatedUser == null)
-                    //    {
-                    //        InServerCall = false;
-                    //        await Application.Current.MainPage.DisplayAlert("Registration", "User Data Was Saved BUT Profile image upload failed", "ok");
-                    //    }
-                    //    else
-                    //        p.ProfileImagePath = updatedUser.ProfileImagePath;
-                    //}
-                   ((App)(Application.Current)).MainPage.Navigation.PopAsync();
-                string errorMsg = "Registration Was Succesfull, \n you can now login";
-                await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
-            }
+                    EmailData emailData = new EmailData()
+                    {
+                        From = "Fame Match App",
+                        To = c.UserEmail,
+                        Subject = "Welcome to Fame Match! Your account is now active",
+                        Body = $@"Hi {c.UserName},
+
+We’re thrilled to welcome you to Fame Match! Your account has been successfully approved, and you’re now part of our exclusive platform.
+
+We can’t wait for you to start exploring the incredible opportunities and features that await. Whether you’re looking to connect with other creators, showcase your talent, or build your network, Fame Match is here to help you shine.
+
+Here’s what you can do next:
+1. Log in to your account.
+2. Complete your profile to get noticed by others.
+3. Start connecting with like-minded individuals in the community.
+
+If you have any questions or need support, don’t hesitate to reach out to us at FameMatch@gmail.com. We're here to help!
+
+We’re so excited to have you with us.
+
+Best regards,  
+The Fame Match Team",
+                        HtmlBody = $@"
+<html>
+<head>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }}
+        .container {{
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }}
+        h2 {{
+            color: #1E90FF;
+        }}
+        p {{
+            font-size: 16px;
+        }}
+        .footer {{
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }}
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <h2>Welcome to Fame Match, {c.UserName}!</h2>
+        <p>We’re excited to have you as a part of our growing community. Your account has been approved, and now you have access to all the amazing features of Fame Match.</p>
+        <p>To get started, log in to your account, complete your profile, and begin connecting with other users in the platform. We’re here to support you every step of the way!</p>
+        <p>If you need assistance or have any questions, feel free to contact our support team. We’re here to help!</p>
+        <p>Best regards,<br><strong>The Fame Match Team</strong></p>
+        <div class='footer'>
+            <p>This is an automated email. Please do not reply.</p>
+        </div>
+    </div>
+</body>
+</html>"
+                    };
+
+
+                    SendEmailService emailService = new SendEmailService();
+                    bool success = await emailService.Send(emailData);
+                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+                    string errorMsg = "Registration Was Succesfull, \n you can now login";
+                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                }
                 else
                 {
 
@@ -607,11 +694,11 @@ public class RegisterViewModel : ViewModelBase
                     string errorMsg = "Registration failed. Please try again.";
                     await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
                 }
-          
-        }
+
+            }
             else
             {
-                Castor? c = new Castor()
+                Castor? a = new Castor()
                 {
                     UserName = FirstName,
                     UserLastName = LastName,
@@ -619,15 +706,15 @@ public class RegisterViewModel : ViewModelBase
                     UserPassword = Password,
                     NumOfLisence = NumOfLicense,
                     UserGender = Gender,
-                    CompanyName= CompanyName,
-                    IsBlocked=true,
+                    CompanyName = CompanyName,
+                    IsBlocked = true,
                     IsAprooved = false
 
                 };
                 InServerCall = true;
-                c = await proxy.RegisterCastor(c);
+                a = await proxy.RegisterCastor(a);
                 InServerCall = false;
-                if (c != null)
+                if (a != null)
                 {
                     //if (!string.IsNullOrEmpty(LocalPhotoPath))
                     //{
@@ -641,21 +728,110 @@ public class RegisterViewModel : ViewModelBase
                     //    else
                     //        b.ProfileImagePath = updatedUser.ProfileImagePath;
                     //}
-                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
-                string errorMsg = "Registration Was Succesfull, \n you need to wait until you \n will be approved to login";
-                await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
-            }
-                else
-                {
+                    string hisHer = "his", sheHe = "he", hasLicense = "has", himHer = "him";
+                    if (a.UserGender == "Female")
+                    {
+                        hisHer = "her";
+                        sheHe = "she";
+                        himHer = "her";
 
-                    //If the registration failed, display an error message
-                    string errorMsg = "Registration failed. Please try again.";
-                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                    }
+                    if (a.UserGender == "Other")
+                    {
+                        hisHer = "their";
+                        sheHe = "they";
+                        himHer = "them";
+                    }
+                    if (a != null)
+                    {
+                        EmailData emailData = new EmailData()
+                        {
+                            From = "Fame Match App",
+                            To = a.UserEmail,
+                            Subject = "Welcome to Fame Match! Your account is now active",
+                            Body = $@"Hi {a.UserName},
+
+We’re thrilled to welcome you to Fame Match! Your account has been successfully approved, and you’re now part of our exclusive platform.
+
+We can’t wait for you to start exploring the incredible opportunities and features that await. Whether you’re looking to connect with other creators, showcase your talent, or build your network, Fame Match is here to help you shine.
+
+Here’s what you can do next:
+1. Log in to your account.
+2. Complete your profile to get noticed by others.
+3. Start connecting with like-minded individuals in the community.
+
+If you have any questions or need support, don’t hesitate to reach out to us at FameMatch@gmail.com. We're here to help!
+
+We’re so excited to have you with us.
+
+Best regards,  
+The Fame Match Team",
+                            HtmlBody = $@"
+<html>
+<head>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }}
+        .container {{
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }}
+        h2 {{
+            color: #1E90FF;
+        }}
+        p {{
+            font-size: 16px;
+        }}
+        .footer {{
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }}
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <h2>Welcome to Fame Match, {a.UserName}!</h2>
+        <p>We’re excited to have you as a part of our growing community. Your account has been approved, and now you have access to all the amazing features of Fame Match.</p>
+        <p>To get started, log in to your account, complete your profile, and begin connecting with other users in the platform. We’re here to support you every step of the way!</p>
+        <p>If you need assistance or have any questions, feel free to contact our support team. We’re here to help!</p>
+        <p>Best regards,<br><strong>The Fame Match Team</strong></p>
+        <div class='footer'>
+            <p>This is an automated email. Please do not reply.</p>
+        </div>
+    </div>
+</body>
+</html>"
+                        };
+
+
+                        SendEmailService emailService = new SendEmailService();
+                        bool success = await emailService.Send(emailData);
+                        ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+                        string errorMsg = "Registration Was Succesfull, \n you need to wait until you \n will be approved to login";
+                        await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                    }
+                    else
+                    {
+
+                        //If the registration failed, display an error message
+                        string errorMsg = "Registration failed. Please try again.";
+                        await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                    }
                 }
+
+
+
             }
-
-        
-
+        }
     }
 }
 

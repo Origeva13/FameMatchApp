@@ -9,6 +9,7 @@
     x:DataType="viewModel:CastorHomeViewModel">
     <ScrollView>
         <VerticalStackLayout>
+            <!-- Header Label -->
             <Label
                 FontFamily="Broadway3D"
                 FontSize="60"
@@ -21,12 +22,16 @@
                 X2="2550"
                 Y1="20"
                 Y2="20" />
+
+            <!-- Audition Label -->
             <Label
                 Margin="20"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 HorizontalOptions="Center"
-                Text=" Your Auditions" />
+                Text="Your Auditions" />
+
+            <!-- Grid Layout for Auditions -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -44,9 +49,9 @@
                     FontAttributes="Italic"
                     Text="Is Public"
                     TextColor="Blue" />
-
             </Grid>
 
+            <!-- Auditions CollectionView -->
             <CollectionView
                 x:Name="theCollectionView"
                 ItemsLayout="VerticalGrid, 1"
@@ -61,15 +66,9 @@
                                         Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsntPublicCommand}"
                                         CommandParameter="{Binding .}"
                                         IconImageSource="notpublic1.jpg"
-                                        Text=" Not public" />
-
-
+                                        Text="Not Public" />
                                 </SwipeItems>
                             </SwipeView.LeftItems>
-
-
-
-
 
                             <SwipeView.RightItems>
                                 <SwipeItems>
@@ -79,20 +78,14 @@
                                         CommandParameter="{Binding .}"
                                         IconImageSource="public1.png"
                                         Text="Public" />
-
-
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <!--  Content  -->
+                            <!-- Audition Content -->
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-
-                                <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
-                                <Image Source="{Binding FullProfileImagePath}" Grid.Column="0" HeightRequest="40" WidthRequest="40"/>
-                            </Frame>-->
                                 <Label
                                     Grid.Column="0"
                                     Margin="20"
@@ -101,13 +94,12 @@
                                     Grid.Column="1"
                                     Margin="20"
                                     Text="{Binding IsPublic}" />
-
                             </Grid>
                         </SwipeView>
-
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
             <Line
                 Stroke="Black"
                 StrokeThickness="2"
@@ -115,41 +107,34 @@
                 X2="2550"
                 Y1="20"
                 Y2="20" />
+
+            <!-- Help Section Header -->
             <Label
                 Margin="20"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 HorizontalOptions="Center"
-                Text=" Your Details" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <!--  Label placed behind the GIF  -->
-                <Label
-                    Grid.Column="0"
-                    Background="Transparent"
-                    FontSize="15"
-                    HorizontalOptions="Center"
-                    Text="{Binding UserName}"
-                    VerticalOptions="Center" />
-                <Label
-                    Grid.Column="1"
-                    Background="Transparent"
-                    FontSize="15"
-                    HorizontalOptions="Center"
-                    Text="{Binding UserLastName}"
-                    VerticalOptions="Center" />
-
-                <!--  GIF placed above the label  -->
-                <Image
-                    Width="5000"
-                    Height="500"
-                    Margin="20"
-                    IsAnimationPlaying="True"
-                    Source="screen.gif" />
-            </Grid>
+                Text="Need Help?" />
+            <Label
+                Margin="20"
+                FontAttributes="Italic"
+                FontSize="Small"
+                HorizontalOptions="Center"
+                Text=" You can select a common question and than click the support button for information." />
+            <!-- Picker for Common Questions -->
+            <Picker
+                x:Name="QuestionsPicker"
+                SelectedItem="{Binding SelectedQuestion}"
+                ItemsSource="{Binding CommonQuestions}"
+                Margin="20">
+            </Picker>
+            
+            <!-- Help Button -->
+            <Button
+                Margin="20"
+                BackgroundColor="Blue"
+                Command="{Binding SendHelpEmail}"
+                Text="Support" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
