@@ -45,6 +45,27 @@ namespace FameMatchApp.ViewModels
             SelectedQuestion = CommonQuestions[0];
 
             ReadAuditions();
+            //int numAud = 0;
+            //foreach (Audition a in UsersAud)
+            //{
+            //    numAud++;
+            //}
+            //if(numAud>0)
+            //{
+            //    DoseHave = true;
+            //}
+            //else
+            //{
+            //    DoseHave = false;
+            //}
+            //if(DoseHave == false)
+            //{
+            //    Msg = true;
+            //}
+            //else
+            //{
+            //    Msg = false;
+            //}
         }
 
         #region Common Questions
@@ -90,6 +111,32 @@ namespace FameMatchApp.ViewModels
         {
             List<Audition> list = await proxy.GetUserAudition(castor.UserId);
             this.UsersAud = new ObservableCollection<Audition>(list);
+        }
+        #endregion
+
+        #region DoesHave
+        private bool doseHave;
+        public bool DoseHave
+        {
+            get => doseHave;
+            set
+            {
+                doseHave = value;
+                OnPropertyChanged("DoseHave");
+            }
+        }
+        #endregion
+
+        #region Msg
+        private bool msg;
+        public bool Msg
+        {
+            get => msg;
+            set
+            {
+                msg = value;
+                OnPropertyChanged("Msg");
+            }
         }
         #endregion
 

@@ -560,7 +560,7 @@ public class RegisterViewModel : ViewModelBase
 
 
 
-        if (isCastedChecked)
+        if (IsCastedChecked)
         {
             Casted? c = new Casted()
             {
@@ -584,18 +584,7 @@ public class RegisterViewModel : ViewModelBase
             InServerCall = false;
             if (c != null)
             {
-                //if (!string.IsNullOrEmpty(LocalPhotoPath))
-                //{
-                //    await proxy.LoginAsync(new Loginfo { UserEmail = c.UserEmail, UserPassword = c.UserPassword });
-                //    Users? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
-                //    if (updatedUser == null)
-                //    {
-                //        InServerCall = false;
-                //        await Application.Current.MainPage.DisplayAlert("Registration", "User Data Was Saved BUT Profile image upload failed", "ok");
-                //    }
-                //    else
-                //        p.ProfileImagePath = updatedUser.ProfileImagePath;
-                //}
+
                 string hisHer = "his", sheHe = "he", hasLicense = "has", himHer = "him";
                 if (c.UserGender == "Female")
                 {
@@ -696,60 +685,61 @@ The Fame Match Team",
                 }
 
             }
-            else
+        }
+        else
+        {
+            Castor? a = new Castor()
             {
-                Castor? a = new Castor()
-                {
-                    UserName = FirstName,
-                    UserLastName = LastName,
-                    UserEmail = Email,
-                    UserPassword = Password,
-                    NumOfLisence = NumOfLicense,
-                    UserGender = Gender,
-                    CompanyName = CompanyName,
-                    IsBlocked = true,
-                    IsAprooved = false
+                UserName = FirstName,
+                UserLastName = LastName,
+                UserEmail = Email,
+                UserPassword = Password,
+                NumOfLisence = NumOfLicense,
+                UserGender = Gender,
+                CompanyName = CompanyName,
+                IsBlocked = true,
+                IsAprooved = false
 
-                };
-                InServerCall = true;
-                a = await proxy.RegisterCastor(a);
-                InServerCall = false;
+            };
+            InServerCall = true;
+            a = await proxy.RegisterCastor(a);
+            InServerCall = false;
+            if (a != null)
+            {
+                //if (!string.IsNullOrEmpty(LocalPhotoPath))
+                //{
+                //    await proxy.LoginAsync(new LoginInfo { Email = b.Email, Password = b.Password });
+                //    Users? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                //    if (updatedUser == null)
+                //    {
+                //        InServerCall = false;
+                //        await Application.Current.MainPage.DisplayAlert("Registration", "User Data Was Saved BUT Profile image upload failed", "ok");
+                //    }
+                //    else
+                //        b.ProfileImagePath = updatedUser.ProfileImagePath;
+                //}
+                string hisHer = "his", sheHe = "he", hasLicense = "has", himHer = "him";
+                if (a.UserGender == "Female")
+                {
+                    hisHer = "her";
+                    sheHe = "she";
+                    himHer = "her";
+
+                }
+                if (a.UserGender == "Other")
+                {
+                    hisHer = "their";
+                    sheHe = "they";
+                    himHer = "them";
+                }
                 if (a != null)
                 {
-                    //if (!string.IsNullOrEmpty(LocalPhotoPath))
-                    //{
-                    //    await proxy.LoginAsync(new LoginInfo { Email = b.Email, Password = b.Password });
-                    //    Users? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
-                    //    if (updatedUser == null)
-                    //    {
-                    //        InServerCall = false;
-                    //        await Application.Current.MainPage.DisplayAlert("Registration", "User Data Was Saved BUT Profile image upload failed", "ok");
-                    //    }
-                    //    else
-                    //        b.ProfileImagePath = updatedUser.ProfileImagePath;
-                    //}
-                    string hisHer = "his", sheHe = "he", hasLicense = "has", himHer = "him";
-                    if (a.UserGender == "Female")
+                    EmailData emailData = new EmailData()
                     {
-                        hisHer = "her";
-                        sheHe = "she";
-                        himHer = "her";
-
-                    }
-                    if (a.UserGender == "Other")
-                    {
-                        hisHer = "their";
-                        sheHe = "they";
-                        himHer = "them";
-                    }
-                    if (a != null)
-                    {
-                        EmailData emailData = new EmailData()
-                        {
-                            From = "Fame Match App",
-                            To = a.UserEmail,
-                            Subject = "Welcome to Fame Match! Your account is now active",
-                            Body = $@"Hi {a.UserName},
+                        From = "Fame Match App",
+                        To = a.UserEmail,
+                        Subject = "Welcome to Fame Match! Your account is now active",
+                        Body = $@"Hi {a.UserName},
 
 We’re thrilled to welcome you to Fame Match! Your account has been successfully approved, and you’re now part of our exclusive platform.
 
@@ -766,7 +756,7 @@ We’re so excited to have you with us.
 
 Best regards,  
 The Fame Match Team",
-                            HtmlBody = $@"
+                        HtmlBody = $@"
 <html>
 <head>
     <style>
@@ -810,27 +800,27 @@ The Fame Match Team",
     </div>
 </body>
 </html>"
-                        };
+                    };
 
 
-                        SendEmailService emailService = new SendEmailService();
-                        bool success = await emailService.Send(emailData);
-                        ((App)(Application.Current)).MainPage.Navigation.PopAsync();
-                        string errorMsg = "Registration Was Succesfull, \n you need to wait until you \n will be approved to login";
-                        await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
-                    }
-                    else
-                    {
-
-                        //If the registration failed, display an error message
-                        string errorMsg = "Registration failed. Please try again.";
-                        await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
-                    }
+                    SendEmailService emailService = new SendEmailService();
+                    bool success = await emailService.Send(emailData);
+                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+                    string errorMsg = "Registration Was Succesfull, \n you need to wait until you \n will be approved to login";
+                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
                 }
+                else
+                {
 
-
-
+                    //If the registration failed, display an error message
+                    string errorMsg = "Registration failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                }
             }
+
+
+
+        
         }
     }
 }

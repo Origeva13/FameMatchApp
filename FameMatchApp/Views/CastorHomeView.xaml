@@ -30,7 +30,17 @@
                 FontSize="Medium"
                 HorizontalOptions="Center"
                 Text="Your Auditions" />
-
+            <!--<Label
+                Margin="20"
+                FontAttributes="Italic"
+                FontSize="Small"
+                HorizontalOptions="Center"
+                Text="Unfortunately you don't have auditions yet,
+                you can simpply add one at the add audition page."  
+                IsVisible="{Binding Msg}"
+                TextColor="Red"/>-->
+            
+               
             <!-- Grid Layout for Auditions -->
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -42,13 +52,15 @@
                     Margin="20"
                     FontAttributes="Italic"
                     Text="Name"
-                    TextColor="Blue" />
+                    TextColor="Blue"
+                    />
                 <Label
                     Grid.Column="1"
                     Margin="20"
                     FontAttributes="Italic"
                     Text="Is Public"
-                    TextColor="Blue" />
+                    TextColor="Blue"
+                    />
             </Grid>
 
             <!-- Auditions CollectionView -->
