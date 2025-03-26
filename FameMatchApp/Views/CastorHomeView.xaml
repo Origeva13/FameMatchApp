@@ -7,146 +7,151 @@
     xmlns:viewModel="clr-namespace:FameMatchApp.ViewModels"
     Title=""
     x:DataType="viewModel:CastorHomeViewModel">
-    <ScrollView>
-        <VerticalStackLayout>
-            <!-- Header Label -->
-            <Label
-                FontFamily="Broadway3D"
-                FontSize="60"
-                HorizontalOptions="Center"
-                Text="Home Page" />
-            <Line
-                Stroke="Black"
-                StrokeThickness="2"
-                X1="0"
-                X2="2550"
-                Y1="20"
-                Y2="20" />
-
-            <!-- Audition Label -->
-            <Label
-                Margin="20"
-                FontAttributes="Bold"
-                FontSize="Medium"
-                HorizontalOptions="Center"
-                Text="Your Auditions" />
-            <!--<Label
-                Margin="20"
-                FontAttributes="Italic"
-                FontSize="Small"
-                HorizontalOptions="Center"
-                Text="Unfortunately you don't have auditions yet,
-                you can simpply add one at the add audition page."  
-                IsVisible="{Binding Msg}"
-                TextColor="Red"/>-->
-            
-               
-            <!-- Grid Layout for Auditions -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+    <RefreshView
+        BackgroundColor="#FFFFFF"
+        Command="{Binding RefreshingCommand}"
+        IsRefreshing="{Binding IsRefreshing}">
+        <ScrollView>
+            <VerticalStackLayout>
+                <!--  Header Label  -->
                 <Label
-                    Grid.Column="0"
+                    FontFamily="Broadway3D"
+                    FontSize="60"
+                    HorizontalOptions="Center"
+                    Text="Home Page" />
+                <Line
+                    Stroke="Black"
+                    StrokeThickness="2"
+                    X1="0"
+                    X2="2550"
+                    Y1="20"
+                    Y2="20" />
+
+                <!--  Audition Label  -->
+                <Label
+                    Margin="20"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    Text="Your Auditions" />
+
+
+                <Label
                     Margin="20"
                     FontAttributes="Italic"
-                    Text="Name"
-                    TextColor="Blue"
-                    />
+                    FontSize="Small"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding Msg}"
+                    Text="Unfortunately you don't have auditions yet,  you can simpply add one at the add audition page."
+                    TextColor="Red" />
+
+
+                <!--  Grid Layout for Auditions  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Margin="20"
+                        FontAttributes="Italic"
+                        IsVisible="{Binding DoseHave}"
+                        Text="Name"
+                        TextColor="Blue" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="20"
+                        FontAttributes="Italic"
+                        IsVisible="{Binding DoseHave}"
+                        Text="Is Public"
+                        TextColor="Blue" />
+                </Grid>
+
+                <!--  Auditions CollectionView  -->
+                <CollectionView
+                    x:Name="theCollectionView"
+                    ItemsLayout="VerticalGrid, 1"
+                    ItemsSource="{Binding UsersAud}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Models:Audition">
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="Red"
+                                            Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsntPublicCommand}"
+                                            CommandParameter="{Binding .}"
+                                            IconImageSource="notpublic1.jpg"
+                                            Text="Not Public" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="Green"
+                                            Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsPublicCommand}"
+                                            CommandParameter="{Binding .}"
+                                            IconImageSource="public1.png"
+                                            Text="Public" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <!--  Audition Content  -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Margin="20"
+                                        Text="{Binding AudName}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Margin="20"
+                                        Text="{Binding IsPublic}" />
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Line
+                    Stroke="Black"
+                    StrokeThickness="2"
+                    X1="0"
+                    X2="2550"
+                    Y1="20"
+                    Y2="20" />
+
+                <!--  Help Section Header  -->
                 <Label
-                    Grid.Column="1"
+                    Margin="20"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    Text="Need Help?" />
+                <Label
                     Margin="20"
                     FontAttributes="Italic"
-                    Text="Is Public"
-                    TextColor="Blue"
-                    />
-            </Grid>
+                    FontSize="Small"
+                    HorizontalOptions="Center"
+                    Text=" You can select a common question and than click the support button for information." />
+                <!--  Picker for Common Questions  -->
+                <Picker
+                    x:Name="QuestionsPicker"
+                    Margin="20"
+                    ItemsSource="{Binding CommonQuestions}"
+                    SelectedItem="{Binding SelectedQuestion}" />
 
-            <!-- Auditions CollectionView -->
-            <CollectionView
-                x:Name="theCollectionView"
-                ItemsLayout="VerticalGrid, 1"
-                ItemsSource="{Binding UsersAud}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Models:Audition">
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItems>
-                                    <SwipeItem
-                                        BackgroundColor="Red"
-                                        Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsntPublicCommand}"
-                                        CommandParameter="{Binding .}"
-                                        IconImageSource="notpublic1.jpg"
-                                        Text="Not Public" />
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
-
-                            <SwipeView.RightItems>
-                                <SwipeItems>
-                                    <SwipeItem
-                                        BackgroundColor="Green"
-                                        Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsPublicCommand}"
-                                        CommandParameter="{Binding .}"
-                                        IconImageSource="public1.png"
-                                        Text="Public" />
-                                </SwipeItems>
-                            </SwipeView.RightItems>
-                            <!-- Audition Content -->
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Label
-                                    Grid.Column="0"
-                                    Margin="20"
-                                    Text="{Binding AudName}" />
-                                <Label
-                                    Grid.Column="1"
-                                    Margin="20"
-                                    Text="{Binding IsPublic}" />
-                            </Grid>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-            <Line
-                Stroke="Black"
-                StrokeThickness="2"
-                X1="0"
-                X2="2550"
-                Y1="20"
-                Y2="20" />
-
-            <!-- Help Section Header -->
-            <Label
-                Margin="20"
-                FontAttributes="Bold"
-                FontSize="Medium"
-                HorizontalOptions="Center"
-                Text="Need Help?" />
-            <Label
-                Margin="20"
-                FontAttributes="Italic"
-                FontSize="Small"
-                HorizontalOptions="Center"
-                Text=" You can select a common question and than click the support button for information." />
-            <!-- Picker for Common Questions -->
-            <Picker
-                x:Name="QuestionsPicker"
-                SelectedItem="{Binding SelectedQuestion}"
-                ItemsSource="{Binding CommonQuestions}"
-                Margin="20">
-            </Picker>
-            
-            <!-- Help Button -->
-            <Button
-                Margin="20"
-                BackgroundColor="Blue"
-                Command="{Binding SendHelpEmail}"
-                Text="Support" />
-        </VerticalStackLayout>
-    </ScrollView>
+                <!--  Help Button  -->
+                <Button
+                    Margin="20"
+                    BackgroundColor="Blue"
+                    Command="{Binding SendHelpEmail}"
+                    Text="Support" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

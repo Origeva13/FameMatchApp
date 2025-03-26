@@ -167,12 +167,20 @@
         Style="{StaticResource labelNameStyle}"
         Text="Hight" />
             </Grid>
-            <Entry
-    Placeholder="Type your Hight in cm"
-    Style="{StaticResource entryStyle}"
-    Text="{Binding Hight}" />
+                <Slider x:Name="slider"
+ Maximum="300" 
+             Minimum="50" 
+             Value="{Binding Hight}"
+             />
+                <Label x:Name="displayLabel"
+Text="{Binding x:DataType='Slider',
+               Source={x:Reference slider},
+               Path=Value,
+               StringFormat='The height value is {0:F0}'}"
+HorizontalOptions="Center"
+VerticalOptions="Center" />
 
-            <!--  Eyes Color  -->
+                <!--  Eyes Color  -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

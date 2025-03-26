@@ -199,7 +199,7 @@
                 </StackLayout>
                 <StackLayout IsVisible="{Binding IsCastedChecked}">
                     <!--  אנטריז נוספים למלוהק  -->
-                    <!--  Hight  -->
+                    <!--  Height  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -207,11 +207,19 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="Hight" />
                     </Grid>
-                    <Entry
-                        Keyboard="Numeric"
-                        Placeholder="Please enter your higth"
-                        Text="{Binding Hight}" />
-
+                    <Slider x:Name="slider"
+                Maximum="300" 
+                            Minimum="50" 
+                            Value="{Binding Hight}"
+                            />
+                    <Label x:Name="displayLabel"
+               Text="{Binding x:DataType='Slider',
+                              Source={x:Reference slider},
+                              Path=Value,
+                              StringFormat='The height value is {0:F0}'}"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+                   
                     <!--  Eyes  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -220,7 +228,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="Eyes" />
                     </Grid>
-                    <Entry Placeholder="Please enter your Eyes Color" Text="{Binding Eyes}" />
+                    <Picker ItemsSource="{Binding Kinds2}" SelectedItem="{Binding Eyes, Mode=TwoWay}" />
 
                     <!--  Hair  -->
                     <Grid>
@@ -230,7 +238,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="Hair Color" />
                     </Grid>
-                    <Entry Placeholder="Please enter your hair color" Text="{Binding Hair}" />
+                    <Picker ItemsSource="{Binding Kinds3}" SelectedItem="{Binding Hair, Mode=TwoWay}" />
                     <!--  Age  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -251,7 +259,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="Skin" />
                     </Grid>
-                    <Entry Placeholder="Please enter your skin color" Text="{Binding Color}" />
+                    <Picker ItemsSource="{Binding Kinds4}" SelectedItem="{Binding Color, Mode=TwoWay}" />
                     <!--  Body  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -260,7 +268,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="Body Structure" />
                     </Grid>
-                    <Entry Placeholder="Please enter your Body Structure" Text="{Binding Body}" />
+                    <Picker ItemsSource="{Binding Kinds}" SelectedItem="{Binding Body, Mode=TwoWay}" />
                 </StackLayout>
                 <Button Command="{Binding RegisterCommand}" Text="Register" />
             </StackLayout>

@@ -37,7 +37,7 @@ namespace FameMatchApp.ViewModels
             Filltered = new ObservableCollection<Casted>();
         }
 
-        #region Hight
+        #region Height
         private int hight;
         public int Hight
         {

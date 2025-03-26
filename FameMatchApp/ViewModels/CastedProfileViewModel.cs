@@ -27,8 +27,8 @@ namespace FameMatchApp.ViewModels
             Eyes = casted.UserEyes;
             //BodyStructure = casted.UserBody;
             Kinds = (new BodyStructure()).Kinds;
-
-            BodyStructure = Kinds[0];
+            BodyStructure = casted.UserBody;
+            //BodyStructure = Kinds[0];
             Skincolor = casted.UserSkin;
             //////UpdatePhotoURL(casted.ProfileImagePath);
             //////LocalPhotoPath = "";

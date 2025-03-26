@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FameMatchApp.ViewModels
 {
@@ -19,6 +20,8 @@ namespace FameMatchApp.ViewModels
             this.proxy = proxy;
             OnMatch();
             Filltered = new ObservableCollection<Castor>();
+            IsRefreshing = false;
+            RefreshingCommand = new Command(OnRefreshing);
         }
 
         #region Filltered
@@ -68,7 +71,6 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
-
         public async void OnMatch()
         {
             InServerCall = true;
@@ -111,6 +113,30 @@ namespace FameMatchApp.ViewModels
                 await Shell.Current.DisplayAlert("Save ", errorMsg, "OK");
             }
         }
+
+        #region Refreshing
+        private bool isRefreshing;
+        public bool IsRefreshing
+        {
+
+            get => this.isRefreshing;
+            set
+            {
+                this.isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        public ICommand RefreshingCommand { get; }
+
+        public async void OnRefreshing()
+        {
+            OnMatch();
+            IsRefreshing = false;
+        }
+
     }
+    #endregion
 }
+
 

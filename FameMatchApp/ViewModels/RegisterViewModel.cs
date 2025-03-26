@@ -29,6 +29,16 @@ public class RegisterViewModel : ViewModelBase
         UserType = "1";
         AboutMe= "Not filled yet";
         Location = "Not filled yet";
+
+       
+        Kinds2 = (new Eyes()).Kinds2;
+        Eyes = Kinds2[0];
+        Kinds3 = (new Hair()).Kinds3;
+        Hair = Kinds3[0];
+        Kinds4 = (new Skin()).Kinds4;
+        Color = Kinds4[0];
+        Kinds = (new BodyStructure()).Kinds;
+        Body = Kinds[0];
     }
 
 
@@ -417,7 +427,8 @@ public class RegisterViewModel : ViewModelBase
     }
     
     #endregion kids
-    #region Eyes
+
+    #region eyes
     private string eyes;
     public string Eyes
     {
@@ -425,23 +436,48 @@ public class RegisterViewModel : ViewModelBase
         set
         {
             eyes = value;
-            OnPropertyChanged();
+            OnPropertyChanged("Eyes");
         }
     }
-    #endregion 
-    #region Body
-    private string body;
 
-    public string Body
+    private List<string> kinds2;
+    public List<string> Kinds2
     {
-        get => body;
+        get => kinds2;
         set
         {
-            body = value;
+            kinds2 = value;
             OnPropertyChanged();
         }
     }
     #endregion
+
+    #region hair
+    private string hair;
+    public string Hair
+    {
+        get => hair;
+        set
+        {
+            hair = value;
+            OnPropertyChanged("Hair");
+        }
+    }
+
+    private List<string> kinds3;
+    public List<string> Kinds3
+    {
+        get => kinds3;
+        set
+        {
+            kinds3 = value;
+            OnPropertyChanged();
+        }
+    }
+    #endregion
+
+
+
     #region Color
     private string color;
     public string Color
@@ -453,15 +489,39 @@ public class RegisterViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-    #endregion
-    #region Hair
-    private string hair;
-    public string Hair
+
+    private List<string> kinds4;
+    public List<string> Kinds4
     {
-        get => hair;
+        get => kinds4;
         set
         {
-            hair = value;
+            kinds4 = value;
+            OnPropertyChanged();
+        }
+    }
+    #endregion
+
+
+    #region bodyStructure
+    private string body;
+    public string Body
+    {
+        get => body;
+        set
+        {
+            body = value;
+            OnPropertyChanged("Body");
+        }
+    }
+
+    private List<string> kinds;
+    public List<string> Kinds
+    {
+        get => kinds;
+        set
+        {
+            kinds = value;
             OnPropertyChanged();
         }
     }

@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FameMatchApp.ViewModels
 {
@@ -18,7 +19,7 @@ namespace FameMatchApp.ViewModels
             this.proxy = proxy;
             User theUser = ((App)App.Current).LoggedInUser;
             this.castor = (Castor)theUser;
-
+            ReadAuditions();
             // Initialize Commands
             IsPublicCommand = new Command<Audition>(OnPublic);
             IsntPublicCommand = new Command<Audition>(OnNotPublic);
@@ -44,28 +45,10 @@ namespace FameMatchApp.ViewModels
             // Default selected question
             SelectedQuestion = CommonQuestions[0];
 
-            ReadAuditions();
-            //int numAud = 0;
-            //foreach (Audition a in UsersAud)
-            //{
-            //    numAud++;
-            //}
-            //if(numAud>0)
-            //{
-            //    DoseHave = true;
-            //}
-            //else
-            //{
-            //    DoseHave = false;
-            //}
-            //if(DoseHave == false)
-            //{
-            //    Msg = true;
-            //}
-            //else
-            //{
-            //    Msg = false;
-            //}
+            
+            
+            IsRefreshing = false;
+            RefreshingCommand = new Command(OnRefreshing);
         }
 
         #region Common Questions
@@ -111,6 +94,27 @@ namespace FameMatchApp.ViewModels
         {
             List<Audition> list = await proxy.GetUserAudition(castor.UserId);
             this.UsersAud = new ObservableCollection<Audition>(list);
+            int numAud = 0;
+            foreach (Audition a in UsersAud)
+            {
+                numAud++;
+            }
+            if (numAud > 0)
+            {
+                DoseHave = true;
+            }
+            else
+            {
+                DoseHave = false;
+            }
+            if (DoseHave == false)
+            {
+                Msg = true;
+            }
+            else
+            {
+                Msg = false;
+            }
         }
         #endregion
 
@@ -305,5 +309,29 @@ The Fame Match Support Team",
             }
         }
         #endregion
+
+        #region Refreshing
+        private bool isRefreshing;
+        public bool IsRefreshing
+        {
+
+            get => this.isRefreshing;
+            set
+            {
+                this.isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        public ICommand RefreshingCommand { get; }
+
+        public async void OnRefreshing()
+        {
+            ReadAuditions();
+            IsRefreshing = false;
+        }
+
     }
+    #endregion
 }
+

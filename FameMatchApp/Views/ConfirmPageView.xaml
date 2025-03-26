@@ -8,61 +8,65 @@
     Title=""
     x:DataType="viewModel:ConfirmPageViewModel"
     BackgroundColor="#F2F2F2">
+    <RefreshView
+        BackgroundColor="#FFFFFF"
+        Command="{Binding RefreshingCommand}"
+        IsRefreshing="{Binding IsRefreshing}">
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="30">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="30">
+                <!--  Title of the page  -->
+                <Label
+                    FontFamily="Broadway3D"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text="Users Waiting For Approval"
+                    TextColor="#4CAF50" />
 
-            <!--  Title of the page  -->
-            <Label
-                FontFamily="Broadway3D"
-                FontSize="30"
-                HorizontalOptions="Center"
-                Text="Users Waiting For Approval"
-                TextColor="#4CAF50" />
+                <!--  Castor List Collection View  -->
+                <CollectionView
+                    ItemsLayout="VerticalGrid, 1"
+                    ItemsSource="{Binding Filltered}"
+                    SelectedItem="{Binding SelectedCastor}"
+                    SelectionMode="Single">
 
-            <!--  Castor List Collection View  -->
-            <CollectionView
-                ItemsLayout="VerticalGrid, 1"
-                ItemsSource="{Binding Filltered}"
-                SelectedItem="{Binding SelectedCastor}"
-                SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Models:Castor">
+                            <Frame
+                                Margin="10"
+                                Padding="15"
+                                BorderColor="#4CAF50"
+                                CornerRadius="15"
+                                HasShadow="True">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Models:Castor">
-                        <Frame
-                            Margin="10"
-                            Padding="15"
-                            BorderColor="#4CAF50"
-                            CornerRadius="15"
-                            HasShadow="True">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                                    <!--  Castor Name  -->
+                                    <Label
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        Text="{Binding UserName}"
+                                        TextColor="#333333"
+                                        VerticalOptions="Center" />
 
-                                <!--  Castor Name  -->
-                                <Label
-                                    Grid.Column="0"
-                                    FontAttributes="Bold"
-                                    FontSize="18"
-                                    Text="{Binding UserName}"
-                                    TextColor="#333333"
-                                    VerticalOptions="Center" />
+                                    <!--  Castor Last Name  -->
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Text="{Binding UserLastName}"
+                                        TextColor="#666666"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
 
-                                <!--  Castor Last Name  -->
-                                <Label
-                                    Grid.Column="1"
-                                    FontSize="14"
-                                    Text="{Binding UserLastName}"
-                                    TextColor="#666666"
-                                    VerticalOptions="Center" />
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-            </CollectionView>
-        </VerticalStackLayout>
-    </ScrollView>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

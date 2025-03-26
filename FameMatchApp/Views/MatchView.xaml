@@ -36,7 +36,18 @@
 
             <!--  Hight  -->
             <Label FontAttributes="Bold" Text="Hight (cm)" />
-            <Picker ItemsSource="{Binding Kinds6}" SelectedItem="{Binding Hight, Mode=TwoWay}" />
+            <Slider x:Name="slider"
+ Maximum="300" 
+             Minimum="50" 
+             Value="{Binding Hight}"
+             />
+            <Label x:Name="displayLabel"
+Text="{Binding x:DataType='Slider',
+               Source={x:Reference slider},
+               Path=Value,
+               StringFormat='The height value is {0:F0}'}"
+HorizontalOptions="Center"
+VerticalOptions="Center" />
             <!--  Save and Cancel Buttons  -->
             <Button
                 Margin="20"
