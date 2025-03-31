@@ -57,8 +57,21 @@
             <Picker ItemsSource="{Binding Kinds5}" SelectedItem="{Binding Gender}" />
 
             <!--  Height Picker  -->
-            <Label FontSize="Medium" Text="Height" />
-            <Picker ItemsSource="{Binding Kinds6}" SelectedItem="{Binding Hight}" />
+            <!--<Label FontSize="Medium" Text="Height" />
+            <Picker ItemsSource="{Binding Kinds6}" SelectedItem="{Binding Hight}" />-->
+            <Label  Text="Hight (cm)" FontSize="18" />
+            <Slider x:Name="slider"
+ Maximum="300" 
+             Minimum="50" 
+             Value="{Binding Hight}"
+             />
+            <Label x:Name="displayLabel"
+Text="{Binding x:DataType='Slider',
+               Source={x:Reference slider},
+               Path=Value,
+               StringFormat='The height value is: {0:F0}'}"
+HorizontalOptions="Center"
+VerticalOptions="Center" />
 
             <!--  Public Audition Toggle  -->
             <Label FontSize="Medium" Text="Do you want the audition to be public?" />

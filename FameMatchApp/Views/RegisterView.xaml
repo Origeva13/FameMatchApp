@@ -196,6 +196,8 @@
                             Text="Company Name" />
                     </Grid>
                     <Entry Placeholder="Please enter your company name" Text="{Binding CompanyName}" />
+                    <!--Activity Indicator-->
+                    <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
                 </StackLayout>
                 <StackLayout IsVisible="{Binding IsCastedChecked}">
                     <!--  אנטריז נוספים למלוהק  -->
@@ -219,7 +221,7 @@
                               StringFormat='The height value is {0:F0}'}"
                HorizontalOptions="Center"
                VerticalOptions="Center" />
-                   
+
                     <!--  Eyes  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -269,10 +271,11 @@
                         <Label Grid.Column="0" Text="Body Structure" />
                     </Grid>
                     <Picker ItemsSource="{Binding Kinds}" SelectedItem="{Binding Body, Mode=TwoWay}" />
+                    <!--Activity Indicator-->
+                    <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
                 </StackLayout>
                 <Button Command="{Binding RegisterCommand}" Text="Register" />
             </StackLayout>
-
         </ScrollView>
     </StackLayout>
 </ContentPage>
