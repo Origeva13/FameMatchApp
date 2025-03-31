@@ -106,11 +106,6 @@ Command="{Binding DeclaineCommand}"
 Text="Declaine"
 TextColor="White" />
         </StackLayout>
-        
-        
-
-        <!--  Add a button or action if needed  -->
-        <!-- <Button Text="Connect" /> -->
     </VerticalStackLayout>
 
 </ContentPage>
