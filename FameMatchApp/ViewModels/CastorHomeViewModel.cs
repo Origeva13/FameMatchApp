@@ -43,10 +43,7 @@ namespace FameMatchApp.ViewModels
             };
 
             // Default selected question
-            SelectedQuestion = CommonQuestions[0];
-
-            
-            
+            SelectedQuestion = CommonQuestions[0];     
             IsRefreshing = false;
             RefreshingCommand = new Command(OnRefreshing);
         }
@@ -333,5 +330,6 @@ The Fame Match Support Team",
 
     }
     #endregion
+
 }
 

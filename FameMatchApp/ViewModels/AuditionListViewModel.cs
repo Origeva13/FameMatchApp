@@ -177,17 +177,15 @@ namespace FameMatchApp.ViewModels
             if (AllAuditions != null)
             {
                 List<Audition> filteredAudition = AllAuditions.Where(
-                    audition =>
-                    audition != null &&
-                    audition.IsPublic == true &&
-                    audition.AudAge == Age &&
-                    audition.AudGender == Gender ||
-                    audition.UserBody == Body ||
-                    audition.AudEyes == Eyes ||
-                    audition.AudHair == Hair ||
-                    audition.AudSkin == Skin ||
-                    audition.AudHigth == Hight
-                ).ToList();
+     audition =>
+         audition != null &&
+         audition.IsPublic == true &&
+         Math.Abs(audition.AudAge - Age) <= 5 && // Age must be within ±5 years
+         audition.AudGender == Gender &&
+         audition.AudSkin == Skin &&
+         Math.Abs((decimal)(audition.AudHigth - Hight)) <= 5 // Height must be within ±5 cm
+ ).ToList();
+
 
                 foreach (Audition audition in filteredAudition)
                 {

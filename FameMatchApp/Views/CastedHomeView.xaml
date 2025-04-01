@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FameMatchApp.Views.CastedHomeView"
-             Title="">
-    
+<ContentPage
+    x:Class="FameMatchApp.Views.CastedHomeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="">
+
     <VerticalStackLayout>
-        <Label 
-    Text="Home Page"
-    VerticalOptions="Center" 
-    HorizontalOptions="Center"
-    FontFamily="Broadway3D"
-    FontSize="40"/>
+        <Label
+            FontFamily="Broadway3D"
+            FontSize="40"
+            HorizontalOptions="Center"
+            Text="Home Page"
+            VerticalOptions="Center" />
         <Line
-Stroke="Black"
-StrokeThickness="2"
-X1="0"
-X2="2550"
-Y1="20"
-Y2="20" />
+            Stroke="Black"
+            StrokeThickness="2"
+            X1="0"
+            X2="2550"
+            Y1="20"
+            Y2="20" />
         <ScrollView>
             <StackLayout>
                 <StackLayout Margin="10">
-                    <Label Text="Your Photos" FontSize="20" Margin="10" HorizontalOptions="Center"/>
+                    <Label
+                        Margin="10"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="Your Photos" />
 
                     <ScrollView HorizontalScrollBarVisibility="Always" Orientation="Horizontal">
 
                         <HorizontalStackLayout>
-                            <Label>Photo Booth</Label>
-                            <Label>Photo Booth</Label>
-                            <Label>Photo Booth</Label>
-                            <Label>Photo Booth</Label>
-                            <Label>Photo Booth</Label>
-                            <Label>Photo Booth</Label>
-                            <Label>Photo Booth</Label>
+                            <Frame BorderColor="Blue" Margin="10">
+                                <Image Source="notpublic1.png" />
+                            </Frame>
+                            <Frame BorderColor="Blue"  Margin="10">
+                                <Label>Photo Booth</Label>
+                            </Frame>
+                            <Frame BorderColor="Blue"  Margin="10">
+                                <Label>Photo Booth</Label>
+                            </Frame>
+                            <Frame BorderColor="Blue"  Margin="10">
+                                <Label>Photo Booth</Label>
+                            </Frame>
+                            <Frame BorderColor="Blue"  Margin="10">
+                                <Label>Photo Booth</Label>
+                            </Frame>
 
                         </HorizontalStackLayout>
                     </ScrollView>
@@ -44,37 +57,37 @@ Y2="20" />
 
         </ScrollView>
         <Line
-     Stroke="Black"
-     StrokeThickness="2"
-     X1="0"
-     X2="2550"
-     Y1="20"
-     Y2="20" />
+            Stroke="Black"
+            StrokeThickness="2"
+            X1="0"
+            X2="2550"
+            Y1="20"
+            Y2="20" />
         <!--  Help Section Header  -->
         <Label
-     Margin="20"
-     FontAttributes="Bold"
-     FontSize="Medium"
-     HorizontalOptions="Center"
-     Text="Need Help?" />
+            Margin="20"
+            FontAttributes="Bold"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            Text="Need Help?" />
         <Label
-     Margin="20"
-     FontAttributes="Italic"
-     FontSize="Small"
-     HorizontalOptions="Center"
-     Text=" You can select a common question and than click the support button for information." />
+            Margin="20"
+            FontAttributes="Italic"
+            FontSize="Small"
+            HorizontalOptions="Center"
+            Text=" You can select a common question and than click the support button for information." />
         <!--  Picker for Common Questions  -->
         <Picker
-     x:Name="QuestionsPicker"
-     Margin="20"
-     ItemsSource="{Binding CommonQuestions}"
-     SelectedItem="{Binding SelectedQuestion}" />
+            x:Name="QuestionsPicker"
+            Margin="20"
+            ItemsSource="{Binding CommonQuestions}"
+            SelectedItem="{Binding SelectedQuestion}" />
 
         <!--  Help Button  -->
         <Button
-     Margin="20"
-     BackgroundColor="Blue"
-     Command="{Binding SendHelpEmail}"
-     Text="Support" />
+            Margin="20"
+            BackgroundColor="Blue"
+            Command="{Binding SendHelpEmail}"
+            Text="Support" />
     </VerticalStackLayout>
 </ContentPage>

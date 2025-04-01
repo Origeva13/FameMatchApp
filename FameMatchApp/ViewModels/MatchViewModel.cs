@@ -271,16 +271,17 @@ namespace FameMatchApp.ViewModels
             if (AllCasteds != null)
             {
                 List<Casted> filteredCasteds = AllCasteds.Where(
-                    casted =>
-                    casted != null &&
-                    casted.UserAge == Age &&
-                    casted.UserGender == Gender ||
-                    casted.UserBody == BodyStructure ||
-                    casted.UserEyes == Eyes ||
-                    casted.UserHair == Hair ||
-                    casted.UserSkin == Skin ||
-                    casted.UserHigth == Hight
-                ).ToList();
+    casted =>
+        casted != null &&
+        casted.UserEyes == Eyes &&
+        Math.Abs(casted.UserHigth - Hight) <= 5 && // Height can be within ±5 cm
+        casted.UserGender == Gender &&
+        casted.UserHair == Hair &&
+        casted.UserEyes == Eyes &&
+        Math.Abs(casted.UserAge - Age) <= 5 && // Age can be within ±5 years
+        casted.UserSkin == Skin
+).ToList();
+
 
                 foreach (Casted casted in filteredCasteds)
                 {
