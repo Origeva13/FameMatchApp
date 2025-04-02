@@ -45,7 +45,7 @@ namespace FameMatchApp.ViewModels
             // Default selected question
             SelectedQuestion = CommonQuestions[0];     
             IsRefreshing = false;
-            RefreshingCommand = new Command(OnRefreshing);
+            RefreshingCommand = new Command(OnRefreshing); 
         }
 
         #region Common Questions
@@ -173,18 +173,34 @@ namespace FameMatchApp.ViewModels
         public Command IsntPublicCommand { get; }
         public async void OnPublic(Audition aud)//להוסיף
         {
-            aud.IsPublic = true;
-            await proxy.UpdateAudition(aud);
-            InServerCall = false;
-            await Shell.Current.DisplayAlert("Audition", $"The audition is now public!", "ok");
+            if (aud.IsPublic == true)
+            {
+                await Shell.Current.DisplayAlert("Audition", $"The audition is already public!", "ok");
+                return;
+            }
+            else
+            {
+                aud.IsPublic = true;
+                await proxy.UpdateAudition(aud);
+                InServerCall = false;
+                await Shell.Current.DisplayAlert("Audition", $"The audition is now public!", "ok");
+            }
         }
-
         public async void OnNotPublic(Audition aud)//להוסיף
         {
-            aud.IsPublic = false;
-            await proxy.UpdateAudition(aud);
-            InServerCall = false;
-            await Shell.Current.DisplayAlert("Audition", $"The audition is now not public!", "ok");
+            if(aud.IsPublic == false)
+            {
+                await Shell.Current.DisplayAlert("Audition", $"The audition is already not public!", "ok");
+                return;
+            }
+            else
+            {
+                aud.IsPublic = false;
+                await proxy.UpdateAudition(aud);
+                InServerCall = false;
+                await Shell.Current.DisplayAlert("Audition", $"The audition is now not public!", "ok");
+            }
+           
         }
         public async void OnSendHelpEmail()
         {

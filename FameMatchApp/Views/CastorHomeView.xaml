@@ -83,7 +83,8 @@
                                             Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsntPublicCommand}"
                                             CommandParameter="{Binding .}"
                                             IconImageSource="notpublic1.jpg"
-                                            Text="Not Public" />
+                                            Text="UnPublish"
+                                             />
                                     </SwipeItems>
                                 </SwipeView.LeftItems>
 
@@ -94,7 +95,8 @@
                                             Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.IsPublicCommand}"
                                             CommandParameter="{Binding .}"
                                             IconImageSource="public1.png"
-                                            Text="Public" />
+                                            Text="Publish"
+                                         />
                                     </SwipeItems>
                                 </SwipeView.RightItems>
                                 <!--  Audition Content  -->

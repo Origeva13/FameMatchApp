@@ -21,15 +21,20 @@ namespace FameMatchApp.ViewModels
             Email = casted.UserEmail;
             Password = casted.UserPassword;
             UserGender = casted.UserGender;
-            HairColor = casted.UserHair;
-            Hight=casted.UserHigth;
+            Kinds3 = (new Hair()).Kinds3;
+            Hair = Kinds3[0];
+            Hight =casted.UserHigth;
             AboutMe = casted.AboutMe;
-            Eyes = casted.UserEyes;
+            Kinds2 = (new Eyes()).Kinds2;
+            Eyes = Kinds2[0];
             //BodyStructure = casted.UserBody;
             Kinds = (new BodyStructure()).Kinds;
             BodyStructure = casted.UserBody;
             //BodyStructure = Kinds[0];
-            Skincolor = casted.UserSkin;
+            Kinds4 = (new Skin()).Kinds4;
+            Skin = Kinds4[0];
+            Kinds1 = (new Age()).Kinds1;
+            Age = Kinds1[0];
             //////UpdatePhotoURL(casted.ProfileImagePath);
             //////LocalPhotoPath = "";
             IsPassword = true;
@@ -40,7 +45,6 @@ namespace FameMatchApp.ViewModels
             LastNameError = "Last name is required";
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
-            HairColorError = "Hair color filed must be fild ";
             AboutMeError = "About me filed must be at list 20 charctares long ";
         }
 
@@ -307,47 +311,27 @@ namespace FameMatchApp.ViewModels
         //    this.ShowUserGenderError = string.IsNullOrEmpty(UserGender);
         //}
         #endregion
-        #region HairColor
-        private bool showHairColorError;
-
-        public bool ShowHairColorError
+        #region hair
+        private string hair;
+        public string Hair
         {
-            get => showHairColorError;
+            get => hair;
             set
             {
-                showHairColorError = value;
-                OnPropertyChanged("ShowHairColorError");
+                hair = value;
+                OnPropertyChanged("Hair");
             }
         }
 
-        private string hairColor;
-
-        public string HairColor
+        private List<string> kinds3;
+        public List<string> Kinds3
         {
-            get => hairColor;
+            get => kinds3;
             set
             {
-                hairColor = value;
-                ValidateHairColor();
-                OnPropertyChanged("HairColor");
+                kinds3 = value;
+                OnPropertyChanged();
             }
-        }
-
-        private string hairColorError;
-
-        public string HairColorError
-        {
-            get => hairColorError;
-            set
-            {
-                hairColorError = value;
-                OnPropertyChanged("HairColorError");
-            }
-        }
-
-        private void ValidateHairColor()
-        {
-            this.ShowHairColorError = string.IsNullOrEmpty(HairColor);
         }
         #endregion
         #region hight
@@ -365,7 +349,6 @@ namespace FameMatchApp.ViewModels
         #endregion
         #region eyes
         private string eyes;
-
         public string Eyes
         {
             get => eyes;
@@ -373,6 +356,17 @@ namespace FameMatchApp.ViewModels
             {
                 eyes = value;
                 OnPropertyChanged("Eyes");
+            }
+        }
+
+        private List<string> kinds2;
+        public List<string> Kinds2
+        {
+            get => kinds2;
+            set
+            {
+                kinds2 = value;
+                OnPropertyChanged();
             }
         }
         #endregion
@@ -399,16 +393,26 @@ namespace FameMatchApp.ViewModels
             }
         }
         #endregion
-        #region SkinColor
-        private string skincolor;
-
-        public string Skincolor
+        #region skin
+        private string skin;
+        public string Skin
         {
-            get => skincolor;
+            get => skin;
             set
             {
-                skincolor = value;
-                OnPropertyChanged("Skincolor");
+                skin = value;
+                OnPropertyChanged("Skin");
+            }
+        }
+
+        private List<string> kinds4;
+        public List<string> Kinds4
+        {
+            get => kinds4;
+            set
+            {
+                kinds4 = value;
+                OnPropertyChanged();
             }
         }
         #endregion
@@ -516,8 +520,32 @@ namespace FameMatchApp.ViewModels
         }
 
         #endregion
+        #region age
+        private int age;
+        public int Age
+        {
+            get => age;
+            set
+            {
+                age = value;
+                OnPropertyChanged("Age");
+            }
+        }
 
-        
+        private List<int> kinds1;
+        public List<int> Kinds1
+        {
+            get => kinds1;
+            set
+            {
+                kinds1 = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+
+
 
 
 
@@ -532,9 +560,8 @@ namespace FameMatchApp.ViewModels
             ValidateEmail();
             ValidatePassword();
             ValidateAboutMe();
-            ValidateHairColor();
 
-            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowAboutMeError && !ShowHairColorError)
+            if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError && !ShowAboutMeError)
             {
                 //Update AppUser object with the data from the Edit form
                 User theUser = ((App)App.Current).LoggedInUser;
@@ -545,11 +572,12 @@ namespace FameMatchApp.ViewModels
                 casted.UserPassword = Password;
                 casted.UserGender = UserGender;
                 casted.UserHigth = Hight;
-                casted.UserHair = HairColor;
+                casted.UserHair = Hair;
                 casted.UserEyes= Eyes;
                 casted.UserBody=BodyStructure;
-                casted.UserSkin = Skincolor;
-
+                casted.UserSkin = Skin;
+                casted.AboutMe = AboutMe;
+                casted.UserAge = Age;
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage  
+<ContentPage
     x:Class="FameMatchApp.Views.CastedProfileView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,259 +8,224 @@
 
         <ScrollView>
             <!--  Main Content  -->
-        <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
-            <!--  Photo  -->
-                <Label Text="PROFILE PAGE" FontSize="40" FontFamily="Broadway3D" HorizontalOptions="Center"></Label>
+            <VerticalStackLayout Padding="20" IsEnabled="{Binding NotInServerCall}">
+                <!--  Photo  -->
+                <Label
+                    FontFamily="Broadway3D"
+                    FontSize="40"
+                    HorizontalOptions="Center"
+                    Text="PROFILE PAGE" />
                 <Frame
-                Margin="10"
-                Padding="5"
-                BorderColor="Black">
+                    Margin="10"
+                    Padding="5"
+                    BorderColor="Black">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            x:Name="theImageBug"
+                            HeightRequest="150"
+                            Source="{Binding PhotoURL}" />
+                        <Label
+                            Grid.Row="1"
+                            HorizontalOptions="Center"
+                            Text="Click Here To Upload Photo!"
+                            TextColor="Blue"
+                            VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Frame>
+                <!--  First Name  -->
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image
-                        x:Name="theImageBug"
-                        HeightRequest="150"
-                        Source="{Binding PhotoURL}" />
                     <Label
-                        Grid.Row="1"
-                        HorizontalOptions="Center"
-                        Text="Click Here To Upload Photo!"
-                        TextColor="Blue"
-                        VerticalOptions="End">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="First Name" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding NameError}" />
                 </Grid>
-            </Frame>
-            <!--  First Name  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Column="0"
-                    Style="{StaticResource labelNameStyle}"
-                    Text="First Name" />
-                <Label
-                    Grid.Column="1"
-                    IsVisible="{Binding ShowNameError}"
-                    Style="{StaticResource labelErrorStyle}"
-                    Text="{Binding NameError}" />
-            </Grid>
-            <Entry
-                Placeholder="Type First Name"
-                Style="{StaticResource entryStyle}"
-                Text="{Binding Name}" />
-
-            <!--  Last Name  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Column="0"
-                    Style="{StaticResource labelNameStyle}"
-                    Text="Last Name" />
-                <Label
-                    Grid.Column="1"
-                    IsVisible="{Binding ShowLastNameError}"
-                    Style="{StaticResource labelErrorStyle}"
-                    Text="{Binding LastNameError}" />
-            </Grid>
-            <Entry
-                Placeholder="Type Last Name"
-                Style="{StaticResource entryStyle}"
-                Text="{Binding LastName}" />
-
-            <!--  Email  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Column="0"
-                    Style="{StaticResource labelNameStyle}"
-                    Text="Email" />
-                <Label
-                    Grid.Column="1"
-                    IsVisible="{Binding ShowEmailError}"
-                    Style="{StaticResource labelErrorStyle}"
-                    Text="{Binding EmailError}" />
-            </Grid>
-            <Entry
-                Placeholder="Type Email"
-                Style="{StaticResource entryStyle}"
-                Text="{Binding Email}" />
-
-            <!--  Password  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Column="0"
-                    Style="{StaticResource labelNameStyle}"
-                    Text="Password" />
-                <Label
-                    Grid.Column="1"
-                    IsVisible="{Binding ShowPasswordError}"
-                    Style="{StaticResource labelErrorStyle}"
-                    Text="{Binding PasswordError}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                </Grid.ColumnDefinitions>
                 <Entry
-                    Grid.Column="0"
-                    IsPassword="{Binding IsPassword}"
-                    Placeholder="Type Password"
+                    Placeholder="Type First Name"
                     Style="{StaticResource entryStyle}"
-                    Text="{Binding Password}" />
-                <ImageButton
-                    Grid.Column="1"
-                    Command="{Binding ShowPasswordCommand}"
-                    HeightRequest="25"
-                    Source="passwordeye.jpg" />
-            </Grid>
-            <!--  Hair Color  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Column="0"
-                    Style="{StaticResource labelNameStyle}"
-                    Text="Hair Color" />
-                <Label
-                    Grid.Column="1"
-                    IsVisible="{Binding ShowHairColorError}"
-                    Style="{StaticResource labelErrorStyle}"
-                    Text="{Binding HairColorError}" />
-            </Grid>
-            <Entry
-                Placeholder="Type your hair color"
-                Style="{StaticResource entryStyle}"
-                Text="{Binding HairColor}" />
+                    Text="{Binding Name}" />
 
-            <!--  hight  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-        Grid.Column="0"
-        Style="{StaticResource labelNameStyle}"
-        Text="Hight" />
-            </Grid>
-                <Slider x:Name="slider"
- Maximum="300" 
-             Minimum="50" 
-             Value="{Binding Hight}"
-             />
-                <Label x:Name="displayLabel"
-Text="{Binding x:DataType='Slider',
-               Source={x:Reference slider},
-               Path=Value,
-               StringFormat='The height value is {0:F0}'}"
-HorizontalOptions="Center"
-VerticalOptions="Center" />
-
-                <!--  Eyes Color  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-    Grid.Column="0"
-    Style="{StaticResource labelNameStyle}"
-    Text="Eyes color" />
-            </Grid>
-            <Entry
-Placeholder="Only brown,green and blue are valid"
-Style="{StaticResource entryStyle}"
-Text="{Binding Eyes}" />
-            
-            <!--Body Structure-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="Your body structure type" Grid.Column="0"/>
-            </Grid>
-                <Picker  ItemsSource="{Binding Kinds}"
-                    SelectedItem="{Binding BodyStructure, Mode=TwoWay}"
-                    >
-            </Picker>
-                <!--Skin Color-->
+                <!--  Last Name  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label
-    Grid.Column="0"
-    Style="{StaticResource labelNameStyle}"
-    Text="Skin color" />
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Last Name" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowLastNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding LastNameError}" />
                 </Grid>
                 <Entry
-Placeholder="Please enter your skin color"
-Style="{StaticResource entryStyle}"
-Text="{Binding Skincolor}" />
-                <!--About me-->
+                    Placeholder="Type Last Name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding LastName}" />
+
+                <!--  Email  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label
-         Grid.Column="0"
-         Style="{StaticResource labelNameStyle}"
-         Text="About me" />
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Email" />
                     <Label
-         Grid.Column="1"
-         IsVisible="{Binding ShowAboutMeError}"
-         Style="{StaticResource labelErrorStyle}"
-         Text="{Binding AboutMeError}" />
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowEmailError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding EmailError}" />
                 </Grid>
                 <Entry
-     Placeholder="Please enter details about you, that showing you off"
-     Style="{StaticResource entryStyle}"
-     Text="{Binding AboutMe}" />
+                    Placeholder="Type Email"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Email}" />
 
-                <!--Gender -->
+                <!--  Password  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Password" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowPasswordError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding PasswordError}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                    </Grid.ColumnDefinitions>
+                    <Entry
+                        Grid.Column="0"
+                        IsPassword="{Binding IsPassword}"
+                        Placeholder="Type Password"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding Password}" />
+                    <ImageButton
+                        Grid.Column="1"
+                        Command="{Binding ShowPasswordCommand}"
+                        HeightRequest="25"
+                        Source="passwordeye.jpg" />
+                </Grid>
+                <!--  Hair  -->
+                <Label FontAttributes="None" Text="Hair" />
+                <Picker ItemsSource="{Binding Kinds3}" SelectedItem="{Binding Hair, Mode=TwoWay}" />
+                <!--  hight  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Hight" />
+                </Grid>
+                <Slider
+                    x:Name="slider"
+                    Maximum="300"
+                    Minimum="50"
+                    Value="{Binding Hight}" />
+                <Label
+                    x:Name="displayLabel"
+                    HorizontalOptions="Center"
+                    Text="{Binding x:DataType='Slider', Source={x:Reference slider}, Path=Value, StringFormat='The height value is {0:F0}'}"
+                    VerticalOptions="Center" />
+
+                <!--  Eyes  -->
+                <Label FontAttributes="None" Text="Eyes" />
+                <Picker ItemsSource="{Binding Kinds2}" SelectedItem="{Binding Eyes, Mode=TwoWay}" />
+                <!--  Body Structure  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Your body structure type" />
+                </Grid>
+                <Picker ItemsSource="{Binding Kinds}" SelectedItem="{Binding BodyStructure, Mode=TwoWay}" />
+                <!--  Skin  -->
+                <Label FontAttributes="None" Text="Skin" />
+                <Picker ItemsSource="{Binding Kinds4}" SelectedItem="{Binding Skin, Mode=TwoWay}" />
+                <!--  About me  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="About me" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowAboutMeError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding AboutMeError}" />
+                </Grid>
+                <Editor
+                    HeightRequest="150"
+                    Placeholder="Enter important information about yourself you would like the castors would know"
+                    Text="{Binding AboutMe}" />
+                <!--  Age  -->
+                <Label FontAttributes="None" Text="Age" />
+                <Picker ItemsSource="{Binding Kinds1}" SelectedItem="{Binding Age, Mode=TwoWay}" />
+                <!--  Gender  -->
                 <Label Text="Gender" />
-                <StackLayout RadioButtonGroup.GroupName="gender" RadioButtonGroup.SelectedValue="{Binding UserGender}" Margin="10" IsEnabled="{Binding Change}">
+                <StackLayout
+                    Margin="10"
+                    IsEnabled="{Binding Change}"
+                    RadioButtonGroup.GroupName="gender"
+                    RadioButtonGroup.SelectedValue="{Binding UserGender}">
 
-                    <RadioButton Content="Female" Value='Female' />
-                    <RadioButton Content="Male" Value='Male'/>
-                    <RadioButton Content="Other" Value='Other' IsChecked="True" />
+                    <RadioButton Content="Female" Value="Female" />
+                    <RadioButton Content="Male" Value="Male" />
+                    <RadioButton
+                        Content="Other"
+                        IsChecked="True"
+                        Value="Other" />
                 </StackLayout>
 
                 <!--  Save and Cancel Buttons  -->
-            <Button
-                Command="{Binding SaveCommand}"
-                IsEnabled="{Binding NotInServerCall}"
-                Style="{StaticResource buttonStyle}"
-                Text="Save" />
+                <Button
+                    Command="{Binding SaveCommand}"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Style="{StaticResource buttonStyle}"
+                    Text="Save" />
 
-        </VerticalStackLayout>
+            </VerticalStackLayout>
         </ScrollView>
         <!--  Centered ActivityIndicator  -->
         <ActivityIndicator
@@ -268,6 +233,6 @@ Text="{Binding Skincolor}" />
             IsRunning="{Binding InServerCall}"
             VerticalOptions="Center"
             Color="Red" />
-      
+
     </Grid>
 </ContentPage>

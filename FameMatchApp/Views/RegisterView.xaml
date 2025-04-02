@@ -33,7 +33,7 @@
                         Text="I am a" />
                     <RadioButton Content="Casted" Value="2" />
                     <RadioButton
-                        Content="Castor"
+                        Content="Castor" 
                         IsChecked="True"
                         Value="1" />
                 </HorizontalStackLayout>
