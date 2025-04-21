@@ -224,7 +224,7 @@ namespace FameMatchApp.ViewModels
             {
                 EmailData emailData = new EmailData()
                 {
-                    From = "FameMatchSupport@gmail",
+                    From = "FameMatchSupport",
                     To = castor.UserEmail,
                     Subject = $"Your Support Request: {SelectedQuestion}",
                     Body = $@"Hi {castor.UserName},

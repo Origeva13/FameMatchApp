@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Images\profileicon.jpg" />
 	  <None Remove="Resources\Images\public1.png" />
 	  <None Remove="Resources\Images\screen.gif" />
+	  <None Remove="Resources\Images\unblock.jfif" />
 	  <None Remove="Resources\Images\userslisticon.jpg" />
 	</ItemGroup>
 

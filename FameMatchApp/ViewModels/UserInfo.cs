@@ -96,7 +96,6 @@ namespace FameMatchApp.ViewModels
                     LastName = SelectedUser1.UserLastName;        // Assume Casted has a Bio property
                     Email = SelectedUser1.UserEmail;
                    IsBlocked = SelectedUser1.IsBlocked;
-
                 // Optionally, load any additional details or process the data
 
             }

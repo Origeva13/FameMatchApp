@@ -1,50 +1,65 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FameMatchApp.Views.UsersListView"
-             xmlns:viewModel="clr-namespace:FameMatchApp.ViewModels"
-             xmlns:Models="clr-namespace:FameMatchApp.Models"
-             x:DataType="viewModel:UsersListViewModel"
-             Title="Users">
-    <VerticalStackLayout>
-        <Entry Placeholder="search" Text="{Binding UserName}"/>
-        <CollectionView ItemsSource="{Binding Users}"  ItemsLayout="VerticalGrid, 1" x:Name="theCollectionView"
-                 SelectionMode="Single"
-                 SelectedItem="{Binding SelectedUser1}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Models:User">
-                    <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems>
-                                <SwipeItem 
-                                  IconImageSource="blockpic.jpg"
-                                  CommandParameter="{Binding .}"
-                                  Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.BlockCommand}"
-                      />
+<ContentPage
+    x:Class="FameMatchApp.Views.UsersListView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:FameMatchApp.Models"
+    xmlns:viewModel="clr-namespace:FameMatchApp.ViewModels"
+    Title="Users"
+    x:DataType="viewModel:UsersListViewModel">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Entry Placeholder="search" Text="{Binding UserName}" />
+            <CollectionView
+                x:Name="theCollectionView"
+                ItemsLayout="VerticalGrid, 1"
+                ItemsSource="{Binding Users}"
+                SelectedItem="{Binding SelectedUser1}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:User">
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        Command="{Binding Source={x:Reference theCollectionView}, Path=BindingContext.BlockCommand}"
+                                        CommandParameter="{Binding .}"
+                                        IconImageSource="unblock.jfif" />
 
 
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-                        <!-- Content -->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <!--  Content  -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
+                                <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
                                 <Image Source="{Binding FullProfileImagePath}" Grid.Column="0" HeightRequest="40" WidthRequest="40"/>
                             </Frame>-->
-                            <Label Text="{Binding UserName}" Grid.Column="0" Margin="20"/>
-                            <Label Text="{Binding UserLastName}" Grid.Column="1" Margin="20"/>
-                            <Label Text="{Binding UserEmail}" Grid.Column="2" Grid.ColumnSpan="2" Margin="20"/>
-                        </Grid>
-                    </SwipeView>
+                                <Label
+                                    Grid.Column="0"
+                                    Margin="20"
+                                    Text="{Binding UserName}" />
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="20"
+                                    Text="{Binding UserLastName}" />
+                                <Label
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    Margin="20"
+                                    Text="{Binding UserEmail}" />
+                            </Grid>
+                        </SwipeView>
 
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

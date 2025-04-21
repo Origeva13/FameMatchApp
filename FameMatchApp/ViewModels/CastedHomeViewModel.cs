@@ -103,7 +103,7 @@ namespace FameMatchApp.ViewModels
             {
                 EmailData emailData = new EmailData()
                 {
-                    From = "FameMatchSupport@gmail",
+                    From = "FameMatchSupport",
                     To = casted.UserEmail,
                     Subject = $"Your Support Request: {SelectedQuestion}",
                     Body = $@"Hi {casted.UserName},
