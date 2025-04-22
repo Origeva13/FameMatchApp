@@ -99,7 +99,7 @@ namespace FameMatchApp.ViewModels
                 else
                 {
                     InServerCall = false;
-                    await Shell.Current.DisplayAlert("Confirm", "No Not Approved Users found.", "OK");
+                    await Shell.Current.DisplayAlert("Confirm", "Not Approved Users wasnt found.", "OK");
                 }
 
                 // Debugging: Print the count of filtered castors

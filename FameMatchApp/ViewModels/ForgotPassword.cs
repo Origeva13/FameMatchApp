@@ -32,19 +32,9 @@ namespace FameMatchApp.ViewModels
             this.Num4 = random.Next(1, 10);
             this.From = "FameMatchService";
             this.Subject = "Change password for Fame Match";
-            this.Body = $@"<html>
-  <body style='font-family: Arial, sans-serif; color: #333; line-height: 1.6;'>
-    <h2 style='color: #2e6c80;'>Password Reset Request</h2>
-    <p>Hello,</p>
-    <p>A password change has been requested for your <strong>FameMatch</strong> account.</p>
-    <p>If this was you, please enter the following verification code in the app:</p>
-    <div style='font-size: 24px; font-weight: bold; letter-spacing: 8px; color: #d9534f; margin: 20px 0;'>
-      {Num1} {Num2} {Num3} {Num4}
-    </div>
-    <p>If you did not request this change, please ignore this email.</p>
-    <p>Thank you,<br/>The FameMatch Team</p>
-  </body>
-</html>";
+            this.Body = "Please enter the numbers in the app to confirm your email address. \n" +
+                $"The numbers are: {Num1}, {Num2}, {Num3}, {Num4}";
+
         }
 
 
@@ -165,7 +155,7 @@ namespace FameMatchApp.ViewModels
         public async Task SendEmailAsync()
         {
             InServerCall = true;
-            if (string.IsNullOrWhiteSpace(Subject) || string.IsNullOrWhiteSpace(Body))
+            if (string.IsNullOrWhiteSpace(Subject))
             {
                 StatusMessage = "All fields are required to send an email.";
                 return;
@@ -187,6 +177,9 @@ namespace FameMatchApp.ViewModels
                     To = To,
                     Subject = Subject,
                     Body = Body
+
+
+
                 };
 
                 try
