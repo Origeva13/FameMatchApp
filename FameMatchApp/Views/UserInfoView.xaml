@@ -79,6 +79,48 @@
                     TextColor="#333333"
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
+            <!--  IsCasted  -->
+            <HorizontalStackLayout>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="Casted:"
+                    VerticalOptions="Center" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="{Binding IsCasted}"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <!--  IsCastor  -->
+            <HorizontalStackLayout>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="Castor:"
+                    VerticalOptions="Center" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="{Binding IsCastor}"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <!--  IsManager  -->
+            <HorizontalStackLayout>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="Manager:"
+                    VerticalOptions="Center" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="{Binding IsManger}"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
         </StackLayout>
 
         <!--  Add a button or action if needed  -->

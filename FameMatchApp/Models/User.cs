@@ -40,7 +40,7 @@ namespace FameMatchApp.Models
 
         //public virtual ICollection<Message> MessageSenders { get; set; } = new List<Message>();
 
-        public virtual Picture? Picture { get; set; }
+        public virtual ICollection<File> Files { get; set; } = new List<File>();
         public User() { }
     }
 }

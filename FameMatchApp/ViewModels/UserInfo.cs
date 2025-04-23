@@ -25,7 +25,8 @@ namespace FameMatchApp.ViewModels
                     LoadCastedDetails();  // Optionally, load any additional details or process the data
                 }
             }
-            private string name;
+        #region properties
+        private string name;
             public string Name
             {
                 get => name;
@@ -76,10 +77,41 @@ namespace FameMatchApp.ViewModels
                 OnPropertyChanged();
             }
         }
+        private bool isManger;
+        public bool IsManger
+        {
+            get => isManger;
+            set
+            {
+                isManger = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool isCasted;
+        public bool IsCasted
+        {
+            get => isCasted;
+            set
+            {
+                isCasted = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool isCastor;
+        public bool IsCastor
+        {
+            get => isCastor;
+            set
+            {
+                isCastor = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
         // Constructor 
         public UserInfo()
             {
-
+            
             }
         //לשאול את עופר
         //public bool IsManager => SelectedUser1?.IsManager ?? false;
@@ -96,6 +128,17 @@ namespace FameMatchApp.ViewModels
                     LastName = SelectedUser1.UserLastName;        // Assume Casted has a Bio property
                     Email = SelectedUser1.UserEmail;
                    IsBlocked = SelectedUser1.IsBlocked;
+                   IsManger = SelectedUser1.IsManager;
+                if (SelectedUser1 is Casted)//לתקן
+                { 
+                    IsCasted = true;
+                    IsCastor = false;
+                }
+                if (SelectedUser1 is Castor)//לתקן
+                {
+                    IsCastor = true;
+                    IsCasted = false;
+                }
                 // Optionally, load any additional details or process the data
 
             }
