@@ -656,6 +656,35 @@ namespace FameMatchApp.Services
                 return false;
             }
         }
+        public async Task<User?> UploadImageAsync(Stream imageStream, string fileName)
+        {
+            using (var content = new MultipartFormDataContent())
+            {
+                var fileContent = new StreamContent(imageStream);
+                fileContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data")
+                {
+                    Name = "\"file\"",
+                    FileName = $"\"{fileName}\""
+                };
+                fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+
+                content.Add(fileContent, "file", fileName);
+
+                HttpResponseMessage response = await client.PostAsync("Photos/UploadImage", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = await response.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<User>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                }
+                else
+                {
+                    // Optional: log error or handle status codes accordingly
+                    return null;
+                }
+            }
+        }
+
     }
 }
 
