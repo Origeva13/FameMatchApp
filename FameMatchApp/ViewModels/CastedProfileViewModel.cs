@@ -34,7 +34,7 @@ namespace FameMatchApp.ViewModels
             Kinds4 = (new Skin()).Kinds4;
             Skin = Kinds4[0];
             Kinds1 = (new Age()).Kinds1;
-            Age = Kinds1[0];
+            Age = casted.UserAge;
             //////UpdatePhotoURL(casted.ProfileImagePath);
             //////LocalPhotoPath = "";
             IsPassword = true;
