@@ -129,12 +129,12 @@ namespace FameMatchApp.ViewModels
                     Email = SelectedUser1.UserEmail;
                    IsBlocked = SelectedUser1.IsBlocked;
                    IsManger = SelectedUser1.IsManager;
-                if (SelectedUser1 is Casted)//לתקן
+                if (SelectedUser1 is Castor)//לתקן
                 { 
                     IsCasted = true;
                     IsCastor = false;
                 }
-                if (SelectedUser1 is Castor)//לתקן
+                else//לתקן
                 {
                     IsCastor = true;
                     IsCasted = false;

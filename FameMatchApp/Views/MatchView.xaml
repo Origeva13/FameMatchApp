@@ -61,36 +61,44 @@ VerticalOptions="Center" />
                 SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Models:Casted">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
+                        <Frame
+                            Margin="10"
+                            Padding="10"
+                            BorderColor="Black"
+                            BackgroundColor="White"
+                            CornerRadius="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <!--<Frame Grid.Column="0" CornerRadius="50" HeightRequest="40" WidthRequest="40">
                             <Image Source="{Binding FullProfileImagePath}" Grid.Column="0" HeightRequest="40" WidthRequest="40"/>
-                        </Frame>-->
-                            <Label
+                            </Frame>-->
+                                <Label
                                 Grid.Column="0"
                                 Margin="20"
                                 FontSize="17"
                                 Text="{Binding UserName}"
                                 TextColor="Green" />
-                            <Label
+                                <Label
                                 Grid.Column="1"
                                 Margin="20"
                                 FontSize="17"
                                 Text="{Binding UserLastName}"
                                 TextColor="Green" />
-                            <Label
+                                <Label
                                 Grid.Column="2"
                                 Grid.ColumnSpan="2"
                                 Margin="20"
                                 FontSize="17"
                                 Text="{Binding UserEmail}"
                                 TextColor="Green" />
-                        </Grid>
+
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
