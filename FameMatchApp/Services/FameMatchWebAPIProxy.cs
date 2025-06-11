@@ -162,42 +162,7 @@ namespace FameMatchApp.Services
                 return null;
             }
         }
-        public async Task<User?> UploadProfileImage(string imagePath)
-        {
-            //Set URI to the specific function API
-            string url = $"{this.baseUrl}uploadprofileimage";
-            try
-            {
-                
-                //Create the form data
-                MultipartFormDataContent form = new MultipartFormDataContent();
-                var fileContent = new ByteArrayContent(System.IO.File.ReadAllBytes(imagePath));
-                form.Add(fileContent, "file", imagePath);
-                //Call the server API
-                HttpResponseMessage response = await client.PostAsync(url, form);
-                //Check status
-                if (response.IsSuccessStatusCode)
-                {
-                    //Extract the content as string
-                    string resContent = await response.Content.ReadAsStringAsync();
-                    //Desrialize result
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    User? result = JsonSerializer.Deserialize<User>(resContent, options);
-                    return result;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
+        
         public async Task<bool> UpdateCastor(Castor user)
         {
             //Set URI to the specific function API
@@ -656,34 +621,44 @@ namespace FameMatchApp.Services
                 return false;
             }
         }
-        public async Task<User?> UploadImageAsync(Stream imageStream, string fileName)
+
+        public async Task<User?> UploadProfileImage(string imagePath)
         {
-            using (var content = new MultipartFormDataContent())
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}UploadImage";
+            try
             {
-                var fileContent = new StreamContent(imageStream);
-                fileContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data")
-                {
-                    Name = "\"file\"",
-                    FileName = $"\"{fileName}\""
-                };
-                fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-
-                content.Add(fileContent, "file", fileName);
-
-                HttpResponseMessage response = await client.PostAsync("Photos/UploadImage", content);
-
+                //Create the form data
+                MultipartFormDataContent form = new MultipartFormDataContent();
+                var fileContent = new ByteArrayContent(System.IO.File.ReadAllBytes(imagePath));
+                form.Add(fileContent, "file", imagePath);
+                //Call the server API
+                HttpResponseMessage response = await client.PostAsync(url, form);
+                //Check status
                 if (response.IsSuccessStatusCode)
                 {
-                    string json = await response.Content.ReadAsStringAsync();
-                    return JsonSerializer.Deserialize<User>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    User? result = JsonSerializer.Deserialize<User>(resContent, options);
+                    return result;
                 }
                 else
                 {
-                    // Optional: log error or handle status codes accordingly
                     return null;
                 }
             }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
+
+       
 
     }
 }

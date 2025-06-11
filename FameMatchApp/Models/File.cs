@@ -8,8 +8,8 @@ namespace FameMatchApp.Models
     {
        
         public int FileId { get; set; }
+        public int UserId { get; set; }
 
-        
         public string FileExt { get; set; } = null!;
         public File() { }
        

@@ -35,6 +35,7 @@ namespace FameMatchApp.ViewModels
             Skin = Kinds4[0];
             Kinds1 = (new Age()).Kinds1;
             Age = casted.UserAge;
+            PhotoURL = casted.UserImageUrl;
             //////UpdatePhotoURL(casted.ProfileImagePath);
             //////LocalPhotoPath = "";
             IsPassword = true;
@@ -588,20 +589,16 @@ namespace FameMatchApp.ViewModels
                 if (success)
                 {
                     //UPload profile image if needed
-                    //if (!string.IsNullOrEmpty(LocalPhotoPath))
-                    //{
-                    //    User? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
-                    //    if (updatedUser == null)
-                    //    {
-                    //        await Shell.Current.DisplayAlert("Save Profile", "User Data Was Saved BUT Profile image upload failed", "ok");
-                    //    }
-                    //    else
-                    //    {
-                    //        theUser.ProfileImagePath = updatedUser.ProfileImagePath;
-                    //        UpdatePhotoURL(theUser.ProfileImagePath);
-                    //    }
+                    if (!string.IsNullOrEmpty(LocalPhotoPath))
+                    {
+                        User? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                        if (updatedUser == null)
+                        {
+                            await Shell.Current.DisplayAlert("Save Profile", "User Data Was Saved BUT Profile image upload failed", "ok");
+                        }
 
-                    //}
+
+                    }
                     InServerCall = false;
                     await Shell.Current.DisplayAlert("Save Profile", "Profile saved successfully", "ok");
                 }

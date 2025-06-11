@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Graphics;
+﻿using FameMatchApp.Services;
+using Microsoft.Maui.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,12 +36,27 @@ namespace FameMatchApp.Models
 
         public virtual Castor? Castor { get; set; }
 
+        public string UserImageUrl
+        {
+            get
+            {
+                if (Files != null && Files.Count > 0)
+                {
+                    return Files[Files.Count - 1].FileUrl;
+                }
+                else
+                {
+                    return FameMatchWebAPIProxy.ImageBaseAddress + "default.png";
+                }
+            }
+        }
+
         //public virtual ICollection<Message> MessageRecivers { get; set; } = new List<Message>();
 
 
         //public virtual ICollection<Message> MessageSenders { get; set; } = new List<Message>();
 
-        public virtual ICollection<File> Files { get; set; } = new List<File>();
+        public virtual List<File> Files { get; set; } = new List<File>();
         public User() { }
     }
 }

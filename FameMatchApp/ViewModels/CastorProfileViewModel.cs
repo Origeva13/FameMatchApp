@@ -23,6 +23,7 @@ namespace FameMatchApp.ViewModels
             UserGender=castor.UserGender;
             NumOfLisence =castor.NumOfLisence;
             CompanyName = castor.CompanyName;
+            PhotoURL = castor.UserImageUrl;
             //////UpdatePhotoURL(castor.ProfileImagePath);
             //////LocalPhotoPath = "";
             IsPassword = true;
@@ -493,20 +494,16 @@ namespace FameMatchApp.ViewModels
                 if (success)
                 {
                     //UPload profile image if needed
-                    //if (!string.IsNullOrEmpty(LocalPhotoPath))
-                    //{
-                    //    User? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
-                    //    if (updatedUser == null)
-                    //    {
-                    //        await Shell.Current.DisplayAlert("Save Profile", "User Data Was Saved BUT Profile image upload failed", "ok");
-                    //    }
-                    //    else
-                    //    {
-                    //        theUser.ProfileImagePath = updatedUser.ProfileImagePath;
-                    //        UpdatePhotoURL(theUser.ProfileImagePath);
-                    //    }
+                    if (!string.IsNullOrEmpty(LocalPhotoPath))
+                    {
+                        User? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
+                        if (updatedUser == null)
+                        {
+                            await Shell.Current.DisplayAlert("Save Profile", "User Data Was Saved BUT Profile image upload failed", "ok");
+                        }
+                        
 
-                    //}
+                    }
                     InServerCall = false;
                     await Shell.Current.DisplayAlert("Save Profile", "Profile saved successfully", "ok");
                 }
