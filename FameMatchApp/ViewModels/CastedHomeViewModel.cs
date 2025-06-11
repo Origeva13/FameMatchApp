@@ -23,6 +23,7 @@ namespace FameMatchApp.ViewModels
             // Initialize Commands
             UserName = theUser.UserName;
             UserLastName = theUser.UserLastName;
+            UsersPhoto = theUser.Files;
             SendHelpEmail = new Command(OnSendHelpEmail);
             // Initialize Questions List
             CommonQuestions = new List<string>
@@ -61,6 +62,78 @@ namespace FameMatchApp.ViewModels
             {
                 userLastName = value;
                 OnPropertyChanged("UserLastName");
+            }
+        }
+        #endregion
+
+        #region Photo
+
+        private string photoURL;
+
+        public string PhotoURL
+        {
+            get => photoURL;
+            set
+            {
+                photoURL = value;
+                OnPropertyChanged("PhotoURL");
+            }
+        }
+
+        private string localPhotoPath;
+
+        public string LocalPhotoPath
+        {
+            get => localPhotoPath;
+            set
+            {
+                localPhotoPath = value;
+                OnPropertyChanged("LocalPhotoPath");
+            }
+        }
+
+        public Command UploadPhotoCommand { get; }
+        //This method open the file picker to select a photo
+        private async void OnUploadPhoto()
+        {
+            try
+            {
+                var result = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please select a photo",
+                });
+
+                if (result != null)
+                {
+                    // The user picked a file
+                    this.LocalPhotoPath = result.FullPath;
+                    this.PhotoURL = result.FullPath;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+
+        private void UpdatePhotoURL(string virtualPath)
+        {
+            Random r = new Random();
+            PhotoURL = proxy.GetImagesBaseAddress() + virtualPath + "?v=" + r.Next();
+            LocalPhotoPath = "";
+        }
+
+        #endregion
+
+        #region UsersPhoto
+        private List<Models.File> usersPhoto;
+        public List<Models.File> UsersPhoto
+        {
+            get => this.usersPhoto;
+            set
+            {
+                this.usersPhoto = value;
+                OnPropertyChanged(nameof(UsersPhoto));
             }
         }
         #endregion

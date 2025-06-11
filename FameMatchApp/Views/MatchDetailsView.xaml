@@ -23,8 +23,7 @@
             Padding="20"
             BackgroundColor="White"
             HorizontalOptions="FillAndExpand"
-            Spacing="20"
-            >
+            Spacing="20">
             <!--  Name Section  -->
             <StackLayout Padding="0,10">
                 <HorizontalStackLayout>
@@ -102,19 +101,19 @@
                 FontAttributes="Bold"
                 FontSize="16"
                 HorizontalOptions="Center"
-                Text="To send an email to the candidate,  
-                click the button below"
+                Text="To send an email to the candidate,                   click the button below"
                 TextColor="#1ABC9C"
                 VerticalOptions="Center" />
             <!--  Increased space and changed color to highlight the instruction  -->
-            
-            
-            <!-- Choose Audition  --><!--
+
+
+            <!--  Choose Audition  -->
+            <!--
             <Label FontAttributes="Bold" Text="Choose Audition" />
             <Picker ItemsSource="{Binding Kinds}" SelectedItem="{Binding SelectedAudition, Mode=TwoWay}" />-->
-            
+
             <!--  Send Email Button  -->
-            
+
             <Button
                 BackgroundColor="#1ABC9C"
                 Command="{Binding SendEmailCommand}"

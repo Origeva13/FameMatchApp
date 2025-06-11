@@ -427,7 +427,6 @@ public class RegisterViewModel : ViewModelBase
     }
     
     #endregion kids
-
     #region eyes
     private string eyes;
     public string Eyes
@@ -451,7 +450,6 @@ public class RegisterViewModel : ViewModelBase
         }
     }
     #endregion
-
     #region hair
     private string hair;
     public string Hair
@@ -475,9 +473,6 @@ public class RegisterViewModel : ViewModelBase
         }
     }
     #endregion
-
-
-
     #region Color
     private string color;
     public string Color
@@ -501,8 +496,6 @@ public class RegisterViewModel : ViewModelBase
         }
     }
     #endregion
-
-
     #region bodyStructure
     private string body;
     public string Body

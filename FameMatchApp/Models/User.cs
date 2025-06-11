@@ -46,7 +46,7 @@ namespace FameMatchApp.Models
                 }
                 else
                 {
-                    return FameMatchWebAPIProxy.ImageBaseAddress + "default.png";
+                    return FameMatchWebAPIProxy.ImageBaseAddress + "def.png";
                 }
             }
         }

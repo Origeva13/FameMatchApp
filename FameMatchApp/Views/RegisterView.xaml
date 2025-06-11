@@ -140,7 +140,7 @@
                 </StackLayout>
 
                 <!--  Photo  -->
-                <Frame
+                <!--<Frame
                     Margin="10"
                     Padding="5"
                     BorderColor="Black">
@@ -168,7 +168,7 @@
                             </Label.GestureRecognizers>
                         </Label>
                     </Grid>
-                </Frame>
+                </Frame>-->
 
                 <StackLayout IsVisible="{Binding IsCastorChecked}">
                     <Grid>

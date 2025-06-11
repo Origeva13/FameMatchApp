@@ -149,7 +149,7 @@ The FameMatch Team and {current.UserName} {current.UserLastName}",
 <body>
     <div class='container'>
         <div class='header'>
-            <img src='cid:file:///C:/Users/User/Downloads/DALL%C2%B7E%202025-03-11%2015.00.34%20-%20A%20modern,%20sleek%20logo%20for%20'FameMatch',%20an%20app%20connecting%20actors%20and%20casting%20professionals.%20The%20design%20features%20a%20golden%20star%20intertwined%20with%20two%20shaki.webp' alt='FameMatch Logo'/>
+            <img src={current.UserImageUrl} alt='FameMatch Logo'/>
         </div>
         <div class='content'>
             <p>Hi {castor.UserName},</p>

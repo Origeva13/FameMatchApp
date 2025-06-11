@@ -6,6 +6,7 @@
     Title="">
 
     <VerticalStackLayout>
+        <!--  Page Title  -->
         <Label
             FontFamily="Broadway3D"
             FontSize="40"
@@ -19,43 +20,45 @@
             X2="2550"
             Y1="20"
             Y2="20" />
+        <!--  Welcome Heading  -->
+        <Label
+            Margin="20,40,20,10"
+            FontAttributes="Bold"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="Welcome to FameMatch!" />
+
+        <!--  App Explanation Text  -->
+        <Label
+            Margin="20"
+            FontSize="16"
+            HorizontalOptions="Center"
+            Text="As a casted user, you can find auditions, make new contacts, and get one step closer to your career in the entertainment industry!"
+            TextColor="Gray" />
+
+
+
         <ScrollView>
             <StackLayout>
                 <StackLayout Margin="10">
-                    <Label
+                    <!--<Label
                         Margin="10"
                         FontSize="20"
                         HorizontalOptions="Center"
-                        Text="Your Photos" />
+                        Text="Your Photos" />-->
 
-                    <ScrollView HorizontalScrollBarVisibility="Always" Orientation="Horizontal">
-
-                        <HorizontalStackLayout>
-                            <Frame BorderColor="Blue" Margin="10">
-                                <Image Source="notpublic1.png" />
-                            </Frame>
-                            <Frame BorderColor="Blue"  Margin="10">
-                                <Label>Photo Booth</Label>
-                            </Frame>
-                            <Frame BorderColor="Blue"  Margin="10">
-                                <Label>Photo Booth</Label>
-                            </Frame>
-                            <Frame BorderColor="Blue"  Margin="10">
-                                <Label>Photo Booth</Label>
-                            </Frame>
-                            <Frame BorderColor="Blue"  Margin="10">
-                                <Label>Photo Booth</Label>
-                            </Frame>
-
-                        </HorizontalStackLayout>
-                    </ScrollView>
+                    <!--<CarouselView ItemsSource="{Binding theuser.Files}">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Image HeightRequest="150" Source="{Binding PhotoUrl}" Aspect="AspectFill"/>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>-->
 
                 </StackLayout>
-
             </StackLayout>
-
-
         </ScrollView>
+
         <Line
             Stroke="Black"
             StrokeThickness="2"
@@ -63,6 +66,7 @@
             X2="2550"
             Y1="20"
             Y2="20" />
+
         <!--  Help Section Header  -->
         <Label
             Margin="20"
@@ -70,12 +74,14 @@
             FontSize="Medium"
             HorizontalOptions="Center"
             Text="Need Help?" />
+
         <Label
             Margin="20"
             FontAttributes="Italic"
             FontSize="Small"
             HorizontalOptions="Center"
-            Text=" You can select a common question and than click the support button for information." />
+            Text=" You can select a common question and then click the support button for information." />
+
         <!--  Picker for Common Questions  -->
         <Picker
             x:Name="QuestionsPicker"

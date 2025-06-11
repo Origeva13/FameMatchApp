@@ -67,6 +67,64 @@ namespace FameMatchApp.ViewModels
                 OnPropertyChanged();
             }
         }
+        #region Photo
+
+        private string photoURL;
+
+        public string PhotoURL
+        {
+            get => photoURL;
+            set
+            {
+                photoURL = value;
+                OnPropertyChanged("PhotoURL");
+            }
+        }
+
+        private string localPhotoPath;
+
+        public string LocalPhotoPath
+        {
+            get => localPhotoPath;
+            set
+            {
+                localPhotoPath = value;
+                OnPropertyChanged("LocalPhotoPath");
+            }
+        }
+
+        public Command UploadPhotoCommand { get; }
+        //This method open the file picker to select a photo
+        private async void OnUploadPhoto()
+        {
+            try
+            {
+                var result = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please select a photo",
+                });
+
+                if (result != null)
+                {
+                    // The user picked a file
+                    this.LocalPhotoPath = result.FullPath;
+                    this.PhotoURL = result.FullPath;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+
+        private void UpdatePhotoURL(string virtualPath)
+        {
+            Random r = new Random();
+            PhotoURL = proxy.GetImagesBaseAddress() + virtualPath + "?v=" + r.Next();
+            LocalPhotoPath = "";
+        }
+
+        #endregion
         // Constructor 
         public MatchDetailsViewModel()
         {
@@ -124,6 +182,7 @@ namespace FameMatchApp.ViewModels
                 LastName = SelectedCasted.UserLastName;        // Assume Casted has a Bio property
                 Email = SelectedCasted.UserEmail;
                 AboutMe = selectedCasted.AboutMe;// Assume a URL for the casted's photo
+                PhotoURL = SelectedCasted.UserImageUrl;
             }
         }
     }

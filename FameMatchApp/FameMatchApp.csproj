@@ -62,6 +62,7 @@
 	  <None Remove="Resources\Images\auditionslist.png" />
 	  <None Remove="Resources\Images\blockpic.jpg" />
 	  <None Remove="Resources\Images\confirmicon.png" />
+	  <None Remove="Resources\Images\def.png" />
 	  <None Remove="Resources\Images\homepageicon.png" />
 	  <None Remove="Resources\Images\LoginPicture.png" />
 	  <None Remove="Resources\Images\LogOutIcon.png" />
